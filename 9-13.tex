@@ -1,0 +1,152 @@
+\chapter{Interpolation}
+\section{Interpolation}
+
+Interpolation means various things. In the simplest iteration, I give you values (or approximate values) of a function at finitely many points  and ask you  to guess the funciton. The function can be anything so we have to make restrictions. Take some function space norm, like $C^m$ norm or Sobolev norm. Find the function with norm as small as possible or almost as small as possible. There's no reason to think the correct answer is the function with smallest norm. 
+
+Is there a function that agrees with the data whose norm is bounded by the given bound, exactly or approximately? 
+If no, the data is not consistent with the  smoothness assumption.
+If yes, we would like to find it.
+
+We are interested in theorems and algorithms, implemented on a computer. 
+
+There is a theory for interpolating functions of 1 variable. Fit a polynomial to adjacent points; fudge the functions so that they match perfectly. On the line, the points come in order. Given sets in the plane, there's no order; the geometry is much more subtle.
+
+For example, in $\R^2$, 
+suppose we are given a bunch of points on the $x$-axis, and 2 points off the axis. Is it possible to interpolate the data with $\ve{F}_{C^2}\lesssim 1$? If the values of the $y$ derivative are sufficiently close, we can interpolate, otherwise no. We had better not just examine nearby points; information can come from far away. Any algorithm that constructs an interpolate by looking at the 100 points closest to it is bound to fail. If the set looks of this, we have to recognize this and respond to it.
+
+Let $E$ be the set and $N=\#E$.
+%We want our algorithms 
+There are algorithms that take time $O(N\log N)$. 
+
+I'm only interested in algorithms that always work, not those that require geometric conditions on the points.
+
+Suppose we want $\ve{F}_{C^4}\lesssim 1$. 
+Draw the zero set of a polynomial of degree 3. Suppose all but a few points lie on that set. This is really the same problem as before. Given $F$, I will not see a difference with $F+GP$ except on the points that are off the zero-set. To test this hypothesis, you had better recognize this is going on, and that the clusters with points are outside have the important information and respond to it.
+Nobody tells you the zero set is around; you are only given the finite set of points. You need to recognize the curve is sitting there. Already, this subject  has input from real algebraic geometry.
+
+This is not the worst possible case for $C^m$. Consider $C^4(\R^3)$. Imagine there's some algebraic surface which is the zero set of a polynomial of low degree and on the surface there is some curve, which is the intersection of the sufrace with another. All but a few lie really close to the surface, and of the ones close to the surface, all but a few lie close to the curve. That affects where the information is coming from. 
+%this is as worse as it gets
+(Real algebraic geometry was for a long time disjoint from anything else, but it's starting to make connections. We won't take textbook theorems from real algebraic geometry and apply them.)
+
+Interpolation with exact values are well understood in $C^m(\R^n)$. They're also well understood in Sobolev spaces $W^{m,p}(\R^n)$. We require $p\ge 1$. If $p>\fc nm$, then $W^{m,p}(\R^n)\sub C^0$. 
+%spaces of cont fn
+The problem makes sense in this regime. A lot is known when $p>n$. For $\fc nm < p< n$, not much is known.
+
+Let $X$ be a Banach space of continuous functions on $\R^n$. Assume $X=C^m(\R^n)$. (There are obvious modifications for other spaces.) %cts and bdd
+%typically, set is contained in the unit cube, don't care what happens far away.
+Let $E\sub \R^n$ be finite with $\# E=N$. %domain matters, not range.
+Consider $f:E\to \R$. 
+Define
+\begin{align}
+\ve{f}_{X(E)} &= \inf\set{\ve{F}_X}{F\in X \text{ such that } F=f\text{ on }E}.
+\end{align}
+Often this inf is not a min. 
+%inf is not min, is inf
+Say that $F$ is an $A$-optimal extension of $f$ if $F=f$ on $E$ and $\ve{F}_X \le A\ve{f}_{X(E)}$. 
+
+The two main problems are
+\begin{enumerate}
+\item
+Compute the order of magnitude of $\ve{f}_{X(E)}$. 
+%one nonneg real number
+(We say 2 real numbers are the same order of magnitude if the ratio is bounded above and below by constants independent of the data. We want to compute a number guaranteed to have the same order of magnitude.)
+%approximation algorithm
+\item
+Compute a $A$-optimal extension of $f$. 
+\end{enumerate}
+Computing a function is a more delicate thing because a computer will only deal with a finite number of values, while a function has infinitely many. Sit at a terminal, enter the data. The computer then displays ``Please wait, I'm thinking about it.'' The computer then executes an algorithm. ``Thank you for your patience, I now understand the interpolant $F$ and will respond to your queries.'' Give a point, the computer will respond with at least $F$ at that point. We can also demand the derivatives up to order $m$ at that point.
+
+This is an extremely demanding notion of computing a function. Take a Bessel function, or even $\sin x$. Depending on what the computer does---suppose it does basic arithmetic. No amount of computation will yield $\sin x$ exactly. It computes $\sin x$ to a given accuracy. But I want \emph{the} value.
+
+I imagine a computer with standard von Neumann architecture. Let's say the computer can deal with exact real numbers. (My coauthors and I have taken into account round-off error into account rigorously; let's not deal with that!)
+It has RAM, flow of control. Given two real numbers, it can add, subtract, multiply, or divide them; we assume no round-off error. The computer can take one number in a register and put it in RAM, fetch from RAM, has input and output.
+
+For some results, I assume the computer can compute $2^m$, and take logarithms. 
+
+I'm only interested in efficient algorithms, those that make minimal use of resources of the computer. There are 2 relevant resources: number of computer operations (multiply, fetch, etc.), and the size of the RAM (how many real numbers to store).
+
+Let's make some trivial lower bounds. We had better read the problem, which takes time $N$. One could imagine an online version which throws away data as it arrives, but it's reasonable to think that the memory required is also $N$.
+
+For problem 2, we also have  a lower bound of $N$. We had better store the problem, e.g., if I query a point I gave the computer, it needs to remember what the value was. %does it?
+A lower bound for the query work is 1.
+
+For problem 1, there are algorithms that solve this problem where the work is $O(N\log N)$ and the memory is $O(N)$. I believe this is sharp.
+
+For problem 2, there is an $A$-algorithm, for which the one-time work is $O(N\log N)$, storage is $O(N)$, and query work is $O(\log N)$. Again I believe this is sharp. There are 3 kinds of resources which one would like to minimize: one-time work, storage, and query work. One can optimize all of them at the same time.
+
+There's a reason this solves no practical problems; the constant $A$ is too big. It depends only on the choice of the function space. It is large because of one particular lemma deep inside the machine of the proof. I continue to hope that one can remove the lemma and replace it by something else.
+
+%This isn't pure numerical analysis where one comes up with clever implementations of obvious things.
+
+We use
+Whitney's extension problem and Whitney's extension theorem, and something from computer science called the well-separated pairs decomposition.
+
+\subsection{Whitney extension}
+
+\begin{prb}[Whitney, 1934]
+Given $W\sub \R^n$ compact, $m\ge 1$, $f:E\to \R$, does there exist $F\in C^m(\R^n)$ such that $F=f$ on $E$?
+If so, how small can we take its norm? 
+What can we say about its derivatives of $F$ (up to order $m$) at a given point?
+Can we take $F$ to depend linearly on $f$?
+(Define $X(E)=\set{f:E\to \R}{\exists F\in X \text{ such that }F=f\text{ on }E}$, $\ve{f}_{X(E)}=\inf \set{\ve{F}_X}{F\in X,F=f\text{ on }E}$. Does there exist $T:X(E)\to X$ bounded linear map such that $Tf|_E=f$ for all $f\in X(E)$?)
+\end{prb}
+%blah blah blah blah part 1
+Whitney solved this in 1 dimension (blah blah blah blah part 1; part 2 never appeared). 
+%blah blah blah part 2 never appeared
+
+In addition to this he proved the very important Whitney extension theorem.
+For $F\in C^m(\R^n)$, $x\in \R^n$, define the Taylor expansion 
+\begin{align}
+J_x(F): y\mapsto \sum_{|\al|\le m} \rc{\al!} (\pl^\al F(x)) (y-x)^\al.
+\end{align}
+%smooth functions on manifold
+Whitney's question is the following: Suppose we are given at every point of $E\sub \R^n$ a Taylor polynomial, $\vec P = (P^x\in \cal P)_{x\in E}$, where $\cal P$ is the set of polynomials of degree $\le m$. This is called a \vocab{Whitney field}. 
+How can we tell whether there exists $F=C^m(\R^n)$ such that $J_x(F)=P^x$ for all $x\in E$? What are necessary conditions?
+This is a simpler question; we need to understand it first. 
+
+Suppose I gave you 30 minutes; you are not allowed to leave the room unless you come up with necessary conditions. Those obviously necessary conditions you come up with will be  sufficient; there is a procedure to construct the function.
+
+%we are confined to this room for a while
+Here are necessary conditions.
+\begin{enumerate}
+\item
+Denote $\pl^\al P^x(x) = (\pl_z^\al P^x(z))|_{z=x}$. Then $|\pl^\al P^x(x)|\le M$ for $x\in E$, $|\al|\le m$.
+%not diff in top x
+\item
+$|\pl^\al(P^x - P^y)(x)|\le M|x-y|^{m-|\al|}$. for $x,y\in E$, $|\al|\le m$.
+
+(If 2 points $x,y$ are close then $P^x$ and $P^y$ are close; Taylor's theorem with remainder tells us how close.)
+
+(Let's declare $0^0=0$ for this condition.)
+
+(We haven't extracted all the omph yet. We haven't use the fact that they're continuous. Using the modulus of continuity we get the following.)
+\item
+$\fc{\ab{\pl^\al (P^x - P^y)(x)}}{|x-y|^{m-|\al|}}$ as $|x-y|\to 0^+$, $x,y\in E$. 
+\end{enumerate}
+\begin{thm}[Whitney's extension theorem , 1934]
+These conditions imply that there exist $F\in C^m(\R^n)$ with $C^m$-norm $\le CM$ such that $J_X(F) = P^x$ for all $x\in E$, where $C$ depends only on $m,n$.
+\end{thm}
+
+This depends on a very fundamental idea that had a huge influence on analysis.
+
+\subsection{Well-separated pairs}
+
+Given $E\sub \R^n$, $\# E=N$, $f:E\to \R$, compute $\ve{f}_{\text{Lip}} = \max_{x,y\in E,x\ne y} \fc{|f(x)-f(y)|}{|x-y|}$. This is trivial; a high school student learning programming can do it. Looping over all $x$ and $y$ takes $O(N^2)$ operations because you look at every $x$ and $y$. Is that the best you can do?
+
+Suppose you allow yourself wiggle room; you compute it to a small error, say $10^{-3}$. Using the well-separated pairs decomposition theorem, we can compute $\ve{f}_{\text{Lip}}$ to within a factor $1\pm 10^{-3}$ using $O(N\log N)$ operations. The constant depends on the accuracy required and the dimension $n$.
+
+Suppose we just tried to beat $N^2$, how can we do it? Can we compute many of the quotients at the same time? Suppose
+\begin{align}
+E\times E \bs \text{Diag} \supset E'\times E''.
+\end{align}
+We compute $\max_{x\in E',y\in E''}\fc{|f(x)-f(y)|}{|x-y|}$ in far fewer steps than $\# E' \times \# E''$.  
+
+Suppose $E',E''$ have good geometry---they are well-separated: the distance between $E'$ and $E''$ is large compared to the diameter of $E'$, $E''$. Then I can take representative points $\ol x\in E'$, $\ol y\in E''$ and comute
+\begin{align}\label{e:wsp1}
+\rc{|\ol x - \ol y|}\max_{x\in E',y\in E''} |f(x)-f(y)|. 
+\end{align}
+Take $f(x)$ as small as possible and $f(y)$ as large as possible, or vice versa. The number of operations has decreased from the product of $\# E'$ and $\# E''$ to the sum. 
+
+We aim to partition $E\times E$ into many products of this type. We actually don't need to compute all of the numbers~\eqref{e:wsp1}, we just need the maximum. (We can look at $\rc{|\ol x-\ol y|}|f(\ol x)-f(\ol y)|$.)
+
+%next time, Thu, a careful description of this, and a proof of 1934 Whitney extension theorem interesting parts.

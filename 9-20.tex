@@ -1,0 +1,234 @@
+\blu{9-20}
+
+\subsection{Proof of Whitney's extension theorem}
+
+We work in $C^m(\R^n)$. We have compact $E\sub \R^n$. For each $x\in E$, we are given $P^x\in \cal P$, polynomials of degree $\le m$. We would like to know whether there exists a function in $C^m(\R^n)$ with these prescribed Taylor polynomials. 
+%Assume $|\pl^\al (P^x)(x)|\le M$ for $|\al|\le m$; $|\pl^\al (P^x-P^y)(x)|\le M|x-y|^{m-|\al|}$ for $|\al|\le m$, $x,y\in E$ distinct; and $\fc{|\pl^\al (P^x-P^y)(x)|}{|x-y|^{m-|\al|}}\to 0$ as $|x-y|\to 0$ for $x,y\in E$ distinct.
+%upper bound for CM norm
+
+We sketch the interesting parts of the proof of Whitney's extension theorem.
+\begin{itemize}
+\item
+There is some geometry, an argument with a fundamental idea in analysis. 
+\item
+Construct a partition of unity.
+\item
+Construct $F$ and check that it works.
+\end{itemize}
+
+\begin{proof}
+
+\step{1} Geometry
+
+Take a enormous cube which contains $E$, say the middle $\rc 10$ contains $E$. We are not happy with this cube, so we bisect it in each dimension, to get $2^n$ cubes. Look at each of the pieces and ask, are we happy? For each cube we are unhappy with, bisect again, and repeat. 
+
+What does it mean to be happy? Whitney's rule is simple. Given a cube $Q$, consider $Q^*$, the cube with the same center but 5 times the side length. We are happy with $Q$ if $Q^*$ is disjoint from $E$. This generates a decomposition of the big cubes minus $E$ into infinitely many subcubes. 
+
+Every point not in $E$ is in one of the Whitney cubes (if your point belongs to $E$, you will never be happy); every point in $E$ is not contained in a Whitney cube (there is a small enough neighborhood of it not intersecting $E$.  Any 2 Whitney cubes are disjoint.
+
+%We've partitioned $E^c$ into infinitely many 
+%Fix a point in $E$. %If your point belongs to $E$, you will never be happy. Whatever cubes you end up keeping will be disjoint from $E$. 
+
+Each cube $Q$ is comparable to $E$. 
+$d(E,Q)$ is greater than the side length $\de_Q$ of $Q$.
+Let $Q^+$ be the parent. $Q^+$ dilated by 5 intersects $E$. 
+
+In summary, $Q^\circ \bs E$ is partitioned into Whitney cubes, and
+\begin{itemize}
+\item
+$Q\in$Wh implies $d(Q,E)\sim \de_Q$. 
+($\de_Q\le d(Q,E)\le 10\de_Q$.)
+%If 2 cubes intersect, and one 
+\item
+Good geometry: Neighboring cubes are about the same size. $Q^{\text{closure}}\cap {Q'}^{\text{closure}}\ne \phi$ then $\rc 2 \le \fc{\de_Q}{\de_{Q'}}\le 2$. 
+
+(If $Q$ were $<\rc 2$ the size, then its parent would be contained in $Q'$ and hence also be good, and wouldn't have been cut.)
+%check this.
+%any rule, that gives rise to an attempt to create a decomp into cubes, it might ... all suff small cubes make us happy
+\end{itemize}
+%neighboring cubes are about the same size. 
+%Suppose we have a rule which says that if we are happy with a cube, we are happy with any subcube
+Idea of making a decomposition was used by Calderon, Zygmund, 1954, on some function in $L^1$. You are happy if the average over the cube is $> \al$. The fact that you got the cube from cutting up something you were not happy with, gives you a lot of control. 
+
+%equal to 1 on $Q^0$
+\step{2} Partition of unity
+
+Let $\ph^0=1$ on $Q^0$ (with side length 1), $\ph^0=0$ outside $1.01Q^0$, with $\ph^0$ smooth and $0\le \ph^0\le 1$ everywhere. Suppose $|\pl^\al \ph_Q(x)|\le C\de_Q^{-|\al|}$ for $|\al|\le m+5$. 
+
+We take the picture and translate it and dilate it. 
+
+For $Q$ with side length $\de_Q$ and center $Q$, define $\ph_Q(x) = \ph^0\pf{x-x_Q}{\de_Q}$. 
+
+These functions don't sum to 1, so we define
+\begin{align}
+\te_Q(x) &= \fc{\ph_Q(x)}{\sum_{Q'}\ph_{Q'}(x)}
+\end{align}
+for $x\in Q^{\text{ closure}}\bs E$. 
+
+%1.01 Q also disjoint. 
+Only $Q'$ that abuts $\hat Q$ has a chance of entering into the computation for $\te_{\hat Q}(x)$; they are about the same size as $\hat Q$; the others are shielded. There are a bounded number of cubes that enter in the sum, so 
+\begin{align}
+1\le \sum_{Q'} \ph_{Q'}(x) &\le C\\
+|\pl^\al \sum_{Q'} \ph_{Q'}(x)| &\le C \de_{\hat Q}^{-|\al|}\\
+%explicit bookkeeping
+\ab{\pl^\al \prc{\sum_{Q'} \ph_{Q'}(x)}}
+&\le C\de_{\hat Q}^{-|\al|}. 
+%what happens with diff'g?
+\end{align}
+To see this, induct by how many times we differentiate. Differentiating gives something of the form
+\begin{align}
+\fc{\prod_{i=1}^{s-1} \pl^{\al_j}(\sum_{Q'} \ph_{Q'})}{(\sum_{Q'} \ph_{Q'})^s},
+\end{align}
+where $\al_1+\cdots + \al_S=\al$. This has to be dimensionally correct.
+%volts meters
+%1/volts
+%dimension volts.
+%volts to meter to alpha.
+%To be dimensionally correct, 
+
+The partition of unity reflects the geometry of the cubes and satisfies
+\begin{itemize}
+\item
+$\te_Q\ge 0$, $\Supp(\te_Q)\sub (1.01)Q$.
+\item
+\begin{align}
+|\pl^\al \te_Q(x)| &\le C \de_Q^{-|\al|}
+\end{align}
+for $|\al|\le m+5$. 
+\item
+$\sum \te_Q(x) = \begin{cases}
+1, &x\in E\\
+0, &x\nin E.
+\end{cases}$
+\end{itemize}
+
+\step3 Construct the function.
+
+Let's look at one of the Whitney cubes. Make a guess to what function should look like on this cube. $P^{x_Q}$ is the best guess to how $f$ should behave on $Q$. 
+%the best information we have on how $f$ should behave on $Q$. Take it to be this polynomial.
+But if you have different cubes, there will be jumps at boundaries where they meet. Instead of using the sharp indicator function, we want to use the partition of unity to patch together the functions.
+%use pou to patch together the functions.
+
+Let
+\begin{align}
+F(x) &= \sum_{Q\in \text{Wh}} \te_Q(x) P^{x_Q}(x), \quad x\nin E\\
+F(x) &= (P^x)(x) \text{ if } x\in E.
+\end{align} 
+%notice excellent properties
+Note $F$ depends linearly on the data. Given $x$, there are only a bounded number of $Q$ that determine what $F$ is doing. We call a formula like this ``bounded depth''. 
+
+$F$ is supposed to be a $C^m$ function. The Taylor polynomial is equal to $P^x$ at the point $x$. 
+%continuous. take derivative%Take the definition of 
+%derivative given by formula.
+%deriv at point of E. 
+%for each multi-index $\le m$, we have a formula. 
+
+We hope that for $|\al|\le m$, 
+\begin{align}
+\pl^\al F(x) &= \begin{cases}
+\sum_{Q\in \text{Wh}} \pl^\al (\te_Q(x) P^{x_Q}(x)) \text{ if }x\nin E\\
+(\pl^\al P^x)(x) \text{ if }x\in E.
+\end{cases}
+\end{align}
+%Then $\pdd{x_j} (\pl^\al F(x)) = \pl^{\al + e_j}F(x)$ for $|\al|<m$. 
+We verify that it satisfies the definition of $C^m$ function; these quantities are the derivatives of $F$. 
+
+What happens on points close to $E$? We worry that the derivatives might blow up as we approach $E$. 
+%Live on smaller and smaller 
+\begin{align}
+\pl^\al F(x) &= \sum_{\be + \ga = \al}
+\text{coeff}(\be,\ga) \ub{\pl^\be \te_Q(x)}{C\de_Q^{-|\be|}} \pl^\ga P^{x_Q}(x) 
+\end{align}
+If $\de_Q$ is small, we are in bad shape. There is a very clever trick, Whitney 1934 which gets around this. 
+There's a reason that gets into trouble, we haven't used the hypotheses!
+
+For $x\in \hat Q$, let
+\begin{align}
+F &= \sum \te_{Q} (P^{x_Q}-P^{x_{\hat Q}}) + P^{x_{\hat Q}}\\
+\pl^\al F(x) &= \sum_{\be + \ga=\al}
+\text{coeff}(\be, \ga) \pl^\be \te_Q(x) \cdot 
+\pl^\ga(P^{x_\al}-P^{x_{\hat Q}})(x) + (\pl^{\al}P^{x_{\wh Q}}(x)).
+\end{align}
+By assumption $\pl^\al P^{x_{\wh Q}}(x)$ is bounded. Again $|\pl^\be \te_Q(x)|\le C\de_Q^{-|\be|}$ might be large. But the difference $\pl^\ga(P^{x_\al}-P^{x_{\hat Q}})(x)$ is small. 
+
+We have $d(x_Q,x_{\hat Q}) \le C\de_Q$, $\de_{\wh Q}\sim \de_Q$. One hypothesis is that 
+\begin{align}
+|\pl^\ga (P^x - P^y) (x)|
+&\le C |x-y|^{m-|\ga|}.
+\end{align}
+We use this useful fact about polynomials: 
+%every time diffte lose length scale. 
+%x_0$ is origina dn delta is 1, then poly with bdd coeff, derives at some point whose distance to origin is bounded, get bounded
+If $|\pl^\al P(x_0)|\le A\de^{-|\al|}$ for $|\al|\le \deg p$, and $|x_0-y_0|\le C\de$, then 
+\begin{align}
+|\pl^\al P(y_0)|&\le C' A \de^{-|\al|}
+\end{align}•
+for $|\al|\le \deg p$. 
+
+We use this to move the basepoint from $x_{\hat Q}$ to $x_Q$. 
+\begin{align}
+ %nearperf cancel
+ |\pl^\ga(P^{x_Q}-P^{x_{\wh Q}})(x)|&\le C \de_Q^{m-|\ga|}
+\\
+|\pl^\be \te_Q(x) | \le C\de_Q^{-|\be|}%\\
+%\le C\de_Q^{m-|\be|-|\ga|}. 
+\end{align}
+\end{proof}
+
+\subsection{Using the well-separated pairs decomposition to compute the Lipschitz constant}
+We want to compute $\ve{f}_{\text{Lip}} = \max_{x,y\in E,x\ne y} \fc{|f(x)-f(y)|}{|x-y|}$ efficiently, to within a constant (e.g. 1.01) factor. 
+
+$E\times E\bs \text{Diag}$ can be partitioned into  $E_\nu' \times E_\nu''$ for $\nu=1,\ldots, \nu_{\max}$ with the following good properties. 
+\begin{itemize}
+\item
+$\nu_{\max} \le CN$. 
+\item
+$d(E_\nu', E_{\nu}'')>10^5 [\diam E_\nu' + \diam E_\nu'']$
+\item
+The decomposition can be computed in $O(N\log N)$ steps. %computer 
+(To compute $E_\nu' \times E_\nu''$ we exhibit one point $(x_\nu', x_\nu'')\in \E_\nu'\times \E_\nu''$.)
+\end{itemize}
+Assume this is true; I show how to compute the Lipschitz constant. Then I show the mathematical part by showing the first two bullet points. The punch line of the math discussion is that it's true thanks to the decomposition of a set into Whitney cubes. 
+%$O(N)$ computer ops
+%log N factor in producing
+Define
+\begin{align}
+|||f||| &= \max_{\nu = 1,\ldots, \nu_{\max}}
+\fc{f(x_{\nu}') - f(x_\nu'')}{|x_\nu'-x_\nu''|}. 
+\end{align}
+We claim
+\begin{align}
+|||f||| &\le \ve{f}_{\text{Lip}} \le 1.001|||f|||
+\end{align}
+The left inequality is clear. 
+
+Assume $|f(x_\nu')- f(x_\nu'')|\le |x_\nu'- x_\nu''|$ for each $\nu$. 
+%undergrad want partial credit. suppose not
+We must prove
+\begin{align}
+|f(x')-f(x'')| &\le (1.01) |x'-x''|.
+\end{align}
+for all $x',x''$ distinct. 
+%in diag
+Suppose not. Pick $x',x''$ with $|x'-x''|$ as small as possible.
+\begin{align}
+|f(x')-f(x'')|&> 1.01 |x'-x''|
+\end{align}
+for $(x',x'')\in E_\nu' \times E_\nu''$ for some $\nu$. Fix that $\nu$. 
+$(x_\nu',x_\nu'')\in E_\nu'\times E_\nu''$.
+%sum of 2 diams <10^{-5} 
+%2 nice estimates
+Then $x',x_\nu'\in E_\nu'$ implies $|x'-x_\nu'|\le \diam E_\nu'$ and $x'',x_\nu''\in E_\nu''$ implies $|x''-x_\nu''|\le \diam E_\nu''$, and
+\begin{align}
+|x'-x_\nu'|+ |x''-x_\nu''| &\le 10^{-5} |x'-x''|.
+\end{align}•
+%a lot closer, and min counterex
+Then
+\begin{align}
+|f(x')-f(x'')| &\le 
+\ub{|f(x') - f(x_\nu')| }{\le 1.01 |x'-x_\nu'|}
++ \ub{|f(x_\nu') - f(x_\nu'')|}{\le |x_\nu'-x_\nu''|}
++ \ub{|f(x''_\nu) - f(x'')|}{\le 1.01|x''-x_\nu''|}\\
+&\le 2.01 [|x'-x_\nu'| + |x''-x_\nu''|] +|x'-x''| \\
+&\le (1+ 2.01 \cdot 10^{-5} )|x'-x''| .
+\end{align}

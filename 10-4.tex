@@ -1,0 +1,34 @@
+\blu{10-4}
+
+We will cover
+\begin{itemize}
+\item
+$\si$'s
+\item
+connection of finiteness theorem to $\Ga$'s
+\item
+Infinite $E$'s (new ingredients)
+\item
+The key properties of $\Ga$'s and $\si$'s.
+\item 
+Outliers
+\end{itemize}
+
+Let $f:E\to \R$, $E\sub \R^n$ finite, $m\ge 1$ fixed. Let $\Ga(x,M) = \set{J_x(F)}{F\in C^m \text{ with norm }\le M, F=f\text{ on }E}$. For $x\in E$, we defined $\Ga_\ell (x,M)$ by 
+\begin{align}
+\Ga_0(x,M) :&= \set{P\in \cal P}{P(x)=f(x), |\pl^\al P(x)|\le M\text{ for }|\al|\le M}\supset \Ga(x,M)\\
+\Ga_{\ell+1}(x,M) :&= 
+\set{P\in \Ga_\ell(x,M)}{\forall y\in E\bs \{x\}, \exists P'\in \Ga_\ell(y,M), |\pl^\al(P-P')(x)|\le M|x-y|^{m-|\al|}, |\al|\le m}.
+\end{align}
+If I have 2 interpolants for the same function, then their difference is an interpolant for 0. So the interpolants for 0 tell us how much arbitrariness there is in the interpolants. 
+%dependence on M is trivial... 
+%different M, trivial. dilate by M.
+
+WLOG consider $M=1$.
+Let 
+\begin{align}
+\si(x) &= \set{J_x(F)}{F\in \cal C^m, \text{ norm }\le 1, F=0\text{ on }E}\\
+\si_0(x) &=\set{P}{\forall |\al|\le m,|\pl^\al P(x)|\le 1, P(x)=0}\\
+\si_{\ell+1}(x)&=\set{P\in \si_\ell(x)}{\forall y\in E\bs \{x\}, \exists P'\in \si_\ell(y)\text{ such that }\forall |\al|\le m, |\pl^\al(P-P')(x)|\le |x-y|^{m-|\al|}}
+\end{align}
+

@@ -1,0 +1,167 @@
+\blu{9-25}
+
+\subsection{Well-separated pairs decomposition, proof}
+
+The idea is simple. Suppose that $E\subeq Q_\nu\sub \R^n$. Let's look at $
+Q^\circ \times Q^\circ$. 
+Make a Whitney decomposition of the complement of the diagonal. Each is comparable to its distance from the diagonal. We make these cubes $Q_\nu=Q_\nu'\times Q_\nu''$ such that 
+%\R^n\times \R^n$. Let's say $
+\begin{align}
+d(Q_\nu, \text{Diag}) \sim 10^5 \de_{Q_\nu}. 
+\end{align}
+I take $E_\nu'\times E_\nu'' = E\times E \cap Q_\nu'\times Q_\nu''$, by setting
+\begin{align}
+E_\nu' &= E\cap Q_\nu'\\
+E_\nu'' &= E\cap Q_\nu''
+\end{align}
+Then
+%these guys well-sep
+%s.t. nontrivial
+\begin{align}
+d(E_\nu',E_\nu'') &\ge d(Q_\nu', Q_\nu'')\\
+&\sim 10^5 (\diam Q_\nu' + \diam Q_\nu'')\\
+&\ge 10^5 (\diam E_\nu' + \diam E_\nu'')
+\end{align}•
+There's a slight embarrassment that we need $\nu_{\max}\le CN$, whereas the number of Whitney cubes are infinitely. Fortunately, most of these $E_\nu',E_\nu''$ are empty.
+%one point, cut infinitely
+
+\begin{lem}
+The number of nonempty $E_\nu'\times E_\nu''$ is at most $CN$. 
+\end{lem}
+%10^5 times diameter of ...
+%dyadic cube 10^5 times larger that contains both.
+%may or may not be a dyadic cube.
+
+%Let's count a Whitney cube if there is a cube that contains both of them and with side length at most a large constant times their size.
+\begin{proof}
+Suppose $Q$ is a dyadic cube with $Q_\nu'$ and $Q_\nu''$ are contained in $Q$ ($Q_\nu',Q_\nu''\sub Q$) and
+\begin{align}
+\de_Q &< 2^{20} \de_{Q_\nu'} + 2^{20}\de_{Q_\nu''}\\
+E\cap Q_\nu', E \cap Q_\nu'' &\ne \phi.
+\end{align}•
+Then we say that $Q$ accounts for $Q_\nu'$ and $Q_\nu''$. 
+
+Unfortunately, it could be that no cube accounts for the pair.
+Consider 2 tiny intervals, one slightly $<\rc2$ and the other slightly $>\rc 2$, so that the distance between them is $10^6$ times the side length. The smallest dyadic interval that contains them is the whole unit interval
+
+This seems an unusual situation; in a typical case it will not happen.
+
+We first count the pairs that are accounted by something, and then fix it up. 
+%I'd like to prove
+\begin{align}
+\sum \# \set{Q_\nu'\times Q_\nu''}{\text{some dyadic $Q$ accounts for $Q_\nu',Q_\nu''$}}
+&\le CN.
+\end{align}
+I'll look at all dyadic $Q$ that contain points of $E$. Under inclusion, such cubes form a tree $T$; stop cutting when $Q$ contains a single point of $E$. %The leaves are those that contain a single point of $E$ (we stop cutting then). 
+
+If there is a cube $Q$ that accounts for $Q_\nu',Q_\nu''$, then after a bounded number of cuts, there is a branch. (By definition, $Q$ is at most a constant times larger than $Q_\nu',Q_\nu''$.)
+%then there is some subcube, after 
+The number of dyadic cubes that account for something is $\le $ a constant times the number of nodes in the graph where the graph branches. 
+
+We need to estimate the number of branch points in the tree. Elementary fact about tree: the number of branch points is the number of leaves minus 1. To see this, induct on the size of the graph.
+
+The number of leaves is the number of points of $E$, so the number of branch points is $\le \# E-1$.
+
+Consider pairs $Q$ that account for something, and branch points $\le 11$ levels below it. For every $Q$ that accounts for something, there is a branch point $\le 11$ levels below it. For each branch point there are at most 11 dyadic $Q$ above it. 
+ Hence the number of dyadic $Q$ that account for some $Q_\nu'\times Q_\nu''$ is less than $11\# E$.
+
+%each $Q$ accounts for a bounded number.
+%the number of $Q$ that acct for anything at most E.
+
+%at most 11 levels down there is a branch.
+%$Q$ that account for something, and branch points $\le 11$ levels. For every $Q$ that accounts for something, there is a branch point $\le 11$ . For each branch point there are at most 11 dyadic $Q$ above it. 
+
+It can happen there are pairs not accounted for. %Imagine lots of dyadic grids, $[-2^k,2^k]\times \cdots \time [-2^k,2^k]$.
+Let $\cal D_0$ be the set of all dyadic cubes. For $\xi\in \R^n$, let $D_\xi$ be all $Q+\xi$, $Q\in \cal D_0$. 
+For a cube not accounted for in $\cal D_0$, consider it in $\cal D_\xi$. 
+We can talk about whether $Q$ accounts for something with respect to $D_\xi$. 
+For any fixed $\xi$, the number of $Q'\times Q''$ accounted for by $D_\xi$ is $\le C \#E$. 
+%11
+%common side length, 
+
+Picking $\xi$ at random, what is the probability that two fixed cubes $Q_\nu', Q_\nu''$ lie on different squares of the $2^{11}$-times-larger grid and hence aren't accounted for? Unlikely. %Very unlikely. 
+We have $Q_\nu',Q_\nu''$ is accounted for by some $Q=\cal D_\xi$ with probability $>\rc 2$. 
+
+We estimate the number of 
+pairs $(Q_\nu'\times Q_\nu'', \xi)$ such that $Q$ accounts for $Q_\nu'\times Q_\nu''$ in $\cal D_\xi$ in 2 ways.  
+%in 2 different ways:
+\begin{align}
+\E_\xi (\cdot) &=  \sum_{Q_\nu'\times Q_\nu''} \Pj(Q_\nu'\times Q_\nu'' \text{ is accounted for by some }Q\in \cal D_\xi) \ge \rc 2\#\{Q_\nu'\times Q_\nu''\}.
+\\
+\E_\xi(\cdot) &\le C\# E.
+\end{align}
+%this one has a special structure, because 
+\end{proof}
+Note in each of the Cartesian products $E_\nu' \times E_\nu''$, each of $E_\nu' ,E_\nu''$ is the intersection of $E$ with a cube. 
+
+One convenient way to write down the well-separated pairs decomposition theorem is to write down the cube.
+
+How to compute it efficiently? It can be; the number of steps is $O(N\log N)$. We write down all the relevant cubes; for each $Q_\nu'\times Q_\nu''$, we exhibit one particular point.
+
+%lower bounds?
+
+%large finite set?
+
+Let $E\sub \R^n$. For all $x\in E$ given $P^x\in \cal P$, does there exist $F\in C^m$ such that $J_x F = P^x$ for all $x\in E$? If so, how small can we take the $C^m$ norm of $F$?
+
+%can be implemented efficiently
+
+First do one-time work, $O(N\log N)$. Then we can answer queries.
+
+%linear programming problem
+
+Let $E\sub \R^n$, $f:E\to \R$, $\# E = N$. We want $F\in C^m(\R^n)$ such that $F=f$ on $E$, with norm of $F''$ as small as possible.
+
+We look for $[(P^x)_{x\in E},M]$, satisfying the following constraints with $M$ as small as possible.
+\begin{align}
+(P^x)(x) &= f(x) &\forall x\in E\\
+|\pl^\al (P^x)(x) | &\le M &\forall x\in E, |\al|\le m\\
+|\pl^\al (P^x - P^y)(x)| &\le M|x-y|^{m-|\al|} &\forall x,y\in E\text{ distinct, }|\al|\le m.
+\end{align}•
+For finite $E$, the $o(\cdot)$ condition is vacuous.
+
+This problem can be reduced to linear programming. This is a big LP: there are $N$ constraints, $N$ constraints, and $N^2$ constraints in the three sets. The well-separated pairs decomposition reduces this to $O(N)$ constraints.
+
+In the WSPD, we get $E_\nu' \times E_\nu''$, $\nu=1,\ldots, \nu_{\max}$, $\nu_{\max}\le CN$. Pick $(x_\nu',x_\nu'')\in E_\nu' \times E_\nu''$ for each $\nu$. 
+We can replace the third constraints by
+\begin{align}\label{eq:whitney-lp3}
+|\pl^\al (P^{x_\nu'} - P^{x_\nu''})(x_\nu')| &\le M|x_\nu'-x_\nu''|^{m-|\al|} &\forall x_\nu',x_\nu'', 1\le \nu',\nu''\le \nu_{\max} \text{ distinct}, |\al|\le m.
+\end{align}
+This is similar to the proof that when you estimate the Lipschitz constant, you can just estimate it over the representatives.
+We have 
+\begin{align}
+\diam E_\nu' + \diam E_\nu'' &\le ad(E_\nu' ,E_\nu'') ,
+\end{align}
+and $P^x$ for each $x\in E$. Given~\eqref{eq:whitney-lp3}, we will prove that
+\begin{align}
+|\pl^\al (P^{x'}-P^{x''})(x')| &\le 1.01|x'-x''|^{m-|\al|}
+\end{align}
+for any $x',x''\in E$, $|\al|< m$.  %already assuming highest order derviatives bounded
+Suppose not. Pick a counterexample $(x',x'',\al_0)$ with $|x'-x''|$ as small as possible.
+\begin{align}
+(x',x'')&\in E\times E\bs \text{Diag}\\
+(x',x''), (x_\nu',x_\nu'') &\in E_\nu' \times E_\nu''
+\end{align}
+By minimality, $|x'-x_\nu'|,|x''-x_\nu''|\le a|x'-x''|$. 
+\begin{align}
+|\pl^\al(P^{x'} - P^{x_\nu'})(x_\nu')|
+&\le |x'-x_\nu'|^{m-|\al|}\le a |x_\nu'-x_\nu''|^{m-|\al|}\\
+|\pl^\al(P^{x''} - P^{x_\nu''})(x_\nu'')|
+&\le |x''-x_\nu''|^{m-|\al|}\le \al |x_\nu'-x_\nu''|^{m-|\al|}\\
+|\pl^\al(P^{x_\nu'} - P^{x_\nu''})(x_\nu')|
+&\le |x_\nu'-x_\nu''|^{m-|\al|}
+\end{align}
+We can move the point at which we evaluate the polynomial.  We get 
+\begin{align}
+|\pl^\al(P^{x''} - P^{x_\nu''})(x_\nu')|
+&\le Ca |x_\nu'-x_\nu''|^{m-|\al|}\\
+|\pl^\al(P^{x'} - P^{x''})(x_\nu')|
+&\le (L+Ca) |x_\nu'-x_\nu''|^{m-|\al|}
+\end{align}
+for $|\al|\le m$. (We actually need a stronger version of ``moving the basepoint''.)
+
+
+%ineq for lin f'ls
+%$|x_\nu'-x_\nu''|^{m-|\al|}M \pm \pl^\al (P^{x_\nu'} - P^{x_\nu''})(x_\nu')\ge 0$
+The number of steps to solve a LP of size $n$ is $\poly(n)$, like $n^3$. But we will get it down to $n\log n$.
+

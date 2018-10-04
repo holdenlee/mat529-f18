@@ -1,0 +1,164 @@
+\blu{10-2}
+
+\section{$\Ga$ and $\si$}
+
+%C^m function that agrees with the data. 
+In the problem we're interested in, we're only given the values, not the Taylor polynomials at the points. It's a linear programming problem; in principle we can do it, but in time $N^3$. We'll get the time down to $N\log N$. We have to come up with a consistent set of Taylor polynomials. What might it be at one point?
+
+%$\Ga$'s and $\si$'s. 
+For $m,n>1$, we are given $E\sub \R^n$, $f:E\to \R$. We want to extend to a function $C^m(\R^n)$. 
+We ask the right question: if we fix one particular point, what might the Taylor polynomial be at that one point?
+Let 
+\begin{align}
+\Ga(x,M) &= \set{J_x}{F=f\text{ on }E, \ve{F}_{C^m}\le M}\sub \cal P.
+\end{align}
+This is a possibly empty convex set.
+What is the approximate size and shape of $\Ga(x,M)$? 
+
+It would be great if we can find the exact possible $C^m$ norm, but we don't know how; also there are lots of equivalent $C^m$ norms. Think of the inequality up to a constant. 
+\begin{align}
+\Ga(x,c_1M)&\sub
+\Ga_{\text{computed}}(x,M) \sub \Ga (x,C_1M),\\
+\Ga_{\text{computed}}(x,c_2M) \sub \Ga(x,M)\sub \Ga_{\text{computed}}(x,C_2M).
+\end{align}
+%given know $M$ approximately.
+
+These sets have a lot of information. They're useful and even if we couldn't use them to compute interpolants we would still want to use them.
+Suppose that I want to interpolate data. They come from some experiment or observations. The $f$ we're trying to find is presumably a smooth function of the data, but it's highly unlikely that the function is the interpolant with smallest norm. What do we believe? We believe it matches the data and the $C^m$ norm is not that large. 
+
+Pick a point, what can we say? Suppose we observe where we are at discrete points in time. Pick some particular time, what can I say about position, velocity, acceleration? %I believe that the acceleration of the car is at most something. 
+Given what you believe about your interpolant, we would like to know what kind of uncertainty there is in the interpolant. 
+
+If we can decide whether $\Ga$ is empty, that tells us approximately the best possible norm of the interpolant.
+
+When we prove theorems and construct interpolants, these $\Ga$'s are what we use to construct. 
+
+First we look at $\Ga(x,M)$ at one particular point $x\in E$. We guess $\Ga_{\text{computed}}$, and prove correctness by constructing interpolants. We have to not find the jet at one point, but a family of jets that are mutually consistent.
+
+%convex, possibly empty, contain true $\Ga$.
+For $x\in E$ and $M$ fixed, we construct
+\begin{align}
+\Ga_\ell(x,M)\supset \Ga(x,M) 
+\end{align}•
+for $\ell>0$, convex, possibly empty.
+Define by induction on $\ell$. Let different points in $E$ talk to each other and reduce the size to $\Ga_{\ell+1}(x,M)$. 
+
+We induct on $\ell$. Let
+\begin{align}
+\Ga_0(x,M) :&= \set{P\in \cal P}{P(x)=f(x), |\pl^\al P(x)|\le M\text{ for }|\al|\le M}.
+\end{align}
+This is all the info that comes if you ignore all other points except $x$.
+
+Suppose we know $\Ga_\ell(x,M)$ for all $x\in E$. Suppose $\Ga_\ell(x,M)\supset \Ga(x,M)$. We will define $\Ga_{\ell+1}(x,M)$ for all $x\in E$ such that $\Ga_\ell(x,M)\supset \Ga_{\ell+1}(x,M)\supset \Ga(x,M)$. 
+
+Let $x\in E$, $P\in \Ga_\ell(x,M)$. Then let $P\in \Ga_{\ell+1}(x,M)$ iff for all $y\in E\bs \{x\}$ there exists $P'\in \Ga_\ell(y,M)$ such that 
+\begin{align}
+|\pl^\al(P-P')(x)| &\le M |x-y|^{m-|\al|}.
+\end{align}
+%Inequality would just be Taylor's Theorem. $m$ appears because the $C^m$ norm is at most $M$.
+%possibly empty convex set.
+
+How complicated are these sets? They are much too complicated, but we will go ahead and prove math theorems about them. We will not define the $\Ga_\ell$ this way, but differently to retain the key properties.
+
+%insetad of $|\cdot|$ we can have a $\pm$. 
+%these are linear constraints
+The $\Ga_\ell$'s are convex polytopes defined by linear constraints. But $\Ga_\ell$ are polytopes defined by growing number of linear constraints. To get to the next steps, ontersect polytopes. The number of constraints defining them will grow very fast.
+How to cope?
+Compute them approximately. 
+
+Define a blob, a 1-parameter family of growing convex sets.
+%For each positive number $m$ I specify a convex set. 
+We say two blobs are $C$-equivalent if they are the same up to a constant $C$. 
+
+Before the $\Ga$'s are getting rapidly more complicated, but we can arrange things so they aren't.
+
+The more serious point: every $y$ is talking to every $x$. It appears this definition requires $N^2$ steps. Fortunately, there is a clever way to use the well-separated pairs decomposition to compute something enough like them in time $N\log N$. 
+
+\begin{thm}
+$\Ga(x,M)\sub \Ga_\ell(x,M)$, and for $\ell_*=\ell_*(m,n)$, we have $\Ga_{\ell_*}(x,M) \sub \Ga(x,CM)$ for $C$ depending only on $m,n$.
+\end{thm}
+\footnote{So far $E$ has been finite. The analogue is not true for $C^m$ of infinite sets. One needs something more. That is the Glazer refinement. This is what Glazer refinement looks like for finite sets.}
+
+The number of times you iterate to get something comparable to the true $\Ga$ is a fixed number.
+%glazer refinement?
+%version for infinite sets
+
+%true for any family that satisfies...
+Facts:
+\begin{itemize}
+\item
+$\Ga_\ell(x,M)\sub \cal P$ is a possibly empty convex set.
+\item %We know 
+$\Ga_\ell(x,M)\sub \Ga_\ell(x,M')$ if $M\le M'$, by induction (conditions grow weaker as $M$ grows).
+\item
+Given $x,y\in E$, given $P\in \Ga_\ell(x,M)$, there exists
+\begin{align}
+P'&\in \Ga_{\ell-1}(y,M)&
+\text{such that }|\pl^\al (P-P') (x)|&\le M(x,y)^{m-|\al|}.
+\end{align}
+We talk only about $\Ga$'s and their cousin the $\si$'s. %jet belongs to $\Ga_0$.
+\end{itemize}•
+%other properties
+We want $F=C^m(\R^n)$ such that $\ve{F}_{C^m}\le CM$ and $J_x(F) \in \Ga_0(x,M)$ for all $x\in E$. 
+%whole problem phrased in terms of $\Ga$'s.
+
+There are two ways to construct $\Ga_\ell$'s. We show another. Then we introduce the related sets $\sigma$.
+
+We use the finiteness and refined finiteness theorems.
+\begin{thm}[Finiteness Theorem]
+Let $E\sub \R^n$, $\#E=N<\iy$, $f:E\to \R$. Given $M>0$, suppose that for every subset $S\sub E$ with at most $k^\#$ points (depending only on $m$, $n$), there exists $F^S\in C^m(\R^n)$ of norm $\le M$ such that $F^S=f$ on $S$. Then there exists $F\in C^m(\R^n)$ of norm $\le C M$ ($C$ depending only on $m$, $n$) such that $F=f$ on $E$.
+%pure math world don't care about value of functoins, this is way in principle computes best possible norm by constant factor
+%complexity increaseses as $s$ doesn, but we've capped
+%can do by linalg
+\end{thm}
+%QF defined on linear subspace
+%up to factor depends on $|S|$, controlled.
+%For $F^S=f$ on $S$, $\ve{F^S}_{C^m}\le M$. 
+%fixed size thanks to whitney
+%...
+%Suppose we were to use tis to make a calculation. 
+%There's something more fundamental that is wrong: 
+To use this we would need to look at $\sim N^{k^\#}$ sets.  %Let's say $k^\#$ is 100. Then we need to look at $\sim N^
+We need a refinement. 
+
+\begin{thm}[Refined finiteness theorem]
+Fix $m,n$. Let $E\sub \R^n$, $\#E = N$. Then there exist $S_1,\ldots ,S_L\sub E$ with the following properties
+\begin{itemize}
+\item
+$\#(S_\ell)\le k^\#$ for each $\ell$,
+\item
+$L\le CN$,
+\item
+Let $f:E\to \R$ and let $M>0$. Suppose that for each $\ell=1,\ldots, L$ there exists $F_\ell\in C^m(\R^n)$ with norm $\le M$ such that $F_\ell=f$ on $S_\ell$. Then there exists $F\in C^m(\R^n)$ of norm $\le CM$ such that $F=f$ on $E$. 
+\item
+The $S_1,\ldots, S_L$ can be computed from $E$ in $O(N\log N)$ computer operations.
+\end{itemize}
+where $k^\#$ and $C$ depend only on $m,n$
+\end{thm}
+
+%SoC lecture
+Digression on outliers: 
+Suppose we collect data from a physics experiment, and the machine malfunctions or the technician falls asleep. We get data points that are completely wrong and should be discarded.
+%undergrad physics
+%had to perform experiments
+%some of these things are due to me.
+You discover that the smallest possible norm is enormous, and would like to discard some data. If you are allowed to discard a few to bring the interpolant way down, which should you ignore? As a consequence of the refined finiteness theorem, there is a theorem with an algorithm attached.
+\begin{thm}
+Fix $m,n$. Given $f:E\to \R$, $\#E=N$, there exists an enumeration of $E$, $E=\{x_1,\ldots, x_N\}$ such that the following holds.
+
+Let $S\sub E$ and suppose there exists an interpolant of norm $\le M$ for $f|_{E\bs S}$, with $\#S=Z$.
+Then $f|_{E\bs \{x_1,\ldots, x_{CZ}\}}$ has an interpolant with norm $\le CM$. 
+
+The points $x_1,\ldots, x_N$ can be computed using $\le CN\log N$ operations per point.
+\end{thm}
+Suppose we have a contest against God to remove outliers. God instantaneously know the very best set of $Z$ outliers to remove. We are at a disadvantage. Let's cheat to give us a chance to prevail anyway. We can throw away 50 times as many points, and declare victory if our norm is within 50 times. Then we can win anyway.
+
+It's remarkable this can be done at all; I don't think this is optimal. 
+
+%I owe you: if you believe RFT then you can deal with outliers this way.
+%for a long time, we won't prove RFT. FT is equivalent to $\Ga_\ell$ (or at least follows from). 
+%reduce to discussion of $\Ga_\ell$. 
+%what $\si$'s are
+%complete list of basic properties of $\Ga$. 
+%and some others. 
+%ready to start proving the main theorem about the $\Ga$'s. in simplest nontrivial case, $C^2$ of the plane.

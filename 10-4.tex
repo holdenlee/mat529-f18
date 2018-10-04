@@ -31,4 +31,112 @@ Let
 \si_0(x) &=\set{P}{\forall |\al|\le m,|\pl^\al P(x)|\le 1, P(x)=0}\\
 \si_{\ell+1}(x)&=\set{P\in \si_\ell(x)}{\forall y\in E\bs \{x\}, \exists P'\in \si_\ell(y)\text{ such that }\forall |\al|\le m, |\pl^\al(P-P')(x)|\le |x-y|^{m-|\al|}}
 \end{align}
+For $P,P'\in \Ga(x,M)$, $P-P'\in 2M \cdot \si(x)$. For $P\in \Ga(x,M)$, $Q\in 2M\si(x)$, $P+Q\in \Ga(x,3M)$. 
+If $\Ga(x,M_0)\ni P_0$ is nonempty, then for all $M\ge 5M_0$, 
+\begin{align}
+P_0+M\si(x) \sub \Ga(x,M) \sub P_0+10M\si(x)
+\end{align}
+To understand the $\Ga$'s,  we need to find the magnitude of the smallest $M_0$ such that $\Ga(x,M_0)$ is nonempty, and produce one element. 
+
+For $P,Q\in \cal P$, the pointwise product $P\odot_x Q= J_x(PQ)$, and $J_x(FG) = J_x(F)\odot_x J_x(G)$. For $P(x) = \sum_{|\al|\le m} a_\al x^\al$ and $Q(x) = \sum_{|\al|\le m} a_\be x^\be$, $PQ(x) = \sum_{|\al|,|\be|\le m} a_\al b_\be x^{\al+\be}$, $P\odot_0 Q = \sum_{|\al|+|\be|\le m} a_\al b_\be x^{\al+\be}$. 
+
+For $\ve{F}_{C^m}\le 1$, $F=0$ on $E$, $J_x(F)=P$, %P times the harmless poly belongs to $\si$. We can deal with some harmful polys
+Apply this with the Whitney extension theorem. Interpolants work locally on different scales, and patch them together. The cutoff functions will behave quite badly. 
+%derives \le 
+Consider $x=0$. 
+Let $P=J_0(F)$. Suppose $|\pl^\al(0)|\le \de^{m-|\al|}$, $|\pl^\al F(0)|\le \de^{m-|\al|}$, $|\pl^\al Q(0)|\le \de^{-|\al|}$, $|\pl^\al F(0)|\le \de^{m-|\al|}$ for $\de\le 1$. If $P\in \si(0)$ then $Q\odot_0 P \in C\si(0)$, for $C$ depending only on $m$, $n$. 
+
+There exists $\te\in C_0^\iy(\R^n)$ such that $\Supp\te\in B(0,\de)$, $J_0(\te)=Q$, $|\pl^\al \te|\le C\de^{-|\al|}$ everywhere, for $|\al|\le m$. 
+
+What does this mean when $\de=1$? All the coefficients are bounded. There exists some $C^\iy$ function supported on the unit ball whose Taylor polynomial at 0 is $Q$ and whose derivatives are bounded. This is clear by multiplying by a cutoff function. For $\de\ne 1$, this follows from $\de=1$ by rescaling. 
+
+Look at $F\cdot \te$. $\pl^\al(F\cdot \te)$ is a sum of terms
+\begin{align}
+|\pl^\be F(x) \pl^\ga \te(x) |
+&\le C\de^{-|\ga|}
+\end{align}
+where $\be+\ga=\al$. %expand F as taylor poly around 0 plus rem
+If $|\pl^\be F(0)|\le \de^{m-|\be|}$ for all $|\be|\le m$ and $|\pl^{\wh\be} F(x)|\le 1$  for $|\wh \be |=m$, then $|\pl^\be F(x)|\le C\de^{m-|\be|}$ for $|\be|\le m$. 
+
+(To  check effortlessly something is scale-invariant, assign units.)
+%dim correct, so independent of scaling.
+%derivs of up to order m
+%F\cdot \te 
+%C^m norm dominated by constant
+
+We've proven that if $P\in \si(0)$, then $Q\odot_0P \in C\si(0)$.
+
+
+\begin{df}
+Let $\si\sub \cal P$ be any convex symmetric set. Let $x\in \R^n$, $C_w>0$, $\de_{\max}>0$. 
+
+Then $\si$ is a \vocab{Whitney convex} at $x$, with Whitney constant $C_w$ below length scale $\de_{\max}$, iff for all $P,Q\in \cal P$, $0<\de\le \de_{\max}$, if $|\pl^\al P(x)|\le \de^{m-|\al|}$ and $|\pl^\al Q(x)| \le \de^{-|\al|}$ for all $|\al|\le m$, and if also $P\in \si$, then $P\odot_x Q \in C_w\si$. 
+\end{df}
+If I don't specify the lengths scale, it is 1.
+\begin{rem}
+%$\si(x)$ is Whitney-convex at $x$ with Whitney constant 
+Given $E\sub \R^n$, construct $\si(x)$ from interpolants. Then for all $x\in \R^n$, $\si(x)$ is Whitney convex at $x$, with Whitney constant defined by $m,n$ below length scale $\de_{\max}=1$. 
+%diff dim and taking max - unnatural. reflected in: there is length scale.
+%C^m(\dot) sup at order precisely $m$>
+\end{rem}
+The definition of the $C^m$ norm is somewhat unnatural---taking different dimensional quantities (different order derivatives) and taking the max. This unnaturalness is reflected in the length scale. We can also define $\dot C^m$ norm which takes a sup over derivatives with order precisely $m$.%, and prove an analogous 
+
+Check by induction on $\ell$ that $\si_{\ell}(x)$ is also Whitney convex that depends on $\ell,m,n$ below length scale 1. 
+
+Let $x\in E$, $M>0$, $\ell\ge 0$. Then $\Ga_\ell(x,M)$ is a (possibly empty) convex subset of $\cal P$, $\si_\ell(x)$ is a convex symmetric set in $\cal P$. For $M\ll M'$, with a small constant determined by $m,n,\ell$, $\Ga_\ell(x,M)\sub \Ga_d(x,M')$, $\Ga_{\ell+1}(x,M) \sub \Ga_\ell(x,M)$. 
+
+If  $x,y\in E$, $P \in \Ga_\ell(x,M)$, $\ell\ge 1$, then there exists $P'\in \Ga_{\ell-1}(y,CM)$, $C$, depending only on $m,n,\ell$ , such that $|\pl^\al(P-P')(x)|\le CM|x-y|^{m-|\al|}$, for $|\al|\le m$. 
+
+If $P,P'\in \Ga_\ell(x,M)$, then $P-P'\in CM\si_\ell(x)$. If $P\in \Ga_\ell(x,M)$, $Q\in M\si_\ell(x)$ then $P+Q\in \Ga_\ell(x,CM)$.
+$\si_\ell(x)$ is Whitney convex at $x$, with Whitney constant $C$ below length scale 1.
+%et come from these properties
+
+%finitenes stheorem and refined finiteness theorem
+
+We talk about the finiteness theorem. %If you understand the $\ga$'s. If the theorem on the $\ga$'s is 
+%if understand $\Ga_\ell$'s well enough, FT follows. 
+%unif bound on $C^m$ norm
+
+Define 
+\begin{align}
+\Ga(x,M,S) &= \set{J_x(F)}{F=f\text{ on }S, \ve{F}_{C^m}\le M}\\
+\wh \Ga_\ell(x,M) &= \bigcap_{S\sub E, \#S\le k_\ell} \Ga(x,M,S)\in \cal P
+\end{align}
+convex. We need to prove this is nonempty. We use the following basic theorem in convex geometry.
+\begin{thm}[Helly's Theorem]
+Suppose that $K_1,\ldots, K_N$ are convex (and not necessarily compact) subsets of $\R^D$. 
+Suppose that any $D+1$ of the $K_i$ have a point in common. Then $K_1\cap \cdots \cap K_N\ne \phi$.
+%3 minutes or so. That resonates with theorem up there. 
+\end{thm}
+If there are infinitely many convex compact sets, then this is still true.
+If you take infinitely many convex sets, not necessarily compact, then this is not true, ex. $(0,\rc n]$. 
+\begin{proof}
+Given $L\ge D+1$, we show that if any $L$ of the $K$'s intersect, then also $L+1$ of the $K$'s intersect.
+
+Consider $K_1,\ldots, K_{L+1}$. For each $i=1,\ldots, L+1$, pick $x_i$ in the intersection of all these $K$'s except $K_i$. 
+%proof on wikipedia
+We obtain $x_1,\ldots, x_{L+1}$. 
+
+Look for coefficients $\be_1,\ldots, \be_{L+1}\in \R$ such that 
+\begin{align}
+\be_1+\cdots + \be_{L+1}&=0\\
+\be_1x_1+\cdots + \be_{L+1}x_{L+1}&=0.
+\end{align}
+There are $D+1$ equations, and at least $D+2$ unknowns, so there is a nonzero solution. Put the positive ones on the LHS and the negative ones on the RHS: after possibly relabeling,
+\begin{align}
+\la_1x_1+\cdots +\la_ax_a &= \mu_1x_{a+1}+\cdots + \mu_b x_{a+b}\\
+\la_1+\cdots + \la_a &= \mu_1+\cdots +\mu_b.
+\end{align}
+The $\la$'s and $\mu$'s are nonnegative and not all 0; we can rescale so that 
+\begin{align}
+\la_1+\cdots + \la_a &= \mu_1+\cdots +\mu_b=1.
+\end{align}
+We claim in $\la_1x_1+\cdots +\la_ax_a = \mu_1x_{a+1}+\cdots + \mu_b x_{a+b} \in \bigcap_{i=1}^{L+1}K_i$. The LHS lies in 
+$\bigcap_{i=a+1}^{a+b} K_i$ and the RHS lies in $\bigcap_{i=1}^a K_i$. This completes the induction step and proves the theorem. 
+\end{proof}
+
+
+
+
+
 

@@ -1,0 +1,122 @@
+\blu{10-9}
+
+\begin{thm}
+There is $\ell_*$ depending only on $m,n$ such that
+$\Ga_{\ell_*}(x,M)\ne \phi$ implies $\Ga(x,CM)\ne \phi$, and therefore there exists $F\in C^m$ with norm $\le CM$ such that $F=f$ on $E$.
+\end{thm}
+We will assume this and prove the following.
+\begin{thm}%finite
+Suppose for every $S\sub E$ with $\#(S)\le k^\#$ depending only on $m,n$. Then there exists $F^S\in C^m$ with norm $\le M$ such that $F=f$ on $S$. Then there exists $F\in C^m$ with norm $\le CM$, $C$ depending only on $m,n$ such that $F=f$ on $E$. 
+\end{thm}
+We will use this to define other $\Ga$'s.
+
+%finitely many subsets
+\begin{proof}
+Let $k_0,k_1,k_2,\ldots$ be an increasing sequence, to be fixed later. Define
+\begin{align}
+\Ga(x,S) &= \set{J_xF}{F=f\text{ on }S, F\in C^m\text{ with norm }\le \wh cM}\\
+\wh \Ga_\ell(x,M) &=
+\bigcap_{S\sub E, \#(S)\le k_\ell} \Ga(x,S).
+\end{align}•
+Here, $\Ga(x,S)\sub \cal P$ of dimension $D$. We want to show $\wh \Ga_\ell(x,M)\ne \phi$. To show this, by Helly's Theorem~\ref{thm:helly} we must show $\Ga(x,S_1)\cap \cdots \cap \Ga(x,S_{D+1})\ne \phi$ for any $S_1,\ldots, S_{D+1}\sub E$, with $\#(S_i)\le k_\ell$ for each $i$. We need to show
+\begin{align}
+\Ga(x,S_1\cup S_2\cup \cdots \cup S_{D+1})
+&\sub \Ga(x,S_0)
+\end{align}
+for each $i=1,\ldots, D+1$. This is OK provided that $(D+1)k_\ell\le k^\#$. I will take $\ell=\ell_*$. Take $\ell=\ell_*$. So $\wh \Ga_{\ell_*}(x,M)\ne \phi$ provided $k^\#\ge (D+1)k_{\ell_*}$. %pick it last
+
+Let's use the same trick again to compare the $\wh \Ga$'s with the $\Ga$'s. We show they behave somewhat like the $\Ga$'s.
+
+\ul{Claim:} Suppose that $\ell\ge 1$. Let $P\in \wh \Ga_\ell(x,M)$. Let $y\in E\bs \{x\}$. Then there exists $P'\in \wh \Ga_{\ell-1}(y,M)$ such that $|\pl^\al(P-P')(x)|\le M|x-y|^{m-|\al|}$ for $|\al|\le m$. 
+%wo hats, is defining property
+
+Fix $x,y,P$. Then $\Ga^\#(S) = \set{J_yF}{F\in C^m \text{ with norm }\le \wh c M, F=f\text{ on }S\cup \{x,y\}, J_x(F)=P}$.
+
+Look at $\bigcap_{S\sub E, \#(S)\le k_{\ell-1}}\Ga^\#(S)\ne \phi$. By Helly's Theorem it suffices to show: Given $S_1,\ldots, S_{D+1}\sub E$ with $\#(S_i)\le k_{\ell-1}$, the intersection
+\begin{align}
+\bigcap_{i=1}^{D+1}\Ga^\#(S_i) &\ne \phi.
+\end{align}
+We have $\bigcap_{i=1}^{D+1}\Ga^\#(S_i) \supset \Ga^\# \pa{\cupo i{D+1}S_i\cup \{x,y\}}$; it suffices to show that is nonempty. Let $S=\cupo i{D+1}S_i\cup \{x,y\}$.
+%D+1 times k
+Given $S\sub E$ with $\#(S)\le k_\ell$, 
+$\#S \le (D+1)k_{\ell-1}+2$. Choose $k_\ell$ so that this is $\le k_\ell$.
+%so $\wh \Ga_{\ell^*}(x,M)\ne \phi$  provided $k^\#\ge $(D+1)k_{\ell^*}$. 
+$P\in \Ga(x,S)$, %ga hat ell
+so there exists $F$ such that the $C^m$ norm is $\le \wh cM$, $F=f$ on $S$, $J_x(F)=P$. Define $P'=J_yF$.  That $P'$ belongs $\Ga^\#(S)$. 
+
+Let $k_0=5$. Take $k_{\ell+1} = (D+1)k_\ell + 2$, $k_\#\ge (D+1)k \ell_*$. 
+
+Pick 
+\begin{align}
+P'\in \bigcap_{S\sub E, \#(S)\le k_{\ell-1}} \Ga^\#(S) \sub \bigcap_{S\sub E, \#(S)\in k_{\ell-1}} \Ga(y,S) =\wh\Ga_{\ell-1}(y,M).
+\end{align}
+Then $\Ga^\#(S)\sub \wh \Ga(y,S)$. %inclusion obvious. 
+%S=\phi
+That proves the claim. %defined the right sets and use Helly's Theorem.
+
+We know $\wh \Ga_{\ell_*}(x,M)\ne \phi$, and given $P\in \wh \Ga_\ell(x,M)$ and given $y\in E\bs \{x\}$, there exists $P'\in \Ga_{\ell-1}(y,M)$ such that $|\pl^\al(P-P')(x)|\le M(x-y)^{m-|\al|}$. 
+
+We show by induction on $\ell$ that $\wh \Ga_\ell(x,M)\sub \Ga_\ell(x,M)$. For $\ell=0$, $P_0\in \wh \Ga_0(x,M) = \bigcap_{S\sub E, \#(S)=5}\Ga(x,S) \sub \Ga(x,\{x\})$. There exists $F\in C^m$ with norm $\le \wh c M$ such that $J_xF=P$ and $F=f$ on $\{x\}$. Then $P_0(x)=f(x)$ and $|\pl^\al P_0(x)|\le \wh M$, so $P_0\in\Ga_0(x,M)$. 
+
+For the induction step, assume $\Ga_{\ell-1}(x,M)\sub \Ga_{\ell-1}(x,M)$. We show that $\wh \Ga_\ell(x,M)\sub \Ga_\ell(x,M)$ for all $x\in E$. Let $x\in E$, and let $P\in \wh \Ga_\ell(x,M)$. 
+\begin{itemize}
+\item
+Then $P\in \wh \Ga_{\ell-1}(x,M)\sub \Ga_{\ell-1}(x,M)$. 
+\item 
+Let $y\in \E\bs \{x\}$. Then there exists $P'\in\wh  \Ga_{\ell-1}(y,M)\sub \Ga_{\ell-1}(y,M)$ such that $|\pl^\al(P-P')(x)\le M|x-y|^{m-|\al|}$ for $|\al|\le m$. 
+\end{itemize}
+So by definition of $\Ga_\ell$, we have $P\in \Ga_\ell(x,M)$. 
+
+$\wh \Ga_{\ell_*}(x,M)$ is nonempty by Helly, and is contained in $\Ga_{\ell_*}(x,M)$, so that is nonempty. %From . 
+This finishes the proof of the finiteness theorem.
+\end{proof}
+
+\section{Outliers}
+
+Work in $C^m(\R^n)$. 
+Let $f:E\to \R$, with norm
+\begin{align}
+\ve{f}_E:&= \inf\set{\ve{F}_{C^m}}{F\in C^m,F=f\text{ on }E}.
+\end{align}
+\begin{thm}
+Suppose $\#E=N$. Then $E$ can be enumerated as $E=\{x_1,\ldots, x_N\}$ such that for any $1\le z\le N$ and any $S\sub E$ with $\#(S)\le z$. 
+%remove few outliers to drive down the norm, competing with god
+We have
+\begin{align}
+\ve{f}_{E\bs \{x_1,\ldots, x_{cz}\}} &\le C\ve{f}_{E\bs S},
+\end{align}
+where $x$ depends only on $m,n$.  Moreover the enumeration can be computed. We successively produce $x_1,x_2,\ldots$, each $x_i$ requiring $\le CN\ln N$ operations.
+\end{thm}
+%We use the refined finiteness theorem: Givn 
+
+
+\begin{proof}
+The order of magnitude of $\ve{f}_{S}$, $\ve{f}_S^{\text{computed}}$, can be computed in $\le C$ operations, depending only on $m,n$. %$n\le c$
+Start with an empty list. $E$, %~>
+Compute the $S_\ell$'s, then the $\ve{f}_{S_{\ell}}^{\text{computed}}$, then pick $\ell_*$ to maximize $\ve{f}_{S_{\ell}}^{\text{computed}}$.  %???
+Start writing down $x$'s:
+%discovered the first few eelements
+Append to our list the elements of $S_{\ell_*}$ (in any order). Then remove the elements of $S_{\ell_*}$ from $E$.
+Repeat until $E$ is empty.
+
+I would like to prove this by induction on the number of elements of $E$.
+We induct on $z$. $z=0$ is trivial. Now the induction step. Let's look at the first time we enter the loop. 
+
+Fix $S$ such that $\#(S)\le z$. How well does God's $S$ do? If $\ve{f}_{E\bs S}\ge c_1\ve{f}_E$, we can do anything we want. %By removing any points of $E$, 
+%so far from god it's so close to the US
+%in this case we are close to god.
+This is the trivial case. 
+Consider $\ve{f}_{E\bs S}\le c_1\ve{f}_F$. I claim that $S$ must contain at least one of the points of $S_{\ell_*}$. Suppose not, $S_{\ell_*}\sub E\bs S$. Then
+\begin{align}
+\ve{f}_{E\bs S} &\ge \ve{f}_{S_{\ell_*}} 
+\ge c'\ve{f}_{S_{\ell_*}}^{\text{computed}}
+= \max_{1\le \ell \le L}c' \ve{f}_{S_\ell}^{\text{computed}} \ge c'\max_{1\le \ell\le L} \ve{f}_{S_\ell}
+\ge c'' \ve{f}_E.
+\end{align}
+So $S$ contains at least one point of $S_{\ell_*}$. Replace $E$ with $E\bs S_{\ell_*}$, $S$ with $S\bs S_{\ell_*}$, $z$ with $z-1$. 
+%very flippant for me to talk about god
+$S_{\ell_*} = \{x_1,\ldots, x_{k^\#}\}$. %$k^\#(z-1)$. 
+We have $\#(S\bs S_{\ell_*})\le z-1$, $S\bs S_{\ell_*}\sub E\bs S_{\ell_*}$. 
+$(E\bs S_{\ell_*})\bs (S\bs S_{\ell_*}) = E\bs S$. 
+\end{proof}
+It would be nice to remember something, instead of having to start over each step. This is a good question.

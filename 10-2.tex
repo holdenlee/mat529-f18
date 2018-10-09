@@ -127,9 +127,12 @@ Fix $m,n$. Let $E\sub \R^n$, $\#E = N$. Then there exist $S_1,\ldots ,S_L\sub E$
 \item
 $\#(S_\ell)\le k^\#$ for each $\ell$,
 \item
-$L\le CN$,
+$L\le CN$, 
 \item
-Let $f:E\to \R$ and let $M>0$. Suppose that for each $\ell=1,\ldots, L$ there exists $F_\ell\in C^m(\R^n)$ with norm $\le M$ such that $F_\ell=f$ on $S_\ell$. Then there exists $F\in C^m(\R^n)$ of norm $\le CM$ such that $F=f$ on $E$. 
+Let $f:E\to \R$ and let $M>0$. Suppose that for each $\ell=1,\ldots, L$ there exists $F_\ell\in C^m(\R^n)$ with norm $\le M$ such that $F_\ell=f$ on $S_\ell$. Then there exists $F\in C^m(\R^n)$ of norm $\le CM$ such that $F=f$ on $E$.
+ 
+\fixme{Then $\max_{\ell=1,\ldots L}\ve{f}_{S_{\ell'}}\le \ve{f}_E\le C \max_{\ell=1,\ldots, L} \ve{f}_{S_\ell}$}.
+%instead of  ..., minimize quadratic norm...
 \item
 The $S_1,\ldots, S_L$ can be computed from $E$ in $O(N\log N)$ computer operations.
 \end{itemize}

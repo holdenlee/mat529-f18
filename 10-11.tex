@@ -1,0 +1,168 @@
+\blu{10-11}
+
+Two remarks, on the difference between finity and infinity.
+\begin{enumerate}
+\item
+Given $F\in C^m(\R^n)$, $F=f$ on $E$ where $E$ is finite, and $\ve{F}_{C^m}\le M$, what can I say about $\pl^\al F(x)$ when $|\al|=m$, $x\in E$? Essentially nothing, other than $|\pl^\al F(x)|\le M$.
+
+Consider modifying $F$ by taking a cutoff function 
+\begin{align}
+\te_y(x) &= \begin{cases}
+1,&\text{ if }|x|\le \fc{\de}2\\
+0,&\text{ if }|x|>\de
+\end{cases}
+\end{align}
+%usual scaling.
+with $|\pl^\al \te_\de(x)|\le \fc{C}{\de^|\al|}$ for $|\al|\le m$. Then for $|\be|=m$, $\pl^\al(x^\be \te_\de(x))$ is a sum of terms $(\pl^{\al'} x^\be) (\pl^{\al''}\te_\de)$, where $\al'+\al''=\al$. This is
+\begin{align}
+O(\de^{m-|\al'|})O(\de^{-|\al''|}) = O(\de^{m-|\al|}). 
+\end{align}
+$F$ is an interpolant with $C^m$ norm $O(M)$.
+Consider $x=0\in E$.  Then $F\pm Mx^\be \te_\de(x)$ is again an interpolant satisfying the same condition.  For $|\be|=m$, 
+\begin{align}
+\pl^\be[F(x) \pm t Mx^\be \te_\de(x)]|_{x=0}
+&
+=\pl^\be F(x) \pm tM\be !
+\end{align}
+If I tell you the acceleration of a car is at most so much, and tell you where it is at every billionth of a second, that doesn't give you information on acceleration.
+%m-1
+%$\pl^\al(P^x-P^y) =O(M)$.
+
+For  $E=\R^m$, given all function values, the derivatives are uniquely determined. This is a fundamental difference.
+\item
+The finiteness theorem for infinite sets is false. Consider $f\in C^1(\R^1)$, $F$ on $\R^1$. For every finite $S$ there exists $P\in C^1(\R^1)$ such that $F^S=F$ on $S$ and $\ve{F}_{C^1}\le 2$. However, we can have $F\in C^1$; consider $F$ with a kink. %(Same if we give it on a interval.)
+Even less can we hope to control with sets of a bounded size.
+
+$C^1$ is not the same as Lipschitz. However, if a function is $C^1$, its Lipschitz norm is comparable to its $C^1$ norm.
+%$\af{F(x)-F(y)}{x-y}$
+%deriv as close to 1 as you'd like
+%agree and has C^1 norm bounded.
+\end{enumerate}
+Let $E\sub \R^n$ be compact, $f:E\to \R$. How can we tell whether there exists $F\in C^m(\R^n)$ such that $F=f$ on $E$? If such an $F$ exists, then how small can we takes its $C^m$ norm?
+
+We can assume $E$ is closed and $f$ is continuous on $E$. %and continuous.
+%$E$ connected?
+%countinuous, continuous and bounded
+%Treat each closed cube separately. If for every closed cube there is 
+We can assume $E$ is compact by looking at intersections with bounded compact sets.
+
+G. Glazer (1958) solved this problem for $C^1(\R^n)$. Here's the train of ideas. Suppose $x_0\in E$ and I think there's an interpolant $F\in C^1$. I know its value at $x_0$. The problem is to define its gradient. We want to know whether $\nb F(x_0)$ can be $\xi_0\in \R^n$.
+
+For distinct $x,y\in E$ near $x_0$ near $x_0$, we require $\fc{f(y)-f(x)-\xi_0\cdot (y-x)}{|x-y|}\to 0$ as $x,y\to x_0$. This is not sufficient, as shown by Glazer's counterexample. %see picture
+
+PICTURE
+
+Does there exist $F\in C^1(\R^2)$ such that $F=f$ on $E$? We can estimate the gradient in directions along the curve. 
+
+At the interesting points, we can calculate the directional derivative in 2 linearly independent directions so we can compute the whole gradient.
+
+At 0 the line is flat, so it seems we can only compute the gradient in the $x$ direction. But at the interesting points we have determined the whole gradient, by taking their limit we can compute the whole gradient at 0.
+%had to make iterated limit.
+
+The way to solve this problem is to generalize it. I'll explain how to generalize it, why this is a special case, and solve the generalized problem through an iteration (which takes you outside the special case). 
+
+Fix $m,n\ge 1$, $E\sub \R^n$ compact. Let $\cP$ be the vector space of all polynomials of degree $\le m$ on $\R^n$ %not m-1.
+Recall that we have jet multiplication, $P\odot_x Q = J_x(PQ)$, $J_xF =m$th order Taylor polynomial of $F$ at $x$, $\in \cP$, $J_x(FG) = J_x(F)\odot_x J_x(G)$.  Let $\cal R_x=(\cP,\odot_x)$ be the ring of jets at $x$.
+
+\begin{df}
+A \vocab{bundle} is a family of the form 
+\begin{align}
+\cal H &= (H_x)_{x\in E}
+\end{align}•
+where for $x\in E$, either $H_x=P^x + I(x)$ where $P^x\in \cP$ and $I(x)$ is an ideal in $\cal R_x$, or $H_x=\phi$.
+\end{df}
+The ring is a finite-dimensional vector space with multiplication. So $H_x$ is an affine subspace. We have a family of affine subspaces of $\cal P_x$ parameterized by points of $E$. They are allowed to be empty, and have something to do with multiplication.
+
+\begin{df}
+The \vocab{fiber} of $\cal H$ at $x$ is $H_x$. If $\cal H=(H_x)_{x\in E}$, $\cal H=(H_x)_{x\in E}$, then $\cal H$ is a subbundle of $\cal H'$ if $H_x\subeq H_x'$ for each $x\in E$. 
+\end{df}
+In geometry, bundles are supposed to vary smoothly, but we don't make such restriction. In fact the dimension need not be a measurable function of $x$.
+\begin{df}
+A \vocab{section} of $\cal H=(H_x)_{x\in E}$ is a $C^m$ function $F$ such that $J_xF\in H_x$ for each $x\in E$. 
+\end{df}
+Question: Given a bundle $\cal H$, decide whether it has a section. If it has a section, compute approximately the smallest $C^m$ norm of a bundle. 
+
+We show that our original question is a special case of this.
+I'll construct a bundle and show that the $C^m$ function exists iff the bundle has a section.
+
+The bundle as follows: $I(x)$ is the ideal of all polynomials in $\cP$ that vanish at $x$. $P_x$ is the constant polynomial in $\R^n$ whose value everywhere is $f(x)$. 
+Look at $H_x=P_x+I(x)$, the set of all polynomials in $P\in \cP$ such that $P(x)=f(x)$, and $\cal H=(H_x)_{x\in E}$. $F\in C^m$ is a section of $\cal H$ iff for all $x\in E$, $J_xF\in H_x$, i.e., $(J_xF)(x)=f(x)$, i.e., $F(x)=f(x)$. Thus a section is just an extension. 
+
+Thus the question generalizes the classic Whitney problem.
+
+Now we bring in Glazer's idea of iterated limits. 
+\subsection{Glazer refinement}
+
+%what does it do?
+Given $\cal H=(H_x)_{x\in E}$, we perform ``Glazer refinement'' to replace $\cal H$ by a sub-bundle $\cal G(\cal H)$ with 3 properties:
+\begin{enumerate}
+\item
+$\cal G(\cal H)$ is a subbundle of $\cal H$.
+\item
+$\cal G(\cal H)$ and $\cal H$ has the same section. The stuff I throw away can never arise as the jet of a section.
+\item
+$\cal G(H)$ can be computed from $\cal H$.
+%inherently infinite thing
+\end{enumerate}
+We will iterate this refinement to get a limit.
+
+If any particular fiber is empty, the bundle can have no section. The only interesting case is when all fibers are nonempty. But the Glazer refinement may have empty fibers, so there are no sections, even though it wasn't obvious from the beginning. It could be that it has empty fibers during the second iteration, then also there can be no sections, etc. That's why the empty set is allowed as a fiber.
+
+%clever lemma, prove
+The following lemma is adapted from Milman... adapted from a lemma in Glazer. I'll state a hard theorem; the proof will come later.
+
+Start with any bundle and iteratively do Glazer refinement. At some point the process stabilizes and it stays the same. 
+%for a value of 50
+%twice dim of $\cal P$ (+1)?
+Use a simple lemma that says from that point on it stabilizes.
+
+Spirit of proof: If I start with a vector space of dimension $d$, and produce a subspace each time, I can only iterate finding a subspace  $ed$ times. It's clever but not deep.
+%produces subspace
+
+A Glazer stable bundle, has a section iff it has no empty fibers. That's the only obstruction.
+
+I make an observation. Suppose $F\in C^m$, $x,y\in \R^n$ distinct, $P^x = J_xF$ and $P^y = J_yF$. Taylor's Theorem tells us
+\begin{align}
+\sum_{|\al|\le m}
+\pf{\pl^x(P^x-P^y)(x)}{|x-y|^{m-|\al|}}^2
+\to 0
+\label{eq:taylor-inf}
+\end{align}
+as $|x-y|\to 0$. Let $\cal H=(H_x)\in E$, $x_0\in E$, $P_0\in H_{x_0}$. Pick $k=k(m,n)$.
+%becaues of above remark.
+%x_1 through x_k
+We have $P_0\in \wt H_{x_0}$ iff
+\begin{align}
+\min\set{
+\sum_{i,j\in \{0,\ldots, k\}, x_i\ne x_j}
+\pf{\pl^\al(P_i-P_j)(x_j)}{|x_i-x_j|^{m-|\al|}}
+}{\forall i\in [k], P_i\in H_{x_i} }
+&\to 0
+\end{align}
+as $x_1,\ldots, x_k\to x_0$, $x_1,\ldots, x_k\in E$. We check the conditions. 
+The jet of $F$ at $x_0$ belongs to the Glazer refinement. I will pick $P_i$ to be the just of $f$ at $x_i$. %Those particular jets 
+%empty or translate of ideal, routine verification
+
+I'm minimizing a quadratic form over a linear subspace, in a fixed finite dimension. The minimum is obtained form linear algebra in fixed dimension.
+
+Exercise: suppose you work in $C^1$. What does it mean for Whitney's original 1934 problem? It agrees with what Glazer did.
+
+%The iterated Glazer refinement. 
+I'll point out 2 properties of the Glazer refinement, %palooska?
+the only ones used in the proof of the simple lemma. 
+\begin{enumerate}
+\item
+Suppose $\cal H=(H_x)_{x\in E}$ is a bundle, and $\wt{\cal H}=(\wt H_x)_{x\in E}$ is its Glazer refinement.
+
+$\wt H_x$ is determined from $\set{H_y}{y\text{ in small neighborhood of $x$ in $E$}}$.
+\item
+$\dim \wt H_x \le \liminf_{E\ni y\to x} \dim H(y)$. 
+%17
+%sequence of points $y_1,y_2,\ldots \to x$. Dimension of $H_{y_k}$ is $\le 17$. 
+%is it possibel to make small?
+%P_0, P_1 close near $x_0$.
+%if you forget these are polys, you have $P_0$ in vec space, for every one of $y_k$ there is something over fiber that is close to given $P_0$. if lots of spaces of dim at most 17. then the subspace of things approx by it is at most 17. 
+%prove and use to show iterated glazer refinement stabilizes.
+
+%next time Thu
+\end{enumerate}•

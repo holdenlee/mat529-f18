@@ -19,7 +19,7 @@ It would be great if we can find the exact possible $C^m$ norm, but we don't kno
 \begin{align}
 \Ga(x,c_1M)&\sub
 \Ga_{\text{computed}}(x,M) \sub \Ga (x,C_1M),\\
-\Ga_{\text{computed}}(x,c_2M) \sub \Ga(x,M)\sub \Ga_{\text{computed}}(x,C_2M).
+\Ga_{\text{computed}}(x,c_2M)& \sub \Ga(x,M)\sub \Ga_{\text{computed}}(x,C_2M).
 \end{align}
 %given know $M$ approximately.
 
@@ -129,10 +129,11 @@ $\#(S_\ell)\le k^\#$ for each $\ell$,
 \item
 $L\le CN$, 
 \item
-Let $f:E\to \R$ and let $M>0$. Suppose that for each $\ell=1,\ldots, L$ there exists $F_\ell\in C^m(\R^n)$ with norm $\le M$ such that $F_\ell=f$ on $S_\ell$. Then there exists $F\in C^m(\R^n)$ of norm $\le CM$ such that $F=f$ on $E$.
+Let $f:E\to \R$ and let $M>0$. Suppose that for each $\ell=1,\ldots, L$ there exists $F_\ell\in C^m(\R^n)$ with norm $\le M$ such that $F_\ell=f$ on $S_\ell$. Then there exists $F\in C^m(\R^n)$ of norm $\le CM$ such that $F=f$ on $E$. 
+%We can take $F_\ell = Tf$ for a linear operator $T$.
  %instead of  ..., minimize quadratic norm...
 \end{itemize}
-where $k^\#$ and $C$ depend only on $m,n$.
+Here $k^\#$ and $C$ depend only on $m,n$.
 
 Then $\max_{\ell=1,\ldots L}\ve{f}_{S_{\ell'}}\le \ve{f}_E\le C \max_{\ell=1,\ldots, L} \ve{f}_{S_\ell}$. The $S_1,\ldots, S_L$ can be computed from $E$ in $O(N\log N)$ computer operations.
 \end{thm}

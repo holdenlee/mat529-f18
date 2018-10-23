@@ -1,2 +1,169 @@
 \blu{10-23}
 
+Setup: $\cal H=(H_x)_{x\in E}$ Glazer stable, $P_0\in H_{x_0}$, there exists $F\in C^m(\R^n)$ such that $J_x(F)\in H_x$ for all $x\in E$, $J_{x_0}(F)=P_0$. Let
+\begin{align}
+K&=\sup
+\set{\min_{x_1,\ldots, x_k\in E} 
+\sum_{x_i\ne x_j} \sum_{|x|\le m}
+\pf{\pl^\al(P_i-P_j)(x_j)}{|x_i-x_j|^{m-|\al|}}^2}
+{P_1\in H_{x_1},\ldots, P_k\in H_{x_k}}.
+\end{align}
+This is finite; I won't prove this. It's analogous to the fact that a continuous function on a compact set is bounded.
+
+Question: can we bound $\ve{F}_{C^m}$ in terms of $P_0$ and $K$? No.
+
+We work in $C^1(\R^1)$. Let 
+\begin{align}
+E&=[0,1]\\
+H_x^{(\de)}&=\{0\}\text{ if }x\in [\de,1]\\
+H_x^{(\de)}&=\cal P \text{ if }x\in [0,\de)\\
+x_0&=0\\
+P_0&=1\in H_{x_0}^{(\de)}.
+\end{align}
+For each $\de$, this bundle is Glazer stable. 
+If $x\ge \de$, take 0. If $x<\de$, there is a neighborhood entirely in $[0,\de)$; there the bundle is everything.
+Consider a $C^1$ function whose jet belongs to $H_x^{(\de)}$ everywhere. The function is 0 on $[\de,1]$ and its value at $[0,\de)$ is 1, so that the $C^1$ has norm at least $\rc{\de}$.
+
+%refined finiteness theorem
+%linear extension operator of bounded depth
+
+%within constant factor of best possible.
+
+Recap: We have two theorems:
+\begin{enumerate}
+\item %(Refined finiteness theorem)
+There exists a linear extension $T$ with bounded depth, with $Tf|_E=f$ for all $f:E\to \R$ and $\ve{Tf}_{C^m(\R^n)}\le C\ve{F}_{C^m(\R^n)}$. 
+%k-NN!
+\item 
+For each $m,n\ge 1$ there exist $k^\#,C$ dependening on $m,n$ such that:
+Let $\E\sub \R^n$ be finite, $\#E=N$. Then there exist $S_1,\ldots, S_k\sub E$ such that 
+\begin{itemize}
+\item
+$\#S_\ell\le k^\#$ for all $\ell$
+\item
+$L\le CN$\item
+Let $f:E\to \R$. Suppose for each $\ell$ there exists $F_\ell\in C^m(\R^n)$ with norm $\le 1$ such that $F_\ell=f$ on $S_\ell$. Then there exists $F\in C^m(\R^n)$ or norm $\le C$ such that $F=f$ on $E$.
+\end{itemize}•
+\end{enumerate}
+We show 1 implies 2 by well-separated pairs decomposition.
+
+\begin{proof} 
+We can partition $E\times E\bs\text{Diag}$ into $E_\nu'\times E_\nu''$, $\nu=1,\ldots, L$, such that 
+$d(E_v',E_v'') >10^9 [\diam(E_v') + \diam(E_v'')]$. 
+Pick representatives $(x_\nu',x_\nu'')\in E_\nu'\times E_\nu''$. Given $(P^x)_{x\in E}$, if 
+\begin{align}
+|\pl^{\al'} P^{x_\nu'}(x_\nu')|&\le M\\
+|\pl^{\al''} P^{x_\nu''}(x_\nu'')|&\le M\\
+|\pl^\al (P^{x_\nu'} - P^{x_\nu''})|&\le M|x_\nu'-x_\nu''|^{m-|\al|}
+\end{align}•
+for all $m=1,\ldots, L$, $|\al|\le m$, then 
+\begin{align}
+|\pl^\al (P^x-P^y) (y)|&\le CM|x-y|^{m-|\al|}
+\end{align}
+for all $x,y\in E$, $|\al|\le m$. Withney's extension theorem gives $F\in C^m$ with norm $C'M$ such that $J_xF=P^x$ for all $x\in E$.
+
+For each $x$, 
+\begin{itemize}
+\item
+$J_{x_\nu'}(Tf)$ depends only on $f|_{S_\nu'}$ with $\#(S_\nu')\le k^\#$, 
+\item
+$J_{x_\nu''}(Tf)$ depends only on $f|_{S_\nu''}$ with $\E(S_\nu'')\le k^\#$.
+\end{itemize}
+Each of these has $\le 2k^\#+2$ elements.
+
+What do we know about $Tf$? It agrees with $f$ on $E$ and has $C^m$ norm as small as possible up to constant multiple $C$. Then
+\begin{align}
+\ve{Tf}_{C^m} &\sim
+\max_\nu
+\bc{
+|\pl^\al(J_{x_\nu'}(Tf))|, 
+|\pl^\al(J_{x_\nu''}(Tf))|,
+\fc{|\pl^\al[J_{x_\nu'}(Tf)-J_{x_\nu''}(Tf)](x_\nu'')|}{|x_\nu'-x_\nu''|^{m-|\al|}
+}}
+\label{e:Tfl-asy}
+\end{align}
+for $|\al|\le m$, $\nu=1,\ldots, L$.
+The norm is $\ge$ because for any function the derivatives of the Taylor polynomial are equal to the derivatives of the function itself, which are bounded by the $C^m$ norm. Use Taylor's theorem.
+
+For $\le$, use Whitney's extension theorem. $F$ is a competitor to $Tf$, but $Tf$ has been picked so that its norm is as small as possible up to a constant, so the norm is dominated by that of $F$ which is dominated by the max.
+
+For each $\ell$, look at $f_\ell = F_\ell |_E$. The defining property is that $f_\ell=f$ on $S_\ell=S_{\ell}'\cup S_\ell''\cup \{x_\ell',x_\ell''\}$.
+%f given, assume there exists F_\ell, show there exists $F=Tf$.
+Then $\ve{Tf_\ell}_{C^m(\R^n)}\le C$. 
+%take $\nu=\ell$.
+%determined by f on $S'$.
+%$S_\ell''$.
+%\nu=\ell
+Apply~\eqref{e:Tfl-asy} to $f_\ell$ and we conclude that $|\pl^\al[J_{x_\nu'}(Tf)-J_{x_\nu''}(Tf)]|\le C|x_\nu'-x_\nu''|^{m-|\al|}$ for all $|\al|\le m$.
+
+%every x arises
+We have managed to control all the terms on the RHS of~\eqref{e:Tfl-asy} so $\ve{Tf}_{C^m}$ is controlled. 
+\end{proof}
+
+Proving Theorem 1 will take a while.
+Recall $\Ga_\ell(x,M)\sub \cal P$. $\Ga_\ell(x,M)\ne \phi$ implies $\Ga_\ell(x,M')\sim P_x+M'\si(x)$ for some $P_x$.  Start with 
+\begin{align}
+\Ga_0(x,M) &= \set{P\in \cal P}{|\pl^\al P(x)|\le M, |\al|\le m-1, P(x)=f(x)}.
+\end{align}•
+
+%We need to show:
+%anything I can produce in a $\Gamma$, I can produce in a way that depends linearly with bounded depth.
+For $x\in E$, $P_{\ell+1}(x,M)$ consists of all $P\in \Ga_\ell(x,M)$ such that  for all $y\in E$, there exists $P'\in \Ga_\ell(y,M)$ such that 
+\begin{align}
+|\pl^\al(P-P')(x)|&\le M|x-y|^{m-|\al|}, \quad (|\al|\le m-1)
+\end{align}
+Let
+\begin{align}
+\si_0(x) &= \set{P\in \cal P}{|\pl^\al P(x)|\le 1\, (|\al|\le m), P(x)=0}
+\end{align}
+and $\si_{\ell+1}(x)$ consists of all $P\in \si_\ell(x)$ such that for all $y\in E$, there exists $P^x\in \si_\ell(y)$ such that $|\pl^\al(P-P')(x)|\le |x-y|^{m-|\al|}$, $|\al|\le m-1$. 
+
+If $P_x\in \Ga_\ell(x,M)$ then 
+\begin{align}P_x+M\si_\ell(x)&\sub \Ga_\ell(x,5M) \sub P_x + 2\si M\si_\ell(x).
+\end{align}
+If $\Ga_\ell(x,M)\ne\phi$, then ``morally'' $\Ga_\ell(x,M)$ is a translate of $M\si_\ell(x)$. 
+%lin with bdounded depth
+\begin{lem}\label{l:A}
+There exists linear maps of bounded depth $k^\#$ (depending only on $m,n,\ell$)
+$P_{x,\ell}: (E\to \R) \to \cal P$ such that for any $x,M, L$, if $\Ga_\ell(x,M) \ne \phi$, then
+\begin{align}
+P_{x,\ell} + M\si_{\ell}(x)  &\sub \Ga_\ell(x,CM) \sub P_{x,\ell} + C'M \si_\ell(x),
+\end{align}
+with $C,C'$ depending only on $m,n,\ell$.
+\end{lem}
+\begin{lem}\label{l:B}
+Given $P\in \Ga_{\ell+1}(x,M)$ there exists $P'\in \Ga_\ell(y,CM)$ such that $|\pl^\al(P-P')(x)|\le CM|x-y|^{m-|\al|}$  for all $\al$, and furthermore we can take $P'$ to be  linear of bounded depth  as a function of $(f,P)$ ($P'$ depends only on $P$ and the values of $f$ at $\le k^\#$ points). 
+\end{lem}
+%lem A and B.
+%reduced a lot of stuff to theorem 1
+I will prove a few nice facts on convex sets that are used in the proof of Lemmas~\ref{l:A} and~\ref{l:B}.
+
+Given a convex set, there is an ellipsoid inside it such that if you dilate the ellipsoid at the center by $\sqrt d$ it contains the convex set.
+
+There is a nice proof of this. We'll consider the centrally symmetric case, and 
+%bounded, nonempty interior
+I won't get the sharp dependence on dimension.
+Consider all ellipsoids contained in the symmetric convex set, centered at the origin. There is a sup, and a sequence of ellipsoids; one can extract a convergent subsequence, and hence there is an ellipsoid of maximal volume.
+(Or just take one that is $>99\%$ of the maximal volume.)
+
+It is unchanged by applying a linear transformation in $\R^n$, so WLOG I can assume it is the unit ball $B$, contained in a centrally symmetric convex set $K$.
+
+Dilate it by a large factor depending on the dimension. Suppose it doesn't contain $x\in K$. Also $-x\in K$. Consider the convex hull of $B$ and $x$. If $x$ is far away this looks like a cylinder. We can make $B$ smaller and stretch it in the direction of $x$. If $x$ is far enough away, this has larger volume, contradiction.
+%K disappeared 
+%other geometric things you can say
+%John ellipsoid touches in n+1 points
+%start with smallest ellipsoid containing
+%this proof was first discovered by Antonio Cordebeau at the University of Madrid. 
+%Fritzjohn had a complicated proof. 
+
+Remember Helly's Theorem: given $K_1,\ldots, K_N$ convex in $\R^D$, if any $D+1$ of the $K_n$ have nonempty intersection, then $K_1,\ldots, K_N$ has nonempty intersection. We use this to understand intersection of convex symmetric sets.
+\begin{cor}
+Let $\si_1,\ldots, \si_N$ be symmetric convex sets in $\R^D$. Then there exist $n_1,\ldots, n_L\in \{1,\ldots, N\}$ such that 
+\begin{itemize}
+\item
+$L\le C_1(D)$ (constant depending only on the dimension)
+\item
+$\si_{n_1}\cap \cdots \cap \si_{n_L}\sub C_2 (\si_1\cap \cdots \cap \si_N)$, $C_2$ depending only on $D$. (The constant is known.) %and not to me, I don't care
+\end{itemize}•
+\end{cor}
+Use John's ellipsoid theorem with Helly's Theorem. %and shake well.

@@ -1,0 +1,150 @@
+\blu{10-18}
+
+I give a careful proof of the Glazer refinement bundle. Then I prepare for the proof on the main theorem on the $\Ga$'s
+
+A Glazer refinement of $\cal H$ is $\wt{\cal H}=(\wt H_x)_{x\in E}$, where for each $x_0\in E$, $\wt H_{x_0}$ consists of all $P_0\in H_{x_0}$ such that 
+\begin{align}
+\min
+\set{
+\sumz{i,j}{\ol k} \sum_{|\al|\le m}
+\pf{\pl^\al(P_i-P_j)(x_i)}{|x_i-x_j|^{m-|\al|}}^2
+}{
+P_1\in H_{x_1},\ldots, P_{\ol k}\in H_{\ol k}
+}\to 0 
+\end{align}
+ as $x_1,\ldots, x_{\ol k}\in E$ tend to $x_0$. 
+ 
+The two key properties we use are
+\begin{enumerate}
+\item
+If $\cal H^1 = (H_x^1)_{x\in E}$ and $\cal H^2 = (H_x^2)_{x\in E}$  for all $x\in E$ close enough to $x_0$, then the Glazer refinement of $\cal H^1$ and $\cal H^2$ have the same fiber at $x_0$.
+\item
+(semicontinuity)
+$\dim \wt H_{x_0} = \liminf_{E\ni x\to x_0} \dim H_x$.
+If $p\in \wt H_{x_0}$, then 
+\begin{align}
+\lim_{x_1\to x_0}\min \set{
+\pf{|\pl^\al(P_1-P_0)(x_0)|}{|x_1-x_0|^{m-|\al|}}^2
+}{P_1\in H_{x_1}}=0.
+\end{align}
+Given $\ep>0$ there exists $\de>0$ such that for all $x\in E\cap B(x_0,\de)$, there exists $P_1\in H_x$ such that $|\pl^\al (P_1-P_0)(x_0)|<\ep$.
+\end{enumerate}
+
+Iterated Glazer refinement: start with $\cal H=(H_x)_{x\in E}$. Define $\cal H^0,\cal H^1,\ldots$ by induction, $\cal H^0=\cal H$, $\cal H^{\cal \ell+1}=$ Glazer refinement of $\cal H^\ell$. 
+
+The idea came from the iterated paratangent space, adapted by Beerstone and Milman to a more general version; now it finds its way here, but it is basically the same proof of the same fact.
+\begin{lem}
+Suppose $D=\dim\cal P$. Then $\cal H^{2D+1} = \cal H^\ell$ for all $\ell\ge 2D+1$.
+\end{lem}
+%simple and clever
+The proof is a glorified version of the fact: for any process that passes from a vector space to a vector subspace, you can only iterate $D+1$ time.
+
+%L=D
+%H^{2D+1}
+\begin{proof}
+We prove by induction on $\ell$ that (*) if $\dim H^{2\ell+1}_x = D-\ell$ then $H_x^{\ell'}=H_x^{2\ell+1}$ for all $\ell'\ge 2\ell+1$. 
+
+Base case ($\ell=0$): If $\dim H_x^1\ge D$ then $H_x^{\ell'} = H_x^1$ for all $\ell'\ge 1$. For all $x$ near $x_0$, $H_x$ is all of $\cal P$. So the Glazer refinement is all of $\cal P$.
+
+We assume (*) for $\ell$ and prove it for $\ell+1$. Suppose
+\begin{align}
+\dim H_{x_0}^{2(\ell+1)+1} & \ge D-(\ell+1).
+\end{align}
+If 
+\begin{align}
+\dim H_{x_0}^{2\ell+1} &\ge D-\ell, 
+\end{align}
+then by the induction hypothesis we're done. So we may assume (1) $\dim H_{x_0}^{2\ell+1}<D-\ell$. So we may assume
+\begin{align}
+H_{x_0}^{2\ell+1} &= H_{x_0}^{2\ell+2}
+= H_{x_0}^{2\ell+3}\\
+H_{x_0}^{2\ell + 3} &=D-\ell-1.
+\end{align}
+We may assume: (2)
+There exist $y\in E$ arbitrarily near $x_0$ such that $\dim H_y< \dim H_y^{2\ell+1}$.
+(If this is  not true, then in sufficiently small neighborhood  of $x_0$, $H_y^{2\ell+2+i}=H_y^{2\ell+1+i}$. Then their Glazer refinements agree.)
+
+Now a tricky point. Apply the inductive hypothesis. The Glazer refinement didn't stabilize starting at $H_y^{2\ell+1}$, therefore $\dim H_y^{2\ell+1}<D-\ell$.
+%If $\dim H_y^{2\ell+1} \ge $
+Then 
+\begin{align}
+\dim H_y^{2\ell+2} < \dim H_y^{2\ell+1}<D-\ell
+\end{align}•
+so $\dim H_y^{2\ell+2} \le D-\ell-2$ for $y$ arbitrarily close to $x_0$. 
+
+Aha! $\dim H_{x_0}^{2\ell+3}\le \liminf_{E\ni y\to x_0} \dim H_y^{2\ell+2}\le D-\ell-2$. 
+
+Contradiction. %et is ok unless we have this and that, we can't have both.
+%dual but morally equivalent
+\end{proof}
+
+The question ``Does a given bundle have a section?'' reduces to ``Does a given Glazer stable bundle have a section?''
+
+\begin{lem}
+Given $m,n$ there exist $C,k^\#, \ol k$ with the following property: Let $\cal H=(H_x)_{x\in E}$ be a Glazer stable bundle with no empty fibers, $H_x\sub \cal P=\bc{\text{$m$th degree polys on $\R^n$}}$. Then 
+\begin{enumerate}
+\item
+\begin{align}
+\min \set{
+\sumz ik \sum_{|\al|\le m}
+|\pl^\al P_i(x_i)|^2 + 
+\sum_{i,j=0,x_i\ne x_j}^{\ol k}  \sum_{|\al|\le m}
+\fc{|\pl^\al(P_i-P_j)(x_i)|^2}{|x_i-x_j|^{2(m-|\al|)}}
+}{
+P_0\in H_{x_0},\ldots, P_{\ol k}\in H_{x_{\ol k}}
+}
+&\le K^2
+\end{align}
+(independent of $x_0,\ldots, x_{\ol k}\in E$).
+\item
+%
+There exists $F\in C^m(\R^n)$ such that $J_xF\in H_x$ for all $x\in E$, and $\ve{F}_{C^m(\R^n)} \le CK$, for the best $K$ in (1).
+\item
+Given $x_0\in E$, $P_0\in H_{x_0}$, there exists $F_0\in C^m(\R^n)$-section of $\cal H$ such that $J_{x_0}F=P^0$. 
+\end{enumerate}•
+%%all control by square of C^m norm
+\end{lem}
+
+Throw away irrelevant stuff until can't by Glazer refinement. Is there more irrelevant stuff? No, once you got to the glazer stable bundle, everything can arise as the section of a jet.
+
+I only know how to prove the quantitative version with norm.
+
+Finiteness principle: if for all subsets with $\ol k+1$ points you can find a section, then you get a section over the whole finite set, with controlled norm. The previous version of the finiteness theorem follows from this. The reason we had to do extra stuff is that in the finite case you don't see Glazer refinement. 
+
+To see (3) from the others: Given $P_{0}\in H_{x_0}$, define a new bundle. At every point except $x_0$ the fiber is unchanged. At $x_0$ it consists only of $P_0$. If the original had no empty fibers then so does this. It is Glazer stable if the original is. Why? Take a basepoint. For any other than $x_0$, I can pick a small neighborhood not containing $x_0$. The only problem is $x_0$. We can check it at $x_0$. 
+%P_0 in
+%$P_1$ through $P_{\ol k}$. 
+It has a section. The modified bundle has a section; it is a section of the original with jet at $x_0$ equal to $P_0$.
+
+%cterex to ...?
+(Suppose I give you $K$ and $P_0$. Is there some number $K'(K,P_0)$ with the property that it is comparable from this process from fixing a $P_0$? I think no.)
+
+I prepare for the proof of the finiteness theorem, so that not only do we get an interpolant, it depends in a linear way on the data. Suppose I have an operator $T:f\to F$, $f:E\to \R$, $F\in C^m(\R^n)$.  %$F=f$ on $E$. 
+We say $T$ is of \vocab{depth} $k$  if  for $|\al|\le m$, writing
+\begin{align}
+\pl^\al Tf(x) &= \sum_{y\in E} \la^\al_y(x) f(y),
+\end{align}
+%only a few matter
+at most $k$ of the coefficients $\la_y^\al(x)$ are nonzero for each fixed $x$. 
+%Linear functional on a finite-dimensional vector space can be written
+
+%is inf not min
+\begin{thm}\label{thm:rft-pre}
+There exists $T$ of depth $\le C(m,n)$ such that $Tf=f$ on $E$, 
+\begin{align}
+\ve{Tf}_{C^m(\R^n)}&<C'(m,n)\ve{F}_{C^m(\R^n)}
+\end{align}
+for any $F\in C^m$ such that $F=f$ on $E$.
+%immediately implies refined fin thm
+\end{thm}
+This immediately  implies the refined finiteness theorem~\ref{thm:rft}. The $Tf$ in Theorem~\ref{thm:rft-pre} has norm $\le CM$ and $Tf=f$ on $E$. 
+
+We can partition $E\times E\bs \text{Diag}$ into $E_\nu'\times E_\nu''$ for $\nu=1,\ldots, L$, $L\le CN$. Take $(x_\nu',x_\nu'')\in E_\nu'\times E_\nu''$. Suppose given $(P^x)_{x\in E}$,
+\begin{align}
+\max_{x\ne y; x,y\in E;|\al|\le m}
+\bc{
+\fc{\pl^\al(P^x-P^y)(x)}{|x-y|^{m-|\al|}}
+}
+&\le  C(m,n) \max_{v=1,\ldots, L}
+\fc{|\pl^\al(P^{x_\nu'}-P^{x_\nu''})(x_\nu')|}{|x_\nu'-x_\nu''|^{m-|\al|}}.
+\end{align}

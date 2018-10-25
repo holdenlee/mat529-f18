@@ -1,0 +1,137 @@
+\blu{10-25}
+
+We'll prove some properties of convex sets, and then show we can construct functions to depend linearly with bounded depth on data.
+
+\begin{thm}[John ellipsoid]
+Let $K\sub \R^D$ be convex, bounded, with non-empty interior. There exists an ellipsoid $E\sub K$ such that if $E^*=E$ dilated about its center by a factor $\sqrt D$ then $K\sub E^*$.
+\end{thm}
+We proved this for $K$ symmetric ($v\in K\iff -v\in K$) and $E$ centered at the origin, with some constant depending on $D$. Now I combine this with Helly's Theorem to prove Lemma~\ref{c:john-helly}.
+
+\begin{proof}[Proof of Lemma~\ref{c:john-helly}]
+%well-known 
+%big reference book of convex sets
+We assume $\si$'s are bounded with nonempty interior. Then $\bigcap_{i=1}^N\si_i$ is bounded with nonempty interior. Let $E$ be the John ellipsoid for $\bigcap_{i=1}^N\si_i$. We may assume $E$ is the unit cube $Q$, because it is equivalent to a unit ball up to a factor of $\sqrt D$.
+%unit ball equiv to unit cube
+We have
+\begin{align}
+Q&\sub \bigcap_{i=1}^N \si_i \sub C_1(D)Q,\\
+Q&= \set{(x_1,\ldots, x_D)\in \R^D}{|x_i|\le 1,\text{ each }i}.
+\end{align}
+Fix $j$, and look at 
+\begin{align}
+\bigcap_{i=1}^N\si_i\cap  \set{(x_1,\ldots, x_D)\in \R^D}{x_j>C_1(D)} = \phi
+\end{align}
+By Helly's Theorem, there exist $i_1(j),\ldots, i_D(j)$ such that $\si_{i_1}(j)\cap \cdots \cap \si_{i_D(j)}\cap  \set{(x_1,\ldots, x_D)\in \R^D}{x_j>C_1(D)} =\phi$. Then
+\begin{align}
+\capo kD \si_{i_k(j)}
+&\sub   \set{(x_1,\ldots, x_D)\in \R^D}{\forall j,|x_j|\le C_1(D)} \\
+Q&\sub \capo jD \capo kD \si_{i_k(j)}
+\sub   \set{(x_1,\ldots, x_D)\in \R^D}{\forall j,|x_j|\le C_1(D)} =C_1(D)Q 
+\end{align}
+Let's drop the bounded nonempty interior assumption. What does a general symmetric convex look like in $\R^d$? It can be in a strict subspace, and can contain subspaces.
+
+Exercise: Suppose $\si$ is any symmetric convex set in $\R^D$. Then we can write $\R^D=V_0\opl V_1\opl V_\iy$ such that 
+\begin{align}
+\si &= \set{(x_0,x_1,x_\iy)}{x_0=0, x_1 \in \wh \si, x_\iy\in V_\iy}
+\end{align}
+where $\wh \si$ is bounded with nonempty interior in $V_\iy$. 
+
+Once a symmetric convex set contains $V_\iy$ we can look at the quotient set $\R^D/V_\iy$. If the intersection is in a subspace, look at a particular $\si$. 
+Suppose \bwoc that each $\si$ has nonempty interior; then the intersection has nonempty interior. If one of them has nonempty interior, is in a subspace, then we intersect everything with that subspace. In that subspace does everything have nonempty interior? If so, we're good, otherwise, throw in another $\si$. This can only go on at most $D$ times, we have thrown in at most $D$ more sets. At the cost of increasing $K(D)$ a little bit, we've reduced the general case to the special case.
+%If it is contained in a subspace of nonzero codimension, 
+\end{proof}
+Let $\cal P$ be polynomials of degree $\le m-1$ in $\R^n$, $E\sub \R^n$ finite. For all $x\in E$, given $\Ga_0(x, M) = f(x)+M\si_0(x)$ or $\phi$, $M<|P(x)|$ (here $f\in \cal P$ and $M\si_0(x)\in \cal P$ where $\cal P$ is convex and symmetric), where
+\begin{align}
+\si_0(x) &= \set{P\in \cal P}{P(x)=0,|\pl^\al P(x)|\le 1, |\al|\le m-1}
+\end{align}
+for $|\al|\le m-1$.
+ Given $F(x) = \ph(x)$, for $x\in E$, let $f(x)$ be the constant polynomial whose value everywhere is $\ph(x)$.
+ %jet as the taylor poly
+
+By induction on $\ell$, for $x\in E$, $M>0$, let $\Ga_\ell(x,M)$ consists of all $P\in \Ga_\ell(x,M)$ such that for all $y\in E$, there exists $P'\in \Ga_\ell(y,M)$ such that $|\pl^\al (P-P')(x)|\le M|x-y|^{m-|\al|}$ for all $|\al|\le m-1$.
+If $\Ga_\ell(x,M)\ni P$, then
+\begin{align}
+P+M\si_\ell(x) &\sub \Ga_\ell(x,2M)\sub P + 3M \si_\ell(x).
+\end{align}
+%existence of interpolant by intersecting $\Ga_\ell$'s.
+%at some point stop and declare I'm satisfied.
+%choices at other points, consistent with it
+
+%suppose 
+%data
+%collection of polys indexed by $E$
+I look at a map $T$ taking datum to a polynomial.
+%Look at a single polynomial 
+%It is bounded depth
+%enormous matrix
+%
+The linear map is of bounded depth if there is a constant only depending on $m,n,\ell$ with the property that $Tf$ at a point depending on that many points.
+
+%polys depend on data, in manner linear and bounded depth.
+%as l grows, si(l) shrinks.
+%lin and bdd depth
+Induct on $\ell$.
+
+For convex sets let $\Ga \sim \Ga'$, $\Ga(M)\sim \wt \Ga(M)$, $\Ga(M) \sub \wt \Ga(CM)$, $\wt \Ga(M) \sub\Ga(CM)$.
+\begin{align}
+\Ga_\ell(x,M) &\sim f_\ell(x) + M\si_\ell(x),
+\end{align}
+
+Suppose 
+$f_\ell(x)$ depends on $(f(y))_{y\in E}$, linear and of bounded depth. We want to say the same about $\Ga_{\ell+1}$. Fix $x_0$. $\Ga_{\ell+1}(x_0,M)$ consists of $P\in \cal P$ such that 
+\begin{align}
+\forall y\in E, \exists P'\in \Ga_\ell(y,M) \text{ such that } |\pl^\al(P-P')(x_0)|\le M|x_0-y|^{m-|\al|}.
+\end{align}
+\begin{align}
+P&\in f_\ell(y) + M\si_\ell(y)\\
+B(x_0,y) &= \set{S\in \cal P}{|\pl^\al S(x_0)|\le |x_0-y|^{m-|\al|}\text{ for }|\al|\le m-1}\\
+P-P'&\in MB(x_0,y)\\
+P&\in f_\ell(y) + M\ub{[\si_\ell(y) + B(x_0,y)]}{\si_\ell(x_0,y)}.
+\end{align}
+$\stackrel{?}{\implies}$
+\begin{align}
+\Ga_{\ell+1}(x_0,M) :&= \bigcap_{y\in E}
+[f_\ell(y) + M\si(x_0,y)].
+\end{align}
+There are two steps. First, we reduce intersecting over all $E$ to a bounded number of $y$'s by the lemma. Then the proof is easy. 
+
+\begin{cor}
+In $\R^D$, suppose $\si_1,\ldots, \si_D\sub \R^D$ are symmetric and convex. 
+%We have things of the form 
+There exist $\si_{i_1},\ldots, \si_{i_k}$, $k\le K(D)$ such that the following holds. Let $P\in \capo iN [v_i+M\si_i]$. Let $\wh P\in \capo ik [v_{i_k}+M\si_{i_k}]$. 
+Then 
+$P-\wh P\in C(D)M\si_i$ for all $i=1,\ldots, N$.
+\end{cor}
+\begin{proof}
+$P,\wh P\in v_{i_k}+M\si_{i_k}$ for each $k=1,\ldots, K$, so $P-\wh P\in 2M\si_{i_k}$ for each $k=1,\ldots, K$. Then 
+\begin{align}
+\fc{P-\wh P}{2M}&= \si_{i_1}\cap \cdots \cap \si_{i_k} \sub C(D)\capo iN \si_i.
+\end{align}
+\end{proof}
+Pick $\si_{i_1},\ldots, \si_{i_k}$ as in the lemma. We will find a $\wh P$ that depends linearly on the $v_{i_k}$.  %maybe M will increase by a factor of $C$.
+The corollary shows $P-\wh P$ is in the intersection, so we can use $\wh P$ instead of $P$ at the price of increasing by a constant factor, in characterizing $\Ga_{\ell+1}$. $K$ is at most a constant determined by the dimension of the space of polynomials. That's the induction step.
+%quarter of.
+
+Each $\si_i$ bounded of nonempty interior, so has a John ellipsoid. It's a symmetric convex set so it's centered at the origin, and is the set where a quadratic form is $\le 1$.
+\begin{align}
+\si_{i_k} &= \set{v\in \R^D}{q_k(v)\le 1}. 
+\end{align}
+To say that $v\in v_{i_k}+M\si_{i_k}$ means that $q_k(v-v_{i_k}) \le M^2$. Sum these: 
+\begin{align}
+v&\mapsto \sumo kK q_k(v-v_{i_k})^2.
+\end{align}
+Pick $v$ to minimize this. 
+The minimizer depends linearly on the $v_{i_k}$. It's of the order of magnitudy $M^2$, for the minimizing $v$, each is at most a constant times $M^2$. %use linear algebra to find v that does as well as possible in causing these translates to intersect. 
+(Note that in going from individual guys to the sum we lose a factor of $K$, so it's vital that $K$ only depends on the dimension.)
+
+%We've proven that if we look at the $\Ga_\ell$'s, 
+%translates by vec/poly, linearly with bounded depth.
+
+%if you believe cor and linear dependence.
+%(We know $\Ga_{\ell+1}(x_0,M)\sim P+M \si_{\ell+1}(x_0)$.)
+
+%too small, too greedy
+%critical value, when $\Ga$ first nonzero
+%from M to 5M don't know what's going on
+%then translate of $si_{\ell+1}$ by a poly depending linearly of bounded depth
+%remains to use to construct 

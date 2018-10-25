@@ -157,13 +157,16 @@ Dilate it by a large factor depending on the dimension. Suppose it doesn't conta
 %Fritzjohn had a complicated proof. 
 
 Remember Helly's Theorem: given $K_1,\ldots, K_N$ convex in $\R^D$, if any $D+1$ of the $K_n$ have nonempty intersection, then $K_1,\ldots, K_N$ has nonempty intersection. We use this to understand intersection of convex symmetric sets.
-\begin{cor}
-Let $\si_1,\ldots, \si_N$ be symmetric convex sets in $\R^D$. Then there exist $n_1,\ldots, n_L\in \{1,\ldots, N\}$ such that 
+\begin{lem}\label{c:john-helly}
+Given $D$, there exist $K(D), C(D)$ such that the following holds: 
+
+Let $\si_1,\ldots, \si_N$ be symmetric convex sets in $\R^D$. Then there exist $i_1,\ldots, i_k\in \{1,\ldots, N\}$ such that 
 \begin{itemize}
 \item
-$L\le C_1(D)$ (constant depending only on the dimension)
+$k\le K(D)$
 \item
-$\si_{n_1}\cap \cdots \cap \si_{n_L}\sub C_2 (\si_1\cap \cdots \cap \si_N)$, $C_2$ depending only on $D$. (The constant is known.) %and not to me, I don't care
+$
+\bigcap_{i=1}^N \si_i \sub \si_{i_1}\cap \cdots \cap \si_{i_k}\sub C (\si_1\cap \cdots \cap \si_N)$, $C_2$ depending only on $D$. (The constant is known.) %and not to me, I don't care
 \end{itemize}•
-\end{cor}
+\end{lem}
 Use John's ellipsoid theorem with Helly's Theorem. %and shake well.

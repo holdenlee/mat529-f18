@@ -1,0 +1,143 @@
+%no class thu
+
+%proof of main theorem
+
+\blu{11-6}
+
+\subsection{Proof of main theorem}
+
+Lots of theorems have been reduced to other theorems, which have all been reduced to one theorem.
+
+We work in $C^m(\R^n)$. Let $E\sub \R^n$ be finite; we defined convex (maybe empty) $\Ga_\ell(x,M)\sub \cal P$ (the polynomials of degree $\le m-1$ on $\R^n$) for $x\in E$, $M>0$, $\ell\ge 0$ and convex symmetric $\si_\ell(x)$ for $x\in E$, $\ell\ge 0$. 
+
+We note some properties:
+\begin{itemize}
+\item
+If $p\in \Ga_{\ell+1}(x,M)$ and $y\in E$, then there exists $P'\in \Ga_\ell(y,M)$ such that $|\pl^\al(P-P')(x)|\le M|x-y|^{m-|\al|}$ for $|\al|\le m-1$. 
+\item
+If $p\in \si_{\ell+1}(x)$ and $y\in E$ then there exist $P'\in \si_\ell(y)$ such that $|\pl^\al(P-P')(x)|\le |x-y|^{m-|\al|}$ for $|\al|\le m-1$.
+\item
+$\Ga_\ell(x,M)\sub \Ga_\ell(x,M')$ if $M\le M'$.
+\item
+If $\Ga_\ell(x,M)\ni P$ then $\Ga_\ell(x,M)\sub P+C_1M \si_\ell(x)\sub \Ga_\ell(x,C_2M)$ for constants depending only on $m,n,\ell$.
+\item
+For $0\le \ell\le \ell_*$ (depending only on $m,n$), $\si_\ell(x)$ is Whitney convex (Definition~\ref{d:wc}).
+\end{itemize}
+
+\begin{thm}
+Assume the above. Let $x_0\in E$, $M_0>1$, and let $P_0\in \Ga_{\ell_*}(x_0,M_0)$ where $\ell_*$ is large enough, depending on $m,n$. Then there exist $F\in C^m(\R^n)$ such that 
+\begin{enumerate}
+\item
+$|\pl^\al F|\le CM$ ($C$ depending only on $m$, $n$) on all of $\R^n$, for $|\al|=m$.
+\item
+$J_{x_0}(F)=P_0$ 
+\item
+$J_x(F)\in \Ga_0(x,CM)$, $C$ depending only on $m,n$ for all $x\in E$.
+\end{enumerate}
+\end{thm}
+The finiteness theorem %(if nonempty, then),
+and the algorithm for discarding outliers reduce to this. Efficient calculation doesn't reduce to this; that will happen afterward; these properties are the only ones we use; we will use well-separated pairs decomposition.
+
+All constants will depend only on $m,n,\ell$. The same letter can mean different constants in different occurrences.
+
+There will be a local version of this problem.
+
+%cube dilated around its center.
+%E may or may not contain 
+
+Given $Q_0$ is a cube with side length $\de_{Q_0}\le 1$, $x_0\in 5Q_0\cap E$, $P_0\in \Ga_\ell(x_0,M)$, we want $F\in C^m(\fc{65}{64} Q_0)$ such that 
+\begin{enumerate}
+\item
+$|\pl^\al F|\le CM$ on $\fc{65}{64}Q_0$ for $|\al|=m$.
+\item
+$J_{x_0}(F)=P^0$.
+\item
+$J_x(F)\in \Ga_0(x,CM)$ for all $x\in E\cap \fc{65}{64}Q_0$.
+\end{enumerate}
+Call this a \vocab{local interpolation problem} $LIP(Q_0,x_0,P_0)$. We show that every LIP can be solved.
+
+We also assume if $p\in \Ga_0(x,M)$ then $|\pl^\al P(x)|\le CM$ for $|\al|\le m-1$. 
+%x_0' in 5...
+
+If we can solve the LIP, split $E$ into a grid of cubes of size 1 and for each one, apply this.
+There is something to do only if $5Q_0$ contains some point of $E$. %, then somthing to do, then
+We would like  to find $P_0$ for each cube. We don't have to worry about consistency, because we can patch them with a partition of unity where length scale is 1 so there are no large derivatives.
+%everything is swell
+
+%in corresp $\Ga_0$ and mutually consistent
+%if close, can't pick indep'ly, need make agree
+%how decide how to that
+Everything completely depends on the size and shape of the $\si_\ell$.
+Let me argue in 2 extreme cases, which have completely different lines of reasoning.
+\begin{enumerate}
+\item
+All the $\si_\ell$ are small. 
+
+For $P^x\in \ga_{\ell-1}(x,M)$, $P^y\in \Ga_{\ell-1}(y,M)$, there is $P'\in \Ga_{\ell-2}(y,M)$ such that $|\pl^\al(P^x-P')(x)|\precsim CM|x-y|^{m-|\al|}$. 
+($|\pl^\al Q(0)|\precsim 1$, $|\pl^\al Q(x)|\precsim 1$ for $|x|\precsim 1$.)
+
+But $P^y-P'\in CM \si_{\ell-2}(y)$. If these are sufficiently small, you don't have to worry about $P^x$ being consistent with $P^y$, it happens automatically.
+\item
+All the $\si_\ell$ are large.
+
+Let $Q_0$ be the unit cube. Let $P_0\in \Ga_\ell(x_0,M)$, $P'\in \Ga_{\ell-1}(x,M)$, $|\pl^\al(P'-P_0)(x)|\le CM$. 
+Replace $P'$ with $P'+S$ where $S$ is a polynomial to be picked. 
+%big ball in space of polys with obvious norm
+If $S\in M\si_{\ell-1}(x)$, %all derivs $O(M)$. Take any poly on cube $O(M)$ and add it to be $P'$.
+I can correct $P'$ so that it agrees with $P_0$.
+If $\si$ is big enough, then $P_0\in \Ga_{\ell-1}(x,CM)$ for all $x\in E\cap \fc{65}{64}Q_0$. 
+%take $P_0$, itself works.
+%unif for all points in cube?
+%we'll see that if one partic $\si$ is big at one point, then nearby $\si$ big, but $\ell$ drops by 1, but 1st property of $\Ga$ and $\si$'s.
+%2 things worry about: assign poly to each relevant point in $E\cap \fc{65}{64}Q_0$; want them to be mutually consistent and belong to $\Ga$'s. If $\si$'s tiny, don't worry about mutually consistency, just get in $\Ga$'s, kconsistency is assured. If $\si$'s large, the reverse is true; take the polys to be the same; it is in $\Ga$ automatically. In 
+\end{enumerate}
+A general $\si_\ell$ will be big in some direction and small in another; we drive towards the extremes.
+
+There are 2 things  to worry about: assign polynomial to each relevant point in $E\cap \fc{65}{64}Q_0$; we want them to be mutually consistent and belong to $\Ga$'s. If $\si$'s tiny, don't worry about mutual consistency, just get in $\Ga$'s, consistency is assured. If $\si$'s large, the reverse is true; take the polys to be the same; it is in $\Ga$ automatically.
+
+There are 2 motivations for possible choices of polynomials, we have to take them both into account. By looking at size and shape, we know what assignment to make.
+
+How do we measure an intermediate case? I describe the notion of a basis. In general it depends on the length scale. For the moment work with the unit cube, $\de=1$. 
+\begin{df}
+Say that $\si\sub \cal P$ is a convex symmetric set. Let
+\begin{align}
+\cal M&=\set{\al=(\al_1,\ldots, \al_k)\in \Z^n}{\text{each }\al_i\ge 0, |\al|=\al_1+\cdots +\al_k\le m-1}
+\end{align}
+and $\cal A\sub \cal M$. %label
+A \textbf{$\cal A$-basis for $\si$ with basis constant $C$} at $x_0$ is a collection of polynomials $(P_\al)_{\al\in \cal A}$ for each $P_\al\in \cal P$ such that $\pl^\be P_\al(x_0) = \de_{\be \al}$ for $\be,\al\in \cal A$, $|\pl^\be P_\al(x_0)|\le C$ for $\be\in \cal M$, $\al\in \cal A$, and $P_\al\in C\si$ for each $\al$. 
+\end{df}
+For example, say $x_0=0$, and $P_\al$ consists of monomials. Each monomial can be thought of as a unit vector in $\cal P$. We're saying that these $P_\al$'s are of bounded length, and if you only look at their projections onto the coordinates, they would form an identity matrix.
+
+This is the first attempt to understand in which directions $\si$ is big. It is large in directions in the basis.
+We're going to look at small cubes; let's get the scaling factors straight. Let's say $m=1$. Let's say we've arranged so that the $m$th derivatives are dimensionless quantities, $\pl^\al F$ is dimensionless with $|\al|=m$. Let $F$ have dimensions $\pat{meters}^m$, $\pl^\al P_\al(x_0)=1$, $P_\al$ with dimension $\pat{meters}^{|\al|}$. 
+%thing that belong to $\si$< taylor poly of f, with dimensions (meters)^m.
+Let $\si\sub \cal P$ be convex symmetric with $0<\de\le 1$, $C$ constant, $x_0\in \R^n$, $\cal A\sub \cal M$, $P_\al\in \cal P(\al\in \cal A)$. 
+$(P_\al)_{\al \in \cal A}$ is a $(\cal A, \de, C)$ basis  for $\si$ at $x_0$ iff:
+\begin{itemize}
+\item
+$|\pl^\be P_\al(x_0)|\le C\de^{|\al|-|\be|}$ for $\al\in \cal A$, $\be\in \cal M$
+\item
+$\pl^\be P_\al(x_0)=\de_{\be\al}$ for $\be,\al\in \cal A$. 
+\item
+$\de^{m-|\al|}P_\al\in C\si$ for all $\al \in \cal A$. 
+\end{itemize}•
+The extreme cases are when $\cal A$ is all $\cal M$ or empty.
+%$\cal A$ is all scriptM
+%a... big enough, will follow
+
+%$\cal A$ is empty, true vacuously, know nothing
+We will decompose $A$ into sets that are easier. We make sure they give rise to solutions that can be patched together. 
+
+There will be an ordering on the set of labels $\cal A$ (labels for local interpolation problem); prove by induction that any LIP which carries the label $\cal A$ can be solved. The base case is the label $\cal M$ (the least element). The LIP is trivial. For the induction step, take some label for which we don't know what to do, but know what to do for all smaller labels. Do Calderon-Zygmund decomposition such that the problem can be solved on the parts because they have smaller labels. Put them together by a Whitney partition of unity. Do this so that local solutions are consistent. 
+
+I first define the ordering on multi-indices. 
+Let $\al=(\al_1,\ldots, \al_n)$, $\be = (\be_1,\ldots, \be_n)$. Compare $\al_1+\cdots +\al_n$ and $\be_1+\cdots + \be_n$. If they are the same, then delete the last index and compare, repeating as necessary. This defines a total order.
+
+Now I describe the order relation on sets of multi-indices.
+
+Suppose $\cal A,\cal B$ are distinct subsets of $\cal M$. Consider the symmetric difference, and take the least element with respect to the ordering I just defined,
+\begin{align}
+\ga&=\min\{(\cal A\bs \cal B) \cup (\cal B \bs \cal A)\}.
+\end{align}•
+If $\ga\in \cal A$ then $\cal A<\cal B$. If $\ga\in \cal B$ then $\cal B<\cal A$.
+This is a total order relation. If $\cal A\sub \cal B$, then $\ga\in \cal B\bs\cal A$, so $\cal B<\cal A$. $\cal M$ is the minimal label and the empty set is the maximal label. %know nothing of $\si$'s

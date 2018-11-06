@@ -1,5 +1,6 @@
 \chapter{Interpolation}
-\section{Interpolation}
+%\section{Interpolation}
+\section{Introduction}
 
 Interpolation means various things. In the simplest iteration, I give you values (or approximate values) of a function at finitely many points  and ask you  to guess the funciton. The function can be anything so we have to make restrictions. Take some function space norm, like $C^m$ norm or Sobolev norm. Find the function with norm as small as possible or almost as small as possible. There's no reason to think the correct answer is the function with smallest norm. 
 
@@ -12,7 +13,7 @@ We are interested in theorems and algorithms, implemented on a computer.
 There is a theory for interpolating functions of 1 variable. Fit a polynomial to adjacent points; fudge the functions so that they match perfectly. On the line, the points come in order. Given sets in the plane, there's no order; the geometry is much more subtle.
 
 For example, in $\R^2$, 
-suppose we are given a bunch of points on the $x$-axis, and 2 points off the axis. Is it possible to interpolate the data with $\ve{F}_{C^2}\lesssim 1$? If the values of the $y$ derivative are sufficiently close, we can interpolate, otherwise no. We had better not just examine nearby points; information can come from far away. Any algorithm that constructs an interpolate by looking at the 100 points closest to it is bound to fail. If the set looks of this, we have to recognize this and respond to it.
+suppose we are given a bunch of points on the $x$-axis, and 2 points off the axis. Is it possible to interpolate the data with $\ve{F}_{C^2}\lesssim 1$? If the values of the $y$ derivative are sufficiently close, we can interpolate, otherwise no. We had better not just examine nearby points; information can come from far away. Any algorithm that constructs an interpolate by looking at the 100 points closest to it is bound to fail. If the set looks like this, we have to recognize it and respond to it.
 
 Let $E$ be the set and $N=\#E$.
 %We want our algorithms 
@@ -21,10 +22,10 @@ There are algorithms that take time $O(N\log N)$.
 I'm only interested in algorithms that always work, not those that require geometric conditions on the points.
 
 Suppose we want $\ve{F}_{C^4}\lesssim 1$. 
-Draw the zero set of a polynomial of degree 3. Suppose all but a few points lie on that set. This is really the same problem as before. Given $F$, I will not see a difference with $F+GP$ except on the points that are off the zero-set. To test this hypothesis, you had better recognize this is going on, and that the clusters with points are outside have the important information and respond to it.
+Draw the zero set of a polynomial of degree 3. Suppose all but a few points lie on that set. This is really the same problem as before. Given $F$, I will not see a difference with $F+GP$ except on the points that are off the zero-set. To test this hypothesis, you had better recognize this is going on, that the clusters with points that are outside have the important information, and respond to it.
 Nobody tells you the zero set is around; you are only given the finite set of points. You need to recognize the curve is sitting there. Already, this subject  has input from real algebraic geometry.
 
-This is not the worst possible case for $C^m$. Consider $C^4(\R^3)$. Imagine there's some algebraic surface which is the zero set of a polynomial of low degree and on the surface there is some curve, which is the intersection of the sufrace with another. All but a few lie really close to the surface, and of the ones close to the surface, all but a few lie close to the curve. That affects where the information is coming from. 
+This is not the worst possible case for $C^m$. Consider $C^4(\R^3)$. Imagine there's some algebraic surface which is the zero set of a polynomial of low degree and on the surface there is some curve, which is the intersection of the surface with another. All but a few lie really close to the surface, and of the ones close to the surface, all but a few lie close to the curve. That affects where the information is coming from. 
 %this is as worse as it gets
 (Real algebraic geometry was for a long time disjoint from anything else, but it's starting to make connections. We won't take textbook theorems from real algebraic geometry and apply them.)
 
@@ -54,9 +55,9 @@ Compute the order of magnitude of $\ve{f}_{X(E)}$.
 \item
 Compute a $A$-optimal extension of $f$. 
 \end{enumerate}
-Computing a function is a more delicate thing because a computer will only deal with a finite number of values, while a function has infinitely many. Sit at a terminal, enter the data. The computer then displays ``Please wait, I'm thinking about it.'' The computer then executes an algorithm. ``Thank you for your patience, I now understand the interpolant $F$ and will respond to your queries.'' Give a point, the computer will respond with at least $F$ at that point. We can also demand the derivatives up to order $m$ at that point.
+Computing a function is a more delicate thing because a computer will only deal with a finite number of values, while a function has infinitely many. What we mean is the following. Sit at a terminal, enter the data. The computer then displays ``Please wait, I'm thinking about it.'' The computer then executes an algorithm. ``Thank you for your patience, I now understand the interpolant $F$ and will respond to your queries.'' Give a point, the computer will respond with at least $F$ at that point. We can also demand the derivatives up to order $m$ at that point.
 
-This is an extremely demanding notion of computing a function. Take a Bessel function, or even $\sin x$. Depending on what the computer does---suppose it does basic arithmetic. No amount of computation will yield $\sin x$ exactly. It computes $\sin x$ to a given accuracy. But I want \emph{the} value.
+This is an extremely demanding notion of computing a function. Take a Bessel function, or even $\sin x$. Depending on what the computer does---suppose it does basic arithmetic---no amount of computation will yield $\sin x$ exactly. It computes $\sin x$ to a given accuracy. But I want \emph{the} value.
 
 I imagine a computer with standard von Neumann architecture. Let's say the computer can deal with exact real numbers. (My coauthors and I have taken into account round-off error into account rigorously; let's not deal with that!)
 It has RAM, flow of control. Given two real numbers, it can add, subtract, multiply, or divide them; we assume no round-off error. The computer can take one number in a register and put it in RAM, fetch from RAM, has input and output.
@@ -81,6 +82,8 @@ There's a reason this solves no practical problems; the constant $A$ is too big.
 We use
 Whitney's extension problem and Whitney's extension theorem, and something from computer science called the well-separated pairs decomposition.
 
+\section{Whitney extension: Interpolation given Taylor polynomials}
+
 \subsection{Whitney extension}
 
 \begin{prb}[Whitney, 1934]
@@ -91,7 +94,7 @@ Can we take $F$ to depend linearly on $f$?
 (Define $X(E)=\set{f:E\to \R}{\exists F\in X \text{ such that }F=f\text{ on }E}$, $\ve{f}_{X(E)}=\inf \set{\ve{F}_X}{F\in X,F=f\text{ on }E}$. Does there exist $T:X(E)\to X$ bounded linear map such that $Tf|_E=f$ for all $f\in X(E)$?)
 \end{prb}
 %blah blah blah blah part 1
-Whitney solved this in 1 dimension (blah blah blah blah part 1; part 2 never appeared). 
+Whitney solved this in 1 dimension (paper called blah blah blah blah part 1; part 2 never appeared). 
 %blah blah blah part 2 never appeared
 
 In addition to this he proved the very important Whitney extension theorem.
@@ -121,7 +124,7 @@ $|\pl^\al(P^x - P^y)(x)|\le M|x-y|^{m-|\al|}$. for $x,y\in E$, $|\al|\le m$.
 
 (We haven't extracted all the omph yet. We haven't use the fact that they're continuous. Using the modulus of continuity we get the following.)
 \item
-$\fc{\ab{\pl^\al (P^x - P^y)(x)}}{|x-y|^{m-|\al|}}$ as $|x-y|\to 0^+$, $x,y\in E$. 
+$\fc{\ab{\pl^\al (P^x - P^y)(x)}}{|x-y|^{m-|\al|}}\to 0$ as $|x-y|\to 0^+$, $x,y\in E$. 
 \end{enumerate}
 \begin{thm}[Whitney's extension theorem , 1934]
 These conditions imply that there exist $F\in C^m(\R^n)$ with $C^m$-norm $\le CM$ such that $J_X(F) = P^x$ for all $x\in E$, where $C$ depends only on $m,n$.
@@ -139,7 +142,7 @@ Suppose we just tried to beat $N^2$, how can we do it? Can we compute many of th
 \begin{align}
 E\times E \bs \text{Diag} \supset E'\times E''.
 \end{align}
-We compute $\max_{x\in E',y\in E''}\fc{|f(x)-f(y)|}{|x-y|}$ in far fewer steps than $\# E' \times \# E''$.  
+We can compute $\max_{x\in E',y\in E''}\fc{|f(x)-f(y)|}{|x-y|}$ in far fewer steps than $\# E' \cdot \# E''$.  
 
 Suppose $E',E''$ have good geometry---they are well-separated: the distance between $E'$ and $E''$ is large compared to the diameter of $E'$, $E''$. Then I can take representative points $\ol x\in E'$, $\ol y\in E''$ and comute
 \begin{align}\label{e:wsp1}
@@ -147,6 +150,6 @@ Suppose $E',E''$ have good geometry---they are well-separated: the distance betw
 \end{align}
 Take $f(x)$ as small as possible and $f(y)$ as large as possible, or vice versa. The number of operations has decreased from the product of $\# E'$ and $\# E''$ to the sum. 
 
-We aim to partition $E\times E$ into many products of this type. We actually don't need to compute all of the numbers~\eqref{e:wsp1}, we just need the maximum. (We can look at $\rc{|\ol x-\ol y|}|f(\ol x)-f(\ol y)|$.)
+We aim to partition $E\times E$ into many products of this type. We actually don't need to compute all of the numbers~\eqref{e:wsp1}, we just need the maximum. We can also approximate it by $\rc{|\ol x-\ol y|}|f(\ol x)-f(\ol y)|$.
 
 %next time, Thu, a careful description of this, and a proof of 1934 Whitney extension theorem interesting parts.

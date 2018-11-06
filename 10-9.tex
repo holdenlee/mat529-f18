@@ -5,9 +5,9 @@ There is $\ell_*$ depending only on $m,n$ such that
 $\Ga_{\ell_*}(x,M)\ne \phi$ implies $\Ga(x,CM)\ne \phi$, and therefore there exists $F\in C^m$ with norm $\le CM$ such that $F=f$ on $E$.
 \end{thm}
 We will assume this and prove the following.
-\begin{thm}%finite
-Suppose for every $S\sub E$ with $\#(S)\le k^\#$ depending only on $m,n$. Then there exists $F^S\in C^m$ with norm $\le M$ such that $F=f$ on $S$. Then there exists $F\in C^m$ with norm $\le CM$, $C$ depending only on $m,n$ such that $F=f$ on $E$. 
-\end{thm}
+\begin{thm*}[Finiteness theorem, Theorem~\ref{t:finite}]%finite
+Suppose for every $S\sub E$ with $\#(S)\le k^\#$ depending only on $m,n$ that there exists $F^S\in C^m$ with norm $\le M$ such that $F=f$ on $S$. Then there exists $F\in C^m$ with norm $\le CM$, $C$ depending only on $m,n$ such that $F=f$ on $E$. 
+\end{thm*}
 We will use this to define other $\Ga$'s.
 
 %finitely many subsets
@@ -71,7 +71,7 @@ $\wh \Ga_{\ell_*}(x,M)$ is nonempty by Helly, and is contained in $\Ga_{\ell_*}(
 This finishes the proof of the finiteness theorem.
 \end{proof}
 
-\section{Outliers}
+\subsection{Outliers}
 
 Work in $C^m(\R^n)$. 
 Let $f:E\to \R$, with norm
@@ -85,7 +85,7 @@ We have
 \begin{align}
 \ve{f}_{E\bs \{x_1,\ldots, x_{cz}\}} &\le C\ve{f}_{E\bs S},
 \end{align}
-where $x$ depends only on $m,n$.  Moreover the enumeration can be computed. We successively produce $x_1,x_2,\ldots$, each $x_i$ requiring $\le CN\ln N$ operations.
+where $x$ depends only on $m,n$.  Moreover the enumeration can be computed by successively producing $x_1,x_2,\ldots$, each $x_i$ requiring $\le CN\log N$ operations.
 \end{thm}
 %We use the refined finiteness theorem: Givn 
 

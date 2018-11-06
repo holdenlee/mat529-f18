@@ -1,5 +1,7 @@
 \blu{10-4}
 
+\subsection{$\si_\ell$'s}
+
 We will cover
 \begin{itemize}
 \item
@@ -38,13 +40,16 @@ P_0+M\si(x) \sub \Ga(x,M) \sub P_0+10M\si(x)
 \end{align}
 To understand the $\Ga$'s,  we need to find the magnitude of the smallest $M_0$ such that $\Ga(x,M_0)$ is nonempty, and produce one element. 
 
-For $P,Q\in \cal P$, the pointwise product $P\odot_x Q= J_x(PQ)$, and $J_x(FG) = J_x(F)\odot_x J_x(G)$. For $P(x) = \sum_{|\al|\le m} a_\al x^\al$ and $Q(x) = \sum_{|\al|\le m} a_\be x^\be$, $PQ(x) = \sum_{|\al|,|\be|\le m} a_\al b_\be x^{\al+\be}$, $P\odot_0 Q = \sum_{|\al|+|\be|\le m} a_\al b_\be x^{\al+\be}$. 
+For $P,Q\in \cal P$, define the pointwise product $P\odot_x Q= J_x(PQ)$, and $J_x(FG) = J_x(F)\odot_x J_x(G)$. For $P(x) = \sum_{|\al|\le m} a_\al x^\al$ and $Q(x) = \sum_{|\al|\le m} a_\be x^\be$, $PQ(x) = \sum_{|\al|,|\be|\le m} a_\al b_\be x^{\al+\be}$, $P\odot_0 Q = \sum_{|\al|+|\be|\le m} a_\al b_\be x^{\al+\be}$. 
 
 For $\ve{F}_{C^m}\le 1$, $F=0$ on $E$, $J_x(F)=P$, %P times the harmless poly belongs to $\si$. We can deal with some harmful polys
-Apply this with the Whitney extension theorem. Interpolants work locally on different scales, and patch them together. The cutoff functions will behave quite badly. 
+apply this with the Whitney extension theorem. Interpolants work locally on different scales; patch them together. The cutoff functions will behave quite badly. 
 %derives \le 
 Consider $x=0$. 
-Let $P=J_0(F)$. Suppose $|\pl^\al(0)|\le \de^{m-|\al|}$, $|\pl^\al F(0)|\le \de^{m-|\al|}$, $|\pl^\al Q(0)|\le \de^{-|\al|}$, $|\pl^\al F(0)|\le \de^{m-|\al|}$ for $\de\le 1$. If $P\in \si(0)$ then $Q\odot_0 P \in C\si(0)$, for $C$ depending only on $m$, $n$. 
+Let $P=J_0(F)$. Suppose %$|\pl^\al F(0)|\le \de^{m-|\al|}$, 
+$|\pl^\al F(0)|\le \de^{m-|\al|}$, $|\pl^\al Q(0)|\le \de^{-|\al|}$
+%, $|\pl^\al F(0)|\le \de^{m-|\al|}$ 
+for $\de\le 1$. If $P\in \si(0)$ then $Q\odot_0 P \in C\si(0)$, for $C$ depending only on $m$, $n$. 
 
 There exists $\te\in C_0^\iy(\R^n)$ such that $\Supp\te\in B(0,\de)$, $J_0(\te)=Q$, $|\pl^\al \te|\le C\de^{-|\al|}$ everywhere, for $|\al|\le m$. 
 
@@ -58,6 +63,8 @@ Look at $F\cdot \te$. $\pl^\al(F\cdot \te)$ is a sum of terms
 where $\be+\ga=\al$. %expand F as taylor poly around 0 plus rem
 If $|\pl^\be F(0)|\le \de^{m-|\be|}$ for all $|\be|\le m$ and $|\pl^{\wh\be} F(x)|\le 1$  for $|\wh \be |=m$, then $|\pl^\be F(x)|\le C\de^{m-|\be|}$ for $|\be|\le m$. 
 
+%FIX: above is somewhat confusing
+
 (To  check effortlessly something is scale-invariant, assign units.)
 %dim correct, so independent of scaling.
 %derivs of up to order m
@@ -67,23 +74,25 @@ If $|\pl^\be F(0)|\le \de^{m-|\be|}$ for all $|\be|\le m$ and $|\pl^{\wh\be} F(x
 We've proven that if $P\in \si(0)$, then $Q\odot_0P \in C\si(0)$.
 
 
-\begin{df}
+\begin{df}\label{d:wc}
 Let $\si\sub \cal P$ be any convex symmetric set. Let $x\in \R^n$, $C_w>0$, $\de_{\max}>0$. 
 
-Then $\si$ is a \vocab{Whitney convex} at $x$, with Whitney constant $C_w$ below length scale $\de_{\max}$, iff for all $P,Q\in \cal P$, $0<\de\le \de_{\max}$, if $|\pl^\al P(x)|\le \de^{m-|\al|}$ and $|\pl^\al Q(x)| \le \de^{-|\al|}$ for all $|\al|\le m$, and if also $P\in \si$, then $P\odot_x Q \in C_w\si$. 
+Then $\si$ is \vocab{Whitney convex} at $x$, with Whitney constant $C_w$ below length scale $\de_{\max}$, iff for all $P,Q\in \cal P$, $0<\de\le \de_{\max}$, if $|\pl^\al P(x)|\le \de^{m-|\al|}$ and $|\pl^\al Q(x)| \le \de^{-|\al|}$ for all $|\al|\le m$, and if also $P\in \si$, then $P\odot_x Q \in C_w\si$. 
 \end{df}
-If I don't specify the lengths scale, it is 1.
+If I don't specify the length scale, it is 1.
 \begin{rem}
 %$\si(x)$ is Whitney-convex at $x$ with Whitney constant 
 Given $E\sub \R^n$, construct $\si(x)$ from interpolants. Then for all $x\in \R^n$, $\si(x)$ is Whitney convex at $x$, with Whitney constant defined by $m,n$ below length scale $\de_{\max}=1$. 
 %diff dim and taking max - unnatural. reflected in: there is length scale.
 %C^m(\dot) sup at order precisely $m$>
 \end{rem}
+% FIX what is this remark saying?
 The definition of the $C^m$ norm is somewhat unnatural---taking different dimensional quantities (different order derivatives) and taking the max. This unnaturalness is reflected in the length scale. We can also define $\dot C^m$ norm which takes a sup over derivatives with order precisely $m$.%, and prove an analogous 
 
-Check by induction on $\ell$ that $\si_{\ell}(x)$ is also Whitney convex that depends on $\ell,m,n$ below length scale 1. 
+Check by induction on $\ell$ that $\si_{\ell}(x)$ is also Whitney convex with constant that depends on $\ell,m,n$ below length scale 1. 
 
-Let $x\in E$, $M>0$, $\ell\ge 0$. Then $\Ga_\ell(x,M)$ is a (possibly empty) convex subset of $\cal P$, $\si_\ell(x)$ is a convex symmetric set in $\cal P$. For $M\ll M'$, with a small constant determined by $m,n,\ell$, $\Ga_\ell(x,M)\sub \Ga_d(x,M')$, $\Ga_{\ell+1}(x,M) \sub \Ga_\ell(x,M)$. 
+Let $x\in E$, $M>0$, $\ell\ge 0$. Then $\Ga_\ell(x,M)$ is a (possibly empty) convex subset of $\cal P$, $\si_\ell(x)$ is a convex symmetric set in $\cal P$. For $M\ll M'$, %with a small constant determined by $m,n,\ell$, 
+$\Ga_\ell(x,M)\sub \Ga_\ell(x,M')$, $\Ga_{\ell+1}(x,M) \sub \Ga_\ell(x,M)$. 
 
 If  $x,y\in E$, $P \in \Ga_\ell(x,M)$, $\ell\ge 1$, then there exists $P'\in \Ga_{\ell-1}(y,CM)$, $C$, depending only on $m,n,\ell$ , such that $|\pl^\al(P-P')(x)|\le CM|x-y|^{m-|\al|}$, for $|\al|\le m$. 
 
@@ -97,10 +106,12 @@ We talk about the finiteness theorem. %If you understand the $\ga$'s. If the the
 %if understand $\Ga_\ell$'s well enough, FT follows. 
 %unif bound on $C^m$ norm
 
+\subsection{Proof of finiteness theorem given non-emptiness}
+
 Define 
 \begin{align}
 \Ga(x,M,S) &= \set{J_x(F)}{F=f\text{ on }S, \ve{F}_{C^m}\le M}\\
-\wh \Ga_\ell(x,M) &= \bigcap_{S\sub E, \#S\le k_\ell} \Ga(x,M,S)\in \cal P
+\wh \Ga_\ell(x,M) &= \bigcap_{S\sub E, \#S\le k_\ell} \Ga(x,M,S)\sub \cal P
 \end{align}
 convex. We need to prove this is nonempty. We use the following basic theorem in convex geometry.
 \begin{thm}[Helly's Theorem]\label{thm:helly}
@@ -109,7 +120,7 @@ Suppose that any $D+1$ of the $K_i$ have a point in common. Then $K_1\cap \cdots
 %3 minutes or so. That resonates with theorem up there. 
 \end{thm}
 If there are infinitely many convex compact sets, then this is still true.
-If you take infinitely many convex sets, not necessarily compact, then this is not true, ex. $(0,\rc n]$. 
+If you take infinitely many convex sets, not necessarily compact, then this is not true; for a counterexample take $(0,\rc n]$. 
 \begin{proof}
 Given $L\ge D+1$, we show that if any $L$ of the $K$'s intersect, then also $L+1$ of the $K$'s intersect.
 

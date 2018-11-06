@@ -1,5 +1,7 @@
 \blu{10-11}
 
+\section{The infinite case}
+
 Two remarks, on the difference between finity and infinity.
 \begin{enumerate}
 \item
@@ -13,7 +15,7 @@ Consider modifying $F$ by taking a cutoff function
 \end{cases}
 \end{align}
 %usual scaling.
-with $|\pl^\al \te_\de(x)|\le \fc{C}{\de^|\al|}$ for $|\al|\le m$. Then for $|\be|=m$, $\pl^\al(x^\be \te_\de(x))$ is a sum of terms $(\pl^{\al'} x^\be) (\pl^{\al''}\te_\de)$, where $\al'+\al''=\al$. This is
+with $|\pl^\al \te_\de(x)|\le \fc{C}{\de^{|\al|}}$ for $|\al|\le m$. Then for $|\be|=m$, $\pl^\al(x^\be \te_\de(x))$ is a sum of terms $(\pl^{\al'} x^\be) (\pl^{\al''}\te_\de)$, where $\al'+\al''=\al$. This is
 \begin{align}
 O(\de^{m-|\al'|})O(\de^{-|\al''|}) = O(\de^{m-|\al|}). 
 \end{align}
@@ -30,10 +32,10 @@ If I tell you the acceleration of a car is at most so much, and tell you where i
 
 For  $E=\R^m$, given all function values, the derivatives are uniquely determined. This is a fundamental difference.
 \item
-The finiteness theorem for infinite sets is false. Consider $f\in C^1(\R^1)$, $F$ on $\R^1$. For every finite $S$ there exists $P\in C^1(\R^1)$ such that $F^S=F$ on $S$ and $\ve{F}_{C^1}\le 2$. However, we can have $F\in C^1$; consider $F$ with a kink. %(Same if we give it on a interval.)
-Even less can we hope to control with sets of a bounded size.
+The finiteness theorem for infinite sets is false. Consider $f\in C^1(\R^1)$, $F$ on $\R^1$. For every finite $S$ there exists $P\in C^1(\R^1)$ such that $F^S=P$ on $S$ and $\ve{P}_{C^1}\le 2$. However, we can have $F\nin C^1$; consider $F$ with a kink. %(Same if we give it on a interval.)
+Even less can we hope to control the norm with sets of a bounded size.
 
-$C^1$ is not the same as Lipschitz. However, if a function is $C^1$, its Lipschitz norm is comparable to its $C^1$ norm.
+($C^1$ is not the same as Lipschitz. However, if a function is $C^1$, its Lipschitz norm is comparable to its $C^1$ norm.)
 %$\af{F(x)-F(y)}{x-y}$
 %deriv as close to 1 as you'd like
 %agree and has C^1 norm bounded.
@@ -61,6 +63,8 @@ At 0 the line is flat, so it seems we can only compute the gradient in the $x$ d
 
 The way to solve this problem is to generalize it. I'll explain how to generalize it, why this is a special case, and solve the generalized problem through an iteration (which takes you outside the special case). 
 
+\subsection{Bundles}
+
 Fix $m,n\ge 1$, $E\sub \R^n$ compact. Let $\cP$ be the vector space of all polynomials of degree $\le m$ on $\R^n$ %not m-1.
 Recall that we have jet multiplication, $P\odot_x Q = J_x(PQ)$, $J_xF =m$th order Taylor polynomial of $F$ at $x$, $\in \cP$, $J_x(FG) = J_x(F)\odot_x J_x(G)$.  Let $\cal R_x=(\cP,\odot_x)$ be the ring of jets at $x$.
 
@@ -74,13 +78,13 @@ where for $x\in E$, either $H_x=P^x + I(x)$ where $P^x\in \cP$ and $I(x)$ is an 
 The ring is a finite-dimensional vector space with multiplication. So $H_x$ is an affine subspace. We have a family of affine subspaces of $\cal P_x$ parameterized by points of $E$. They are allowed to be empty, and have something to do with multiplication.
 
 \begin{df}
-The \vocab{fiber} of $\cal H$ at $x$ is $H_x$. If $\cal H=(H_x)_{x\in E}$, $\cal H=(H_x)_{x\in E}$, then $\cal H$ is a subbundle of $\cal H'$ if $H_x\subeq H_x'$ for each $x\in E$. 
+The \vocab{fiber} of $\cal H$ at $x$ is $H_x$. If $\cal H=(H_x)_{x\in E}$, $\cal H'=(H_x')_{x\in E}$, then $\cal H$ is a \vocab{subbundle} of $\cal H'$ if $H_x\subeq H_x'$ for each $x\in E$. 
 \end{df}
-In geometry, bundles are supposed to vary smoothly, but we don't make such restriction. In fact the dimension need not be a measurable function of $x$.
+In geometry, bundles are supposed to vary smoothly, but we don't make such restriction. In fact the dimension need not even be a measurable function of $x$.
 \begin{df}
 A \vocab{section} of $\cal H=(H_x)_{x\in E}$ is a $C^m$ function $F$ such that $J_xF\in H_x$ for each $x\in E$. 
 \end{df}
-Question: Given a bundle $\cal H$, decide whether it has a section. If it has a section, compute approximately the smallest $C^m$ norm of a bundle. 
+Question: Given a bundle $\cal H$, decide whether it has a section. If it has a section, compute approximately the smallest $C^m$ norm of a section. 
 
 We show that our original question is a special case of this.
 I'll construct a bundle and show that the $C^m$ function exists iff the bundle has a section.
@@ -116,10 +120,10 @@ Start with any bundle and iteratively do Glazer refinement. At some point the pr
 %twice dim of $\cal P$ (+1)?
 Use a simple lemma that says from that point on it stabilizes.
 
-Spirit of proof: If I start with a vector space of dimension $d$, and produce a subspace each time, I can only iterate finding a subspace  $ed$ times. It's clever but not deep.
+Spirit of proof: If I start with a vector space of dimension $d$, and produce a subspace each time, I can only iterate finding a subspace  $d$ times. It's clever but not deep.
 %produces subspace
 
-A Glazer stable bundle, has a section iff it has no empty fibers. That's the only obstruction.
+A Glazer stable bundle has a section iff it has no empty fibers. That's the only obstruction.
 
 I make an observation. Suppose $F\in C^m$, $x,y\in \R^n$ distinct, $P^x = J_xF$ and $P^y = J_yF$. Taylor's Theorem tells us
 \begin{align}
@@ -135,15 +139,16 @@ We have $P_0\in \wt H_{x_0}$ iff
 \begin{align}
 \min\set{
 \sum_{i,j\in \{0,\ldots, k\}, x_i\ne x_j}
-\pf{\pl^\al(P_i-P_j)(x_j)}{|x_i-x_j|^{m-|\al|}}
+\pf{\pl^\al(P_i-P_j)(x_j)}{|x_i-x_j|^{m-|\al|}}^2
 }{\forall i\in [k], P_i\in H_{x_i} }
 &\to 0
 \end{align}
-as $x_1,\ldots, x_k\to x_0$, $x_1,\ldots, x_k\in E$. We check the conditions. 
-The jet of $F$ at $x_0$ belongs to the Glazer refinement. I will pick $P_i$ to be the just of $f$ at $x_i$. %Those particular jets 
+as $x_1,\ldots, x_k\to x_0$, when $x_1,\ldots, x_k\in E$. \fixme{FIX: order of quantifiers---should $\forall$ be outside?}
+We check the conditions. 
+The jet of $F$ at $x_0$ belongs to the Glazer refinement. I will pick $P_i$ to be the jet of $f$ at $x_i$. %Those particular jets 
 %empty or translate of ideal, routine verification
 
-I'm minimizing a quadratic form over a linear subspace, in a fixed finite dimension. The minimum is obtained form linear algebra in fixed dimension.
+I'm minimizing a quadratic form over a linear subspace, in a fixed finite dimension. The minimum is obtained from linear algebra in fixed dimension.
 
 Exercise: suppose you work in $C^1$. What does it mean for Whitney's original 1934 problem? It agrees with what Glazer did.
 

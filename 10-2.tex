@@ -1,21 +1,23 @@
 \blu{10-2}
 
-\section{$\Ga$ and $\si$}
+\section{Interpolation given points}
+
+\subsection{$\Ga$'s}
 
 %C^m function that agrees with the data. 
-In the problem we're interested in, we're only given the values, not the Taylor polynomials at the points. It's a linear programming problem; in principle we can do it, but in time $N^3$. We'll get the time down to $N\log N$. We have to come up with a consistent set of Taylor polynomials. What might it be at one point?
+In the problem we're interested in, we're only given the values, not the Taylor polynomials at the points. It's a linear programming problem; in principle we can do it, but in time $N^3$. We'll get the time down to $N\log N$. We have to come up with a consistent set of Taylor polynomials. What might the Taylor polynomial be at one point?
 
 %$\Ga$'s and $\si$'s. 
 For $m,n>1$, we are given $E\sub \R^n$, $f:E\to \R$. We want to extend to a function $C^m(\R^n)$. 
 We ask the right question: if we fix one particular point, what might the Taylor polynomial be at that one point?
 Let 
 \begin{align}
-\Ga(x,M) &= \set{J_x}{F=f\text{ on }E, \ve{F}_{C^m}\le M}\sub \cal P.
+\Ga(x,M) &= \set{J_x(F)}{F=f\text{ on }E, \ve{F}_{C^m}\le M}\sub \cal P.
 \end{align}
 This is a possibly empty convex set.
 What is the approximate size and shape of $\Ga(x,M)$? 
 
-It would be great if we can find the exact possible $C^m$ norm, but we don't know how; also there are lots of equivalent $C^m$ norms. Think of the inequality up to a constant. 
+It would be great if we can find the exact possible $C^m$ norm, but we don't know how; also there are lots of equivalent $C^m$ norms. Think of the inequality up to a constant; we will find $\Ga_{\text{computed}}(x,M)$ such that
 \begin{align}
 \Ga(x,c_1M)&\sub
 \Ga_{\text{computed}}(x,M) \sub \Ga (x,C_1M),\\
@@ -23,7 +25,7 @@ It would be great if we can find the exact possible $C^m$ norm, but we don't kno
 \end{align}
 %given know $M$ approximately.
 
-These sets have a lot of information. They're useful and even if we couldn't use them to compute interpolants we would still want to use them.
+These sets $\Ga$ have a lot of information. They're useful and even if we couldn't use them to compute interpolants we would still want to use them.
 Suppose that I want to interpolate data. They come from some experiment or observations. The $f$ we're trying to find is presumably a smooth function of the data, but it's highly unlikely that the function is the interpolant with smallest norm. What do we believe? We believe it matches the data and the $C^m$ norm is not that large. 
 
 Pick a point, what can we say? Suppose we observe where we are at discrete points in time. Pick some particular time, what can I say about position, velocity, acceleration? %I believe that the acceleration of the car is at most something. 
@@ -31,7 +33,9 @@ Given what you believe about your interpolant, we would like to know what kind o
 
 If we can decide whether $\Ga$ is empty, that tells us approximately the best possible norm of the interpolant.
 
-When we prove theorems and construct interpolants, these $\Ga$'s are what we use to construct. 
+When we prove theorems and construct interpolants, these $\Ga$'s are what we use to construct them. 
+
+\subsection{$\Ga_\ell$'s}
 
 First we look at $\Ga(x,M)$ at one particular point $x\in E$. We guess $\Ga_{\text{computed}}$, and prove correctness by constructing interpolants. We have to not find the jet at one point, but a family of jets that are mutually consistent.
 
@@ -62,7 +66,7 @@ How complicated are these sets? They are much too complicated, but we will go ah
 
 %insetad of $|\cdot|$ we can have a $\pm$. 
 %these are linear constraints
-The $\Ga_\ell$'s are convex polytopes defined by linear constraints. But $\Ga_\ell$ are polytopes defined by growing number of linear constraints. To get to the next steps, ontersect polytopes. The number of constraints defining them will grow very fast.
+The $\Ga_\ell$'s are convex polytopes defined by linear constraints. But $\Ga_\ell$ are polytopes defined by growing number of linear constraints. To get to the next steps, intersect polytopes. The number of constraints defining them will grow very fast.
 How to cope?
 Compute them approximately. 
 
@@ -87,14 +91,15 @@ The number of times you iterate to get something comparable to the true $\Ga$ is
 Facts:
 \begin{itemize}
 \item
-$\Ga_\ell(x,M)\sub \cal P$ is a possibly empty convex set.
+$\Ga_\ell(x,M)\sub \cal P$ is a (possibly empty) convex set.
 \item %We know 
 $\Ga_\ell(x,M)\sub \Ga_\ell(x,M')$ if $M\le M'$, by induction (conditions grow weaker as $M$ grows).
 \item
 Given $x,y\in E$, given $P\in \Ga_\ell(x,M)$, there exists
 \begin{align}
 P'&\in \Ga_{\ell-1}(y,M)&
-\text{such that }|\pl^\al (P-P') (x)|&\le M(x,y)^{m-|\al|}.
+\text{such that }|\pl^\al (P-P') (x)|&\le M|x-y|^{m-\al}
+%(x,y)^{m-|\al|}.
 \end{align}
 We talk only about $\Ga$'s and their cousin the $\si$'s. %jet belongs to $\Ga_0$.
 \end{itemize}•
@@ -104,8 +109,10 @@ We want $F=C^m(\R^n)$ such that $\ve{F}_{C^m}\le CM$ and $J_x(F) \in \Ga_0(x,M)$
 
 There are two ways to construct $\Ga_\ell$'s. We show another. Then we introduce the related sets $\sigma$.
 
+\subsection{Finiteness theorems}
+
 We use the finiteness and refined finiteness theorems.
-\begin{thm}[Finiteness Theorem]\label{thm:fin}
+\begin{thm}[Finiteness Theorem]\label{thm:fin}\label{t:finite}
 Let $E\sub \R^n$, $\#E=N<\iy$, $f:E\to \R$. Given $M>0$, suppose that for every subset $S\sub E$ with at most $k^\#$ points (depending only on $m$, $n$), there exists $F^S\in C^m(\R^n)$ of norm $\le M$ such that $F^S=f$ on $S$. Then there exists $F\in C^m(\R^n)$ of norm $\le C M$ ($C$ depending only on $m$, $n$) such that $F=f$ on $E$.
 %pure math world don't care about value of functoins, this is way in principle computes best possible norm by constant factor
 %complexity increaseses as $s$ doesn, but we've capped
@@ -122,7 +129,7 @@ To use this we would need to look at $\sim N^{k^\#}$ sets.  %Let's say $k^\#$ is
 We need a refinement. 
 
 \begin{thm}[Refined finiteness theorem]\label{thm:rft}
-Fix $m,n$. Let $E\sub \R^n$, $\#E = N$. Then there exist $S_1,\ldots ,S_L\sub E$ with the following properties
+Fix $m,n$. Let $E\sub \R^n$, $\#E = N$. Then there exist $S_1,\ldots ,S_L\sub E$ with the following properties:
 \begin{itemize}
 \item
 $\#(S_\ell)\le k^\#$ for each $\ell$,
@@ -132,10 +139,12 @@ $L\le CN$,
 Let $f:E\to \R$ and let $M>0$. Suppose that for each $\ell=1,\ldots, L$ there exists $F_\ell\in C^m(\R^n)$ with norm $\le M$ such that $F_\ell=f$ on $S_\ell$. Then there exists $F\in C^m(\R^n)$ of norm $\le CM$ such that $F=f$ on $E$. 
 %We can take $F_\ell = Tf$ for a linear operator $T$.
  %instead of  ..., minimize quadratic norm...
+
+(I.e., $\max_{\ell=1,\ldots L}\ve{f}_{S_{\ell}}\le \ve{f}_E\le C \max_{\ell=1,\ldots, L} \ve{f}_{S_\ell}$.)
 \end{itemize}
 Here $k^\#$ and $C$ depend only on $m,n$.
 
-Then $\max_{\ell=1,\ldots L}\ve{f}_{S_{\ell'}}\le \ve{f}_E\le C \max_{\ell=1,\ldots, L} \ve{f}_{S_\ell}$. The $S_1,\ldots, S_L$ can be computed from $E$ in $O(N\log N)$ computer operations.
+ The $S_1,\ldots, S_L$ can be computed from $E$ in $O(N\log N)$ computer operations.
 \end{thm}
 
 %SoC lecture
@@ -153,7 +162,7 @@ Then $f|_{E\bs \{x_1,\ldots, x_{CZ}\}}$ has an interpolant with norm $\le CM$.
 
 The points $x_1,\ldots, x_N$ can be computed using $\le CN\log N$ operations per point.
 \end{thm}
-Suppose we have a contest against God to remove outliers. God instantaneously know the very best set of $Z$ outliers to remove. We are at a disadvantage. Let's cheat to give us a chance to prevail anyway. We can throw away 50 times as many points, and declare victory if our norm is within 50 times. Then we can win anyway.
+Suppose we have a contest against God to remove outliers. God instantaneously know the very best set of $Z$ outliers to remove. We are at a disadvantage. Let's cheat to give us a chance to prevail anyway. We can throw away 50 times as many points, and declare victory if our norm is within 50 times. The theorem says, then we can win anyway.
 
 It's remarkable this can be done at all; I don't think this is optimal. 
 

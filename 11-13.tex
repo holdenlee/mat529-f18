@@ -1,0 +1,132 @@
+
+\blu{11-13}
+
+Given $x_0\in E\cap 5(Q^0)^+$, $p_0\in \Ga_\ell(x_0,M_0)$, the problem is to produce $F\in C^m \pa{\fc{65}{64} Q^0}$ such that $|\pl^\al F|\le CM_0$ on $\fc{65}{64}Q^0$ for $|\al|=m$. We want
+\begin{itemize}
+\item
+\begin{align}
+|\pl^\al(F-P_0)|&\le C\de_{Q^0}^{m-|\al|}
+\end{align}
+on $\fc{65}{64}Q^0$ for $|\al|\le m-1$. 
+(It doesn't need to agree exactly.)
+\item
+$J_xF\in \Ga_0(x,CM_0)$ for all $x\in E\cap \fc{65}{64}Q^0$. 
+\end{itemize}
+This is LIP$(Q^0,x_0,P_0)$. We have to prove every LIP can be solved. Once this is true, there is an interpolant provided that the suitable $\Ga_\ell$ is not empty. The goal is to prove such problems always have a solution. The proof will be constructive, and the constructions will be linear. %depend linearly on the data.
+Prove by inductions on labels, which have to do with size and shape of $\si$'s. 
+
+LIP$(Q^0,x_0,P_0)$ carries a label $\cal A$ iff for all $x\in 5Q^0$, $\si_\ell(x)$ has an $(\cal A, \de_{Q_0}, C)$-basis. %$\ell=?$
+All $\cal A$ we consider will be monotonic: if $\al\in \cal A$, $\ga\in \cal M$, and $\al+\ga\in \cal M$, then $\al+\ga\in \cal A$. 
+Let $\si$ be a convex symmetric set in $\cal P$. An $(\cal A, \de, C)$-basis for $\si$ at $x$ is a collection of polynomials $(P_\al)_{\al\in \cal A}$ such that 
+\begin{itemize}
+\item
+$\pl^\be P_\al(x)=\de_{\be \al}$ if $\al,\be\in \cal A$
+\item
+$|\pl^\be P_\al(x)|\le C_1  \de_{Q^0}^{|\al|-|\be|}$ for $\al\in \cal A$, $\be \in \cal M$.
+\item
+$\de^{m-|\al|}P_\al \in C_1\si$ for $\al\in \cal A$. 
+\end{itemize}
+We show inductively that if LIP carries a label $\cal A$, then we can solve it. 
+Every LIP carries the label of the empty set, as the conditions are vacuously true. 
+
+We patch things together with partitions of unity, so will have to multiply things by smooth functions. Things that have an $\cal A$-basis behave well with multiplication. %PoU
+
+Let $\ell(\cal A) = 1+3\#\set{\cal A'}{\cal A'<\cal A}$. I will take $\ell=\ell(\cal A)$; this is how I attach labels. (For all $x\in 5Q^0$, $\si_{\ell(\cal A)}$ has an $(\cal A, \de_{Q_0},C)$-basis.) There is extra information that helps us construct interpolants. We will take the general case and reduce it to a case with extra information, until we reduce to the trivial case. When $\cal A=\cal M$, $\ell(\cal A)=1$. Take $C(\cal A)$ large enough for the base case $\cal A=\cal M$. %so that $\si_1(x)$
+%F=P_0$.
+%have to do something 3 times
+
+We make a Calderon-Zygmund decomposition of $\fc{65}{64}Q_0$. I need to tell you what the criteria is for being happy (when cutting the cube).
+Suppose $\cal A$ is given, $\cal A\ne \cal M$. Assume that LIP can be solved for $\cal A$. 
+%We are happy if LIP for the smaller cube $Q$ can be solved with a smaller label, or $E\cap 5Q=\phi$. %, then we are happy
+%So: 
+We are happy, and stop cutting $Q$ if either 
+\begin{itemize}
+\item
+$E\cap 5Q$ contains at most one point.
+\item
+LIP$(Q,x,P)$ carries a label $\cal A'<\cal A$. ($P$ is unspecified for now. The definition of carrying a label has nothing to do with $P$.)
+%doesn't depend on choice of $P_0$. 
+\end{itemize}•
+Is this a nice CZ decomposition? Do we ever stop cutting. There's always the danger of never being happy. $E$ is finite set, so for $Q$ sufficiently small, $E\cap 5Q$ contains at most one point, and we will stop cutting. %where we use finite
+A good CZ rule should lead to good geometry. This rule does not lead to good geometry. %I'm pretty sure it doesn't.
+This is fatal, so we will modify it slightly to save the geometry. We define a weak $(\cal A,\de,C_1)$ basis.
+\begin{df}%\be< \al say nothing about derivs
+An \vocab{weak $(\cal A, \de, C)$-basis} for $\si$ at $x$ is a collection of polynomials $(P_\al)_{\al\in \cal A}$ such that 
+\begin{itemize}
+\item
+$\pl^\be P_\al(x)=\de_{\be \al}$ if $\al,\be\in \cal A$
+\item
+$|\pl^\be P_\al(x)|\le C_1 \de_{Q^0}^{|\al|-|\be|}$ for $\al\in \cal A$, $\be \in \cal M$ if $\be \ge \al$.
+\item
+$\de^{m-|\al|}P_\al \in C_1\si$ for $\al\in \cal A$. 
+\end{itemize}
+LIP$(Q^0,x_0,P_0)$ weakly carries label $|\cal A$ if for all $x\in 5Q^0$, $\si_{\ell(\cal A)}(x)$ has a weak $\cal A,\de,C)$-basis. 
+\end{df}
+Suppose we have 2 CZ cubes that touch each other but one is much smaller. Then the parent of the smaller cube is unhappy; we produce a contradiction.
+If we have 2 cubes, ahd one is half the size of the other, then 5 times the smaller one is contained in 5 times the bigger one.
+%if happy for trivial reasons, then 
+%Every point of 
+So $5E\cap \pat{small}\subeq 5 E \cap \pat{big}$. In the 2nd and 3rd conditions for $\de$ the sidelength of the bigger fellow.
+The $\de$ of the smaller cube is smaller,  in 3,this helps us. %If 2 and 3 are true, 
+%makes easier.
+If 2, it depends on $|\al|-|\be|$. For $\de$ smaller, we ask for a larger upper bound, a weaker. $\be - \al\le 0$ . %is K. 
+%For weak bases
+%$E\cap 5Q^+$. If emptyll
+%pic o
+
+Given $x_0$, $P_0\i \Ga_{\ell(\cal A)}(x_0,M_0)$, I can find $P\in \Ga_{\ell(\cal A)-1}(x_0,M_0)$ such that $|\pl^\al (P-P_0)(x_0)| \le CM_0|x-x_0|^{m-|\al|}$. 
+We only have a weak basis, but we will see it doesn't matter. Pretending this doesn't matter...
+
+%On a slightly dilated version of each $Q$, 
+There is 2 glaring faults in the plan: what we have is a weak basis, but we need a basis. We can solve each LIP, but when we patch on a Whitney PoU, they have to agree very well, but there's no reason why they should. We have not been careful enough to pick the $P$. Why $\si$'s matter: in directions where $\si$ is big we need to worry about consistency, in directions where $\si$ is small we need to worry about solving the LIP.  %room to maneuver to pick wrong guy. Let us ... 
+%constraints satisfed, 
+Pick $P$ such that $|\pl^\al (P-P_0)|\equiv 0$ for all $\al\in \cal A$. This is not immediately obvious, but one can do that.
+%by norm factor, belong to si
+Make room to manuever inside $\Ga$ by adding suitable multiples.
+%Once we do that, if two CZ cubes td
+%PoU
+%If label not monotonic, find smaller that is monotonic, carrying $\al$ is close to satisfied.
+
+%local LIP has to look at neighbor to decide wither 
+
+%look at on 
+
+%ind basis strong basis
+
+Why is weak/strong basis not a failure?
+Suppose I give you a weak $\cal A$-basis.
+%\cal A'$ basis. 
+%\cal A'
+%'' basis 
+%induct on weak basis)
+
+%If you have a convex set and it has a weak $\cal A$-basis, then it has a $\cal B$-basis. What happens if we have...
+
+Let $\cal A=\{\al\}$, $\si$ be $(\cal A,L,C_1)$-basis at $\cal A$. 
+\begin{itemize}
+\item
+$\pl^\al P(0)=1$.                                                                                                                                                                                                                                                        
+\item
+$|\pl^\be P(0)|\le C_1$ for $\be \ge \al$.
+\item
+$P \in  C_1 \si$.
+\end{itemize}
+Suppose $|\pl^\be P(0)|$ is maximal for $\be=\be_0<\al$. In particular, $|\pl^{\be_0}P(0)|>1$. 
+
+Claim: $\wt P= \fc{P}{(\pl^{\be_0}P)(0)}$ is an $(\wt A=\{\be_0\}, 1, C_1)$-basis for $\si$ at $x_0$. %by maximality?
+\begin{itemize}
+\item
+$\pl^{\be_0} \wt P(0)=1$.
+\item
+$|\pl^{\be_1}\wt P(0)| = \fc{|\pl^\be P(0)|}{\pl^{\be_0}P(0)} \le 1\le C_1$ for all $\be$. 
+\item
+$\wt P\in C_1\si$. 
+\end{itemize}
+We've rescaled and relabeled it. 
+I claim that $\wt{\cal A}< \cal A$. This follows from $\be_0<\al$.
+
+From a weak $\cal A$-basis, we get a $\wt{\cal A}$-basis for label that precedes $\cal A$.
+
+That's the germ of the idea, for singletons. We need to do this for all $\al$'s simultaneously. %next time
+%relabeling lemma: for any label, if I give weak basis, then there exists strong basis, for label that is $\le$.
+

@@ -1,0 +1,73 @@
+\blu{11-15}
+
+We want to two things: 
+carry out the argument for sets of more than one $\al$, and reduce to monotonic sets of indices ($\al\in \cal A$ is monotonic iff whenever $\al\in \cal A$ and $\ga$ is a multi-index, $|\al+\ga|\le m-1$ implies $\al_\ga\in \cal A$).
+
+\begin{lem}[Relabeling lemma]
+Assume $\si\in \cal P$ convex, symmetric, Whitney convex at $x_0$ with Whitney constant $C_W$, $\cal A\subeq \cal M$, and $(P_\al)_{\al\in \cal A}$ is a weak $(\cal A,\de,C_B)$ basis for $\si$ at $x_0$. Then there exists $\cal A'\le \cal A$ monotonic such that $\si$ has an $(\cal A',\de,C')$-basis at $x_0$ where $C'$ depends only on $C_B,C_W,m,n$. Furthermore, if $\max_{\be\in \cal M, \al\in \cal A}\de^{|\be|-|\al|}|\pl^\be P_\al(x_0)|$ is greater than a large constant determined by $C_B,C_W,m,n$, then $\cal A'<\cal A$.
+\end{lem}
+
+For a family of multi-indices, what do we do? For each $\al$, either keep it or move it down.
+We will define $\phi:\cal A\to \cal M$ with the property: 
+for all $\al\in \cal A$, $\phi(\al)=\al$ for $\phi(\al)\nin \cal A$ and $\phi(\al)\le \al$. 
+Let $\wh{\cal A} = \phi(\cal A)$.
+
+We claim that $\wh{\cal A}\le \cal A$ with equality only when $\phi=\id$: to see this, let $\al_0$ be the least $\al\in \cal A$ such that $\phi(\al)\ne \al$. Then $\phi(\al_0)$ is an element of $(\cal A\bs \wh{\cal A})\cup (\wh{\cal A}\bs \cal A)$. $\phi(\al_0)\in \phi(\cal A$, and $\phi(\al_0)\nin \cal A$, and $\phi(\al_0)<\be$ whenever $\be\in \cal A\bs \wh{\cal A}$. Indeed, for any such $\be$, we have $\phi(\be)\ne \be$, hence $\phi(\al_0)<\al_0\le \be$.
+
+We will take our basis and do something to the polynomials. We will relabel them using a suitable $\phi$, and produce a $\wh{\cal A}$-basis (not just a weak basis). This $\wh{\cal A}$ need not be monotonic so the next thing to do is to enlarge it by adding more stuff to it. The idea is that because the $\si$ is Whitney convex, you can multiply polynomials in $\si$ by %other polynomials 
+monomials
+and stay inside $\si$. 
+%We will multiply the polynomials by monomials.
+%we will check $\phi$ cannot be the id map
+
+How do we go about finding $\phi$ and relabeling? By rescaling.
+
+Assume $x_0=0$. Suppose $(P_\al)_{\al\in \cal A}$ is a weak $(\cal A,\de,C_B)$-basis. WLOG, take $\de=1$.
+Let 
+\begin{align}
+(x_1,\ldots, x_n) &= (\la_1 y_1,\ldots, \la_n y_n) = T(y_1,\ldots, y_n)\\
+F_{\be\al} = \pl^\be (P_{\al^0}T)(0) &= \la^{\be} [\pl^\be P_\al(0)]
+\end{align}
+where $\la^\be = \la_1^{\be_1}\cdots \la_n^{\be_n}$. Suppose I fix a favorable $\la$ and any $\al$. Then one of these $F_\be$ is much bigger than the others. For instance, consider the univariate case, $P(x) = A_0+A_1\la x+\cdots +A_D\la^Dx^D$, $x=\la y$. 
+One of these coefficients will be much bigger. We want to ensure $(A_i\la^i)/(A_j\la^j)\nin [a,\rc a]$. If this is true for all $i\ne j$, then the biggest one will be bigger than the rest by a lot. 
+If $(A_i\la^i)/(A_j\la^j)\in [a,\rc a]$ for some $i\ne j$, then...
+If 
+\begin{align}
+\ln \pa{\af{A_i}{A_j}\la^{i-j} }&\nin [-|\ln a|, |\ln a|]\\
+\ab{\fc{\ln \pf{|A_i|}{|A_j|}}{i-j} + \log \la }
+&\nin [-|\ln a|, |\ln a|]
+%have not picked large constant $\la$
+%interval of all ... 
+%2|\ln a|
+\end{align}•
+Pick $\la$ at random. %between -\La <a
+By a union bound, the probability that a random $\ln \la$ is in ... overwhelmingly likely that none of the bad events occur. We will use that same simple idea in the setting where there are several polynomials in several variables. We need to be more elaborate. That there are several polynomials is irrelevant. We will take $a$ to be sufficiently small constant. 
+%one monomial that dominates, should be $\le \al$. Pick $\la$ carefully, so when I rescale, the one monomial that dominates in each of these $f$'s. 
+%multiindex that dominates. 
+We will pick $\phi(\al)\le \al$. If $\al\in \cal A$ and $\be \in \cal B$, then coefficient is 0, and unlikely to be dominating. After we have rescaled, we have a simple situation where each $P_\al$ is almost a monomial. If each $P_\al$ were exactly a monomial, we would trivially have $|\pl^\be P_\al(0)|\le C_B \de^{|\al|-|\be|}$ for $\al\in \cal A_0,\be \ge \al$. We will need to worry about the third condition. The first condition $P_\al(0) = \de_{\be\al}$ will be approximately true. If there are tiny errors, you can make linear combination s of the $P_\al$ so that you exactly get the identity matrix. 
+We can pass from it being approximately to actually being true. 
+%rescaled by making smaller, then OK.
+
+%C depends on m,n,C_B,C_W.
+Suppose we can arrange so that $\be\ge \al$ implies $F_{\be \al}(\la) \le C F_{\al\al}(\la)$. % Then $\implies$
+ $F_{\ba\al}(\la)$ cannot dominate $F_{\al\al}(\la)$ by a factor of $\al$. 
+We want 
+\begin{align}
+\la_1^{\be_1}\cdots \la_n^{\be_n}\ub{|\pl^\be P_\al(0)|}{\le C}
+&\le C\la_1^{\al_1}\cdots \la_n^{\al_n}\ub{|\pl^\al P_\al(0)|}{\le 1}.
+\end{align}
+Note $\la_1^{\be_1}\cdots \la_n^{\be_n}\le \la_1^{\al_1}\cdots \le \la_n^{\al_n}$ whenever $(\be_1,\ldots, \be_n) > (\al_1,\ldots, \al_n)$. 
+%If all the $\mu$'s are positive
+Suppose $\mu_1,\ldots, \mu_n\le 1$, and $\la_p = \mu_1\cdots \mu_p$ or $\la_p = \mu_0\cdots \mu_n$.  Suppose the second case. 
+\begin{align}
+\la_1^{\be_1}\cdots \la_n^{\be_n} &\le \la_1^{\al_1}\cdots \la_n^{\al_n}. 
+\end{align}
+Then $\mu_n^{\be_1+\cdots +\be_n}(\cdots) \le \mu^{\al_1+\cdots \al_n}(\cdots)$. 
+$\mu_n$ is by far the smallest, then the guy with greater order gives rise to the greater RHS. If equal, go inside parenthesis, it's the same thing except it only goes up to $n-1$. Ensure that $\mu_{n-1}$ is much smaller than the rest. 
+
+ %not deal with $\la$ but $\mu$, pick by random process.
+ %plausible to make this work.
+
+ 
+ 
+ 

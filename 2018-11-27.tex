@@ -2,3 +2,164 @@
 \fixme{Missed 11-20}
 
 \blu{11-27}
+
+We want to prove all local interpolation problems can be solved provided the $\Ga$'s are nonempty.
+
+Setup: $x^0\in E\cap 5Q^0$, $P^0\in \Ga_\ell(x^0,M^0)$. We want to find $F\in C^m(\fc{65}{64} Q^0)$ such that $|\pl^\al(F-P^0)|\le CM^0 \de_{Q^0}^{m-|\al|}$ on $\fc{65}{64} Q^0$ for $|\al|\le m$, $J_x(F)\in \Ga_0(x,CM^0)$ for $x\in E\cap \fc{65}{64}Q^0$. 
+Define $\ell(\cal A)=1+3\#\{\cal A'<\cal L\}$. Note $\ell(A)\ge 1$, and if $\cal A\ge \cal A'$ then $\ell(A)\ge \ell(\cal A')+3$. 
+
+The main lemma for $\cal A$ is that if 
+%Assume 
+$\si_\ell(x^0)$ has a $(\cal A, \ep^{-1}\de_{Q^0}, C_B)$-basis at $x^0$, then we can solve the LIP. ($\ep$ is a  sufficiently small constant that depends only on $C_B$, $m$, $n$, and $C_W$ the Whitney convexity constant.)
+
+We proceeded by induction on $\cal A$.
+%P_0 itself
+The induction step is by Calderon-Zygmund. We cut until we're happy, either some dilate of $Q$ contains at most 1 point of $E$, in which the problem is trivial, or there's some easier label.
+More precisely, either $\#(5Q\cap E)\le 1$, or there exists $\cal A'<\cal A$ such that for all $z\in E\cap 5Q$, $\si_{\ell(\cal A)-3}(z)$ has a weak $(\cal A', \ep^{-1}\de_Q, A)$-basis. $A$ is another constant.
+
+%There is a big constant $A$ and small constant $\ep$. 
+Here is the order in which I pick the constants: I assume $A$ is at least as big as a constant $m,n,C_B,C_W$. Having picked $A$, I pick $\ep$ sufficiently small depending on $m,n,C_B,C_W,A$.
+
+\begin{lem*}[Relabeling lemma]
+Suppose $\si$ is Whitney convex at $x$ with Whitney constant $C_W$. Suppose $\si$ has a weak $(\cal A, \de, C_B)$-basis at $x$. Then there exists $\wh{\cal A}$ monotonic $\le \cal A$ such that $\si$ has a $(\hat{\cal A}, \de, \wh{C_B})$ basis at $x$ ($\wh{C_B}$ depending only on $m,n,C_B,C_W$).
+
+Furthermore, if 
+\begin{align}\label{e:relabel}
+\max_{a\in \cal A, \be \in \cal M} \de^{|\be|-|\al|}|\pl^\al P(x)|>\pat{large constant determined by $m,n,C_B,C_W$}
+\end{align}
+then we can take $\wh{\cal A}<\cal A$.
+\end{lem*}
+
+
+
+To prove this, we need the rescaling lemma.
+\begin{lem}[Rescaling lemma]
+%For $x=0$, take 
+Let $F_{\be,\al} := \pl^\be P_\al(0)$. Assume $F_{\al,\al}\ne 0$, $F_{\be,\al}=0$ for all $\al,\be\in \cal A, \al \ne \be$, $|F_{\be,\al}|\le C_1|F_{\al,\al}$ for $\be \ge \al$, $\be\in \cal M$, $\al\in \cal A$. Given $a\in \pa{0,\rc 2C_1}$ small, there exist $\la_1,\ldots, \la_n\in [c(a),1]$ such that $\wh F_{\be,\al} :=\la^\be F_{\be \al}$ satisfy ($\phi:\cal A\to \cal M$)
+\begin{itemize}
+\item
+$|\wh F_{\be,\al}|<a|\wh F_{\phi(\al),\al}|$ if $\be \in \cal M\bs \{\phi(\al)\}$.
+\item
+For each $\al\in \cal A$, $\phi(\al)=\al$ or $\phi(\al)\nin \cal A$.
+\item
+$\phi(\al)\le \al$.
+\end{itemize}•
+\end{lem}
+%$x=0$, $\de=1$ assumptions are correct.
+\begin{proof}
+Define $T:\R^n\to \R^n$ by $(x_1,\ldots, x_n)\mapsto (\la_1x_1,\ldots, \la_nx_n)$
+Then 
+\begin{align}
+\wh F_{\be,\al} &=\la^\be F_{\be,\al} = \pl^\be \{P_\al\circ T\} (0).
+\end{align}•
+$\phi:\cal A\to \cal M$, $\wt{\cal A}=\phi(\cal A)\le \cal A$ with strict inequality when $\phi=\id$. 
+\begin{align}
+|\pl^\be \{P_\al\circ T\}(0)|
+&\le a|\pl^{\phi(\al)}\{P_\al\circ T\}(0)|
+\end{align}
+for $\be\in \cal M\bs \{\phi(\al)\}$. 
+
+For each $\wt\al \in \wt{\cal A}$, let's pick $\al=\psi(\wt \al)$ such that $\phi(\al)=\wt \al$.
+Set $\wt P_{\wt \al} = \fc{P_\al\circ T}{\pl^{\wt \al}(P_\al\circ T)(0)}$ for $\al\in \wt{\cal A}$. 
+
+What can we say about $\wt P_{\wt \al}$?
+\begin{align}
+\ab{\pl^\be \wt P_{\wt \al}(0)}
+&=\af{\pl^\be(P_\al\circ T)(0)}{\pl^{\phi(\al)}(P_\al\circ T)(0)}
+\le a\text{ if }\be \in \cal M\bs \{\wt \al\}\\
+\pl^{\wt \al}{\wt P_{\wt\al}}(0)&=1.
+\end{align}
+We don't exactly have the Kronecker $\de$, but we are close:
+\begin{align}\label{e:close-kd}
+|\pl^\be \wt P_{\wt \al}(0) - \de_{\be \wt \al}|&\le a
+%\label{e:le-a}
+\end{align}
+for any $\be\in \cal M$, $\wt \al\in \wt{ \cal A}$.
+%all these $\la$ are bdd below by constant dep on $a$.
+%\begin{align}
+%\ab{\pl^\be (P_\al\circ T)(0)}
+%&\le
+%\ab{\pl^{\phi(\al)}(\wt P_\al\circ T)(0)}
+%\end{align}
+%for all $\be\in \cal M$. Take $\be=\al$. We get 
+%\begin{align}
+%\la^\be = \la^\be \pl^\be P_\al(0)
+%\end{align}•
+Suppose $\phi=\id$. What does~\eqref{e:close-kd} give? For all $\be \ne \al$, $\be \in \cal M$ we have
+\begin{align}\la^\be \pl^\be P_\al(0) = 
+|\pl^\be(P_\al\circ T)(0)|&\le a |\pl^\al(P_\al\circ T)(0)| = \la^\al\pl^\al P_\al(0) = \la^\al\\
+|\pl^\be P_\al(0)| &\le \fc{a\la^\al}{\la^\be} \le C(a)
+\end{align}
+%Hence if~\eqref{e:relabel}
+%We now have~\eqref{e:close-kd}.
+
+Let 
+\begin{align}
+\wh{\cal A}&=\set{\wt \al + \ga }{\wt \al \in \wt{\cal A}, \ga\in \cal M, \al+\ga\in \cal M}. 
+\end{align}
+Then $\wh{\cal A}$ is monotonic, and $\wh{\cal A}\supset \wt{\cal A}$, $\wh{\cal A}\le \wt{\cal A}\le \cal A$, the second inequality strict if $\max\{\cdots\}>$ the large enough constant. 
+
+For each $\wh \al \in \wh{\cal A}$, pick $\wt \al$, $\ga$ such that $\wh{\al}=\wt{\al}+\ga$, then set $\wh P_{\wh\al} = \pat{coefficient}[x^\ga \odot_0 \wt P_{\wt \al}]$, $\rc{\al!}\wh P_{\wh \al}$ close to $x^\ga \odot_0 \rc{\al!}\wt P_{\wt \al}$, 
+%coeff $\pf{\wh\al!}{\wt\al!}$
+$|\pl^\be \wh P_{\wt \al}(0) - \de_{\be\wt \al}|\le Ca$ for all $\be\in \cal M$, $\wh \al = \wh{\cal A}$.
+%invertible $\pl^\be \wh P_{\wh \al}(0)$
+
+$P^\#_{\wh \si} = (M_{\wt\si}^{\wt \al}) \wh P_{\wh \al}$ for $\wh \si\in \wh{\cal A}$. 
+
+
+
+$\pl^\be P_{\wh \si}^\#(0) = \de_{\be,\wh \si}$ for $\be, \wh\si\in \wh{\cal A}$. 
+%for some matrix close to the identity
+$|\pl^\be P_{\wh \si}^\#(0) - \de_{\be, \wh \si}| \le Ca$ for all $\be\in \cal M$, $\wh\si\in \wh{\cal A}$. 
+
+$\si\circ T = \set{P\circ T}{P\in \si}$. 
+
+$P\in \si\circ T$, $Q\in \cal P$.
+
+$|\pl^\al P(0)|\le \la^\al$, $|\pl^\al Q(0)|\le \la^\al$ for $|\al|\le m-1$, so $Q\odot_0 P\in C_W(\si\circ T)$.
+
+So $P_\al\circ T\in C_B\si$. The denominator $\pl^{\phi(\al)}(P_\al\circ T)(0)$ is bounded below. 
+\begin{align}
+|\pl^\al(P_\al\circ T)(0)|
+&\le |\pl^{\phi(\al)}(P_\al\circ T)(0)|\\
+c(\al)\le 
+\la^\al = 
+\la^\al |\pl^\al P_\al(0)|=
+|\pl^\al(P_\al\circ T)(0)|
+&\le |\pl^{\phi(\al)}(P_\al\circ T)(0)|
+\end{align}
+It follows that
+$\fc{P_\al\circ T}{\pl^{\wt \al}(P_\al\circ T)(0)}\in c(a)^{-1}\si\circ T$. %c(a) move
+Also $|\pl^\be \{c(a)x^\ga\}(0)|\le \ga$, and  $\ab{\pl^\be\bc{c(a)\fc{P_\al\circ T}{\pl^{\wt \al}(P_\al \circ T)}}(0)}\le \la^\be$. 
+%\le a, \le 1
+%without c(a) is either 1 or a. $c(a)$ is smaller than $\la^\be$
+These are the 3 ingredients for Whitney convexity. 
+%Take the jet product, belongs to $C_W\si$.
+We get $Q\odot_0 P \in C_W(\si\circ T)$.
+
+The result is that 
+\begin{itemize}
+\item
+$P^\#_{\wh \al}\in C(a)\si\circ T$
+\item
+$\pl^\be P_{\wh \al}^\#(0) = \de_{\be\al}$ for $\be,\al\in \wh{\cal A}$, and 
+\item
+$|\pl^\be P_{\wh \al}^\#(0)|\le C(a)$ for $\be\in \cal M$, $\al\in \wh{\cal A}$.
+\end{itemize}
+\begin{align}
+P_{\wh \al}^\dagger &= P_{\wh{\al}}^\# \circ T^{-1}\\
+P_{\wh \al}^\dagger &\in C(a)\si\text{ for }\wh \al\in \wh \al\\
+\pl^\be P_{\wh{\al}}^\dagger (0)
+&= \la^{-\be}\pl^\be P_{\wh\al}^\#(0)=\la^{-\wh \al}\de_{\be \wh{\al}} \text{ if }\be, \wh\al\in \wh{\cal A}\\
+|\pl^\be P_{\wh{\al}}^\dagger (0)|
+&\le C(a)\le^{-\be} \text{ for  all }\be\in \cal M,\wh \al \in \wh{\cal A}\\
+P_{\wh\al}^{\text{final}}&=\la^{\wh \al}
+P_{\wh \al}^\dagger \text{ for }\wh\al\in \wh{\cal A}\\
+P_{\wh\al}^{\text{final}}&\in C(a)\la^{\wh \al}\si \sub C(a)\si\\
+\pl^\be P_{\wh \al}^{\text{final}}(0)&=\de_{\be\wh\al} \text{ for }\be,\wh \al\in \wh{\cal A}\\
+|\pl^\be P_{\wh \al}^{\text{final}}(0)|
+&\le C(a)\la^{-\be}\la^{\wh \al}\le C'(a) \text{ for }\be\in \cal M, \wh a\in \wh{\cal A}.
+\end{align}•
+ Actually a $(\wh {\cal A}, \de, C(a))$-basis.
+ 
+\end{proof}

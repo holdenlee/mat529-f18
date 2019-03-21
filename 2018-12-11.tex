@@ -1,0 +1,154 @@
+\blu{12-11: Today I finish the proof of the finiteness principle. Next time I explain how to modify the proof to work with data sets of size $N$ in $O(N\log N)$ steps.}
+
+We are trying to solve a LIP, induct on label $\cal A$. We fixed a label $\cal M$. To make the induction step work, we make a Calderon-Zygmund decomposition into easier cubes.
+
+We have $x_0\in E\cap 5Q_0$, $P_0\in \Ga_{\ell(\cal A)} (x_0,CM_0)$. If 2 cubes touch, their lengths differ by at most a factor of 2. Let $Q^+$ be the next bigger dyadic cube that contains $Q$. There is $x_Q\in 5Q^+\cap E$ (otherwise the problem is easy). %else LIP with 65/64 is quite easy
+$\si_{\ell(\cal A)}(x)$ has an  $(\cal A,\ep^{-1}\de_{Q},C_B)$ basis.
+We have $y\in E\cap 5Q$, $P^y\in \Ga_{\ell(\cal A)-1}(y,CM_0)$. 
+$|\pl^\be (P^y-P_0)(x_0)|\le CM_0 \de_{Q_0}^{m-|\be|}$ ($|\be|\le m-1$), $\pl^\be (P^y-P_0) \equiv 0$ iff $\be \in \cal A$. 
+
+We eliminated the ``room to maneuver'' that we know about. We show that this is all there is.
+
+If $P^y,\wt P^y\in \Ga_{\ell(\cal A)-1}(y,CM_0)$, $\pl^\be (P^y-P_0^y), \pl^\be (\wt P^y - P_0)\equiv 0$ for $\be \in \cal A$, then
+\begin{align}
+\fc{P^y-\wt P^y}{M_0}&\in 
+\si_{\ell(\cal A)-1}(y) .
+\end{align}•
+Note $\pl^\be\pf{P^y-\wt P^y}{CM_0}\equiv 0$ for $\be \in \cal A$.
+%assume 
+\begin{lem}\label{lem:12-11}
+For $y\in E\cap 5Q$, $P\in \si_{\ell(\cal A)-1}(y)$, $\pl^\be P\equiv 0$ for $\be\in \cal A$, implies $|\pl^\be P(y)|\le C(\ep)\de_Q^{m-|\be|}$ for all $\be\in \cal M$.
+\end{lem}
+\begin{align}
+\fc{\pl^\be (P^y-\wt P_y)(y)}{CM_0} &\le C\de_Q^{m-|\be|} \text{ for all } \be\in \cal M\\
+|\pl^\be (P^y - \wt P^y)| &\le CM_0 \de_Q^{m-|\be|}  \text{ for all $\be\in \cal M$}\\
+|\pl^\be (P^y - \wt P^y)| &\le 
+C' M_0 \de_Q^{m-|\be|} \text{ for all }\be \in \cal M \text{ everywhere on }5Q_0.
+\end{align}
+This is what we need for a Whitney partition of unity to work.
+%trivial case 
+\begin{proof}
+$\si_{\ell(\cal A)-1}(y)$ has a $(\cal A, \ep^{-1}, C)$-basis. $(P_\al^y)_{\al\in \cal A}$.
+By properties of a weak basis,
+\begin{itemize}
+\item
+$\pl^\be P_\al^y(y) = \de_{\be\al}$, for $\be, \al\in \cal A$.
+\item
+$|\pl^\be P_\al(y)|\le C$ for $\al\in \cal A$, $\be \in \cal M$, $\be \ge \al$.
+\item
+$(\ep^{-1})^{m-|\al|} P_\al \in \si_{\ell(\cal A)-1}(y)$ for $\al \in \cal A$. 
+\end{itemize}
+$P\in \si_{\ell(\cal A)+1}(y)$, $\pl^\be P\equiv 0$ for $\be\in \cal A$, $\max_\ga |\pl^\ga P(y)|\ge K$. Let $\ol \ga$ be the maximizer. $P_{\ol \ga} = \fc{P}{\pl^{\ol \ga}P(y)}$.  %- 1
+%$P\in \si$
+%$P_{\ol \ga}\in \rc{K}\si$
+
+$\pl^\be P_{\ol \ga}(y) = \de \be \ol\ga$ if $\be \in \cal A\cup \{\ol\ga\}$.
+$\pl^\be P_\al (y) =\de_{\be \al}$ if $\be\in \cal A$ and $\al\in \cal A\cup \{\ol\ga\}$. 
+%For $\al\in \cal A$, 
+%CZ rule. t+3wek ag
+
+If we had a counterexample with large enough $K$
+\begin{align}
+|\pl^{\ol \ga}P_\al(y)|
+&= \ab{\pl^{\ol \ga}P_\al(y)}
+ %{...}
+% = |\pl^{\ol \ga} P_\al(y)|.
+\le C.
+\end{align}
+%triang matrix. Only look at $\sal$ in $\cal A$ that are less than $\bar\gamma$.
+%inverse of triang is triang
+
+For $(P_\al)_{\al\in \cal A\cup \{\ol \ga\}}$, $\ph \in \set{\al\in \cal A}{\al <\ol\ga}$. %a<]fe
+We have passed to a similar basis where we have replaced $\cal A$ with $\hat{\cal A}$; note $\cal A^-\cup \{\ol \ga\}$. We compare them. $\ol \ga$ is the least element in the symmetric difference.
+
+We have found $P^{x_Q}=y$ and $P^{x_{Q'}}$. %by throwing away unwanted room to maneuver we have achieved our goal.D
+\begin{align}
+|\pl^\be (P^y - P^{y'})(y)|
+&\le C(\ep) M_0\de_Q^{m-|\be|}
+\text{ for all }\be \in \cal M\\
+P^y&\in \Ga_{\ell(\cal A)-1}(y,CM_0)\\
+P^{y'}&\in \Ga_{\ell(\cal A)-1} (y', CM_0)\\
+\pl^\be(P^y-P_0) &\equiv 0\\
+\pl^\be (P^{y'}-P_0) &\equiv 0, \quad \be \in \cal A.
+\end{align}
+We try to move from $y'$ to $y$. 
+There exists $P^\#\in \Ga_{\ell(\cal A)-2}(y,CM_0)$ with the property that
+$|\pl^\be (P^\# - P^{y'})(y)|\le CM_0\de_Q^{m-|\be|}$ for all $\be\in \cal M$. Because we have freedom to maneuver we can ensure $\pl^\be (P^\# - P^{y'}) \equiv 0$ for $\be \in \cal A$. 
+
+$P^\#,P^y\in \Ga_{\ell(\cal A)-2}(y,CM_0)$. 
+%ell-1 \subeq \ell-2
+$\pl^\be \pf{P^\# - P^y}{CM_0}\equiv 0$ for all $\be \in \cal A$. 
+$\pf{P^\# - P^y}{CM_0}\in \si_{\ell(\cal A)-2}(y)$
+Use the lemma. We had one index to spare.
+%Anything like this has derivatives. We 
+\begin{align}
+\ab{
+\pl^\be \pf{P^\#-P^y}{CM_0} (y)
+} &\le C(\ep)\de_Q^{m-|\be|} \text{ for all }\be\in \cal M\\
+\ab{
+\pl^\be(P^\# - P^y)(y)
+}& \le C(\ep) M_0\de_Q^{m-|\be|} \text{ for all }\be \in \cal M.
+\end{align}
+
+Recall: trivial cases of LIP are where it contains 0 or 1 point. Easier cases.
+
+%when we put them together we have a solution to the interpolation what we started with. This completes the einduction step and proves the finiteness principle. 
+
+To carry the label means $x_0\in E\cap 5Q_0$, $P_0\in \Ga_{\ell(\cal A)}(x_0,M_0)$, there exists $(\cal A, \ep^{-1}\de_{Q_0},C_B)$-bases for $\si_{\ell(\cal A)}(x_0)$. 
+%main lemma for Cl.
+Main lemma for $\cal A$: This implies $\exists F\in C^m(\fc{65}{64} Q_0)$ such that $|\pl^\al(F-P_0)| \le C(\ep) \de_{Q_0}^{m-|\al|}$ on $\fc{65}{64}Q_0$, $|\al|\le m$, and $J_x(F)\in \Ga_0(x,C(\ep)M_0)$ for $x\in E\cap \fc{65}{64}Q_0$. 
+
+$F_Q\in C^m(\fc{65}{64} Q)$, $|\pl^\al(F_Q-P^{x_\al})|\le C(\ep) M_0\de_Q^{m-|\al|}$ for $|\al|\le m$. 
+\begin{align}
+J_(F_Q) &\in \Ga_0(x,C(\ep)M) \text{ for all }x\in E\cap \fc{65}{64}Q
+\end{align}
+$\sum_Q \te_Q=1 \text{ on }5Q_0$, 
+$\te_Q\ge 0$,  supported in $\fc{65}{64}Q$, $|\pl^\al \te_Q|\le C\de_{Q}^{-|\al|}$ for $|\al|\le m$. %exp?
+
+$F=\sum_Q \te_Q F_Q$, $F-P_0=\sum_Q \te_Q(F_Q-P_0)$, and for $x\in \wh Q$, 
+\begin{align}
+\pl^\be (F-P_0)(x) & = \sum_Q \pl^{\be'} \te_Q \pl^{\be''} (F_Q-P^{x_{\wh Q}})(x) + \pl^{\be}(P^{x_{\wh Q}} -P_0)(x)\\
+&\le \sum_Q C\de_Q^{-|\be'|} C(\ep) M_0 \de^{m-|\be''|} + \pl^{\be}(P^{x_{\wh Q}} -P_0)(x)\\
+|\pl^\be (F-P_0)(x)| 
+&\le C(\ep) M_0 \de_{Q_0}^{m-|\be|}\text{ for all }|\be|\le m\text{ on }5Q_0.
+\end{align}
+For $x\in E\cap \fc{65}{64}Q_0$,
+\begin{align}
+J_x(F) &= 
+\sum_{Q\in CZ\text{ s.t. } \fc{65}{64}Q\ni x} J_x(\te_Q) \odot_x J_x(F_Q-F_{\wh Q})
++ \ub{J_x(F_{\wh Q})}{\in \Ga_0(x,C(\ep)M_0)}.
+\end{align}
+%\le C(\ep)M_0\si_0(x)
+Let $S=J_x(\te_Q)$. $|\pl^\al S(x)|\le C\de_{\wh Q}^{-|\al|}$. 
+For $|\al|\le m-1$, 
+\begin{align}
+\ab{\pl^\be(F_Q-P^{x_{Q}})} &\le C(\ep) M_0 \de_Q^{m-|\al|}
+%x\in \fc{65}{64}Q.
+\\
+\ab{\pl^\be(F_{\wh Q}-P^{x_{\wh Q}})} &\le C(\ep) M_0 \de_Q^{m-|\al|}\\
+\ab{\pl^\be(P^{x_{Q}}-P^{x_{\wh Q}})} &\le C(\ep) M_0 \de_Q^{m-|\al|}, &x\in \fc{65}{64}Q\\
+\ab{\pl^\be(F_Q-F_{\wh Q})} &\le C(\ep) M_0 \de_Q^{m-|\be|},\\
+|\pl^\be S(x) |&\le C(\ep) \de_{\wh Q}^{-|\al|},\\
+P&\in C(\ep) M_0\si_0(x).
+\end{align}
+\fixme{CLEANUP}
+Whitney convexity says that when this is true (max side length where I can apply is greater than side length of $Q_0$)
+
+$S\odot_x P \in C(\ep) M_0\si_0(x)$. 
+
+Each product belongs to...; there are a bounded number of summands
+
+\begin{align}
+|\pl^\be (F-P_0)|&\le  C(\ep) M_0 \de_{Q_0}^{m-|\be|}, & |\be|&\le m\\
+J_x F &\in \Ga_0(x,C(\ep)M_0) &\forall x&\in E\cap \fc{65}{64}Q_0.
+\end{align}
+%take P in approp Ga and move to P' in Ga' , modify so that derivs agree perfectly. linear ops
+%pick P in each Ga dep linearly and bdd depth on data
+%interpo within constant C of best possiblem in C^m norm
+%lin and bdd depth on data
+%proved refined finiteness principle. 
+%Not just enough to test bounded size, in fact, one can produce a list, O(number of points of E)
+%true in ppl if only can compute
+% 
+\end{proof}
+general questions of computational geometry: suppose I have large finite set, and associate number to each element, do Calderon-Zygmund decomposition, stop cutting if the side length of cube is $\le$ min of all the number associated with numbers in the cube (or double). How to compute that efficiently? It can be done. I won't talk about that. I'll talk about computing the approximate size and shape of the $\Ga$'s. Time to compute is at least $N^2$. Solution: you do not try to compute them, but other $\Ga$'s, defined taking advantage of well-separated pairs decomposition. Share all the key properties.

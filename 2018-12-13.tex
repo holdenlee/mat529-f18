@@ -1,0 +1,96 @@
+\blu{2018-12-13}
+
+Almost everything extends to Sobolev spaces, but in a more complicated way. Suppose we work in $W^{m,p}(\R^n)$, functions whose derivatives up to order $m$ belong to $L^p(\R^n)$. 
+We don't have the freedom to do irrelevant stuff far away. 
+(If we only care about the sup norm, far away the function could have large derivatives, as long as it is less than the sup norm. But if you care about an integral, then the you are penalized for having large derivatives far away.)
+
+We have to assume $p>\fc nm$ and $p\ge 1$. If $p>n$, then theorems are analogous to $C^m$. (Joint work with Kevin Ludi and Arie Israel.)
+We need $p\ge 1$ to have a Banach space; we need $p>\fc nm$ because we had better be working with continuous functions, otherwise it doesn't make snse to give the function value at a finite number of points.  Functions in this class are continuous for $p>\fc nm$.
+
+The main difference in the proof is that we can't use $\Ga$'s but we can use $\si$'s.
+
+There's another class of problems, selection problems: Suppose we consider vector-valued functions; for each point of $\R^n$, specify convex set; I demand the values of the function lie in the target set.  There are analogous results to the finiteness theorem, but the applications (existence of algortihms) is in a primitive state. You have $\Ga$'s but not $\si$'s. 
+
+For one class of problems, the $\Ga$'s help but not the $\si$'s; for another, the reverse holds.
+
+We discuss how to construct $\si$'s and $\Ga$'s quickly.
+
+Recall the well-separated pairs decomposition.
+We can decompose
+$E\times E\bs \text{Diag}=\bigcup_{\nu=1}^{\nu_{\max}}E_\nu' \times E_\nu''$ for $\nu=1,\ldots, \nu_{\max}$ with the following good properties. 
+\begin{itemize}
+\item
+$d(E_\nu', E_{\nu}'')>K[\diam E_\nu' + \diam E_\nu'']$
+\item
+$\nu_{\max} \le C(K,n)N$. 
+\end{itemize}
+Recall how these were constructed. Certain dyadic cubes $Q$ contain at least 2 points of $E$.
+Let $\cal Q$ be the family of these $Q$. 
+For certain $Q'\times Q''$ in the decomposition, $Q',Q''\in \cal Q$, $\text{dist}(Q',Q'') \sim K \diam Q'=\diam Q''$, we take $E' := E\cap Q'$, $E'' := E\cap Q''$.
+
+We organize these cubes by ordering them.
+%All associated with root.
+Start with the root. Then look at the children, and order them.  Then proceed recursively. (I.e., traverse in depth-first way.) This has the important property: Given $Q\in \cal Q$, the elements of $E$ that belong to $Q$ are an interval under this ordering.
+%presumably on the order of $N^2$ intervals.
+
+There are only $O(N)$ dyadic intervals.
+%E is a set of points in $\R^n$ we have no control over the geometry. strange
+Given $\Ga(x,M):=\Ga_\ell(x,M)$, $x\in E$ (not the same $\Ga$'s as before, but the ``cheap'' version). ($\Ga_0$ is the same as before: derivatives $\le M$ at point, and take correct function value. What's changed is the process of refining them.)
+
+For $I\sub E$ a dyadic interval, pick representative $x_I\in I$, and let
+$
+\Ga^{(1)} (I,M) 
+$
+consist of all $P\in \cal P$ such that for each $x\in I$, there exists $P^x\in \Ga(x,M)$ such that 
+\begin{align}
+|\pl^\al (P^x-P)(x)|
+&\le CM [\diam(I)]^{m-|\al|}.
+\end{align}
+We want to intersect all of them. That's a convex set defined by a number of inequalities which is proportional to the number of elements of $I$. That set is complicated but its John ellipsoid (contained in the set, and dilate by fixed quantity contains set) can be computed in linear time. (That's not obvious, but it's true.) So we pass to the John ellipsoid.
+
+How to find the diameter? There is a quantity $\diam_\iy$ that is comparable and easy to compute. It's the diameter w.r.t the $\ell_\iy$-norm: $\ve{x-y}_\iy = \max_i |x_i-y_i|$. It's  trivial to compute the $\diam_\iy$: %sort $i$ according to the first 
+Find the max and min for each coordinate, which takes linear time.
+The $\ell_\iy$ norm is equivalent up to $\sqrt n$  to the $\ell_2$ norm. 
+
+Pass from $Q'$ to $Q''$. The distance is comparable to the diameters of the cubes. %which is $\ge$ the dyadic 
+
+Now let 
+\begin{align}\Ga^{(2)}(Q,M) = \bigcap_{I\text{ piece of }Q}\bc{\text{all }P\in \cal P \text{ s.t. }\exists P_I\in \Ga^{(1)}(I,M)\text{ s.t. }|\pl^\al(P_I-P)(x_I)|\le MC\de_Q^{m-|\al|}\text{ for all }|\al|\le m-1
+}.
+\end{align}
+%at most log n.
+There are at most 2 dyadic intervals of any particular length. %, only $\log n$ f=
+%make CZ decomposition of how interval, happy as long as contained in $\cal Q$. Partitions $\cal Q$...
+%side length of i comparable from x(i,W)
+The number of cubes is $O(M)$, each computed in $O(\log M)$ steps. 
+
+Next step:
+\begin{align}
+\Ga^{(3)}(Q'',M) &= \bigcap_{Q': (Q',Q'')\text{ arises in constructing WSPD}}
+\set{P''\in \cal P}{\exists P'\in \Ga^{(2)}(Q'', M) \text{ such that }|\pl^\al (P'-P'')(x_{Q'})| \le CM [\text{dist}(Q',Q'')]^{m-|\al|}\text{ for all }|\al|\le m-1}
+\end{align}•
+%box comparable to intersection
+Sum comparable to number of $Q'$s, guaranteed that the number of $O(N)$.
+In the following, whenever we have a complicated set we replace it by a simpler set that is more or less equivalent.
+
+For dyadic $I''$,  define
+\begin{align}
+\Ga^{(4)}(I'', M) 
+&=
+\bigcap_{Q''\in \cal Q\text{ s.t. }I''\text{ is a piece of }Q''}
+\Ga^{(3)}(Q'',M).
+\end{align}
+For each $I''$, the work is proportional to the number of $Q''$ such that $I''$ is a piece of $Q''$. Summing over all $I''$, the work is proportional to the number of such pairs $(I'',Q'')$. For each $Q''$, the number of possible $I''$ is $O(\log N)$. So the total work is $O(N\log N)$. 
+Finally 
+\begin{align}
+\Ga^{(5)}(x,M) & = \bigcap_{I''\in x} (I'', M).
+\end{align}
+How much work? For each $x$ it takes at most $O(\log N)$, so again the total work is $O(N\log N)$.
+This is the $\Ga^{(\ell+1)}$. 
+
+Let's check they have one of the defining properties. There should be a polynomial in the original which is not too far away...
+$x=y$ is trivial; suppose $x\ne y$. 
+%if can't in a minute, it's trivial
+Given $x,y$, pick out $Q'$ and $Q''$. There is a (3) $P'$ that lies close to $P''$, for any $I$, (2) there's one $P_I$ lying close. Based on various length scales. The biggest length scale is between $Q',Q''$ which is comparable to the distance between $x$ and $y$.
+
+Check preserve Whitney convexity.
